@@ -8,7 +8,7 @@
 
 # tools-licenses
 
-A Clojure [tools.build](https://github.com/clojure/tools.build) task library related to dependency licenses.
+A Clojure [tools.build](https://github.com/clojure/tools.build) task library related to dependency licenses.  Somewhat inspired by the (discontinued) [`lein-licenses`](https://github.com/technomancy/lein-licenses/) Leiningen plugin, but with the added benefit of license canonicalisation (leveraging the *excellent* [Software Package Data Exchange (SPDX)](https://spdx.dev/) standard).
 
 ## Tasks
 
@@ -38,7 +38,7 @@ Note that you must express an explicit dependency on `io.github.seancorfield/bui
   (:require [tools-licenses.tasks :as lic]))
 ```
 
-### Add a `license` build task to your build
+### Add a `licenses` build task to your build
 
 ```clojure
 (defn licenses
@@ -47,6 +47,147 @@ Note that you must express an explicit dependency on `io.github.seancorfield/bui
   (-> opts
       (set-opts)
       (lic/licenses)))
+```
+
+### Use the `licenses` build task
+
+Example summary output:
+
+```
+$ clj -T:build licenses
+This project:
+  * Apache-2.0
+
+Upstream dependencies (occurrences):
+  * Apache-2.0 (65)
+  * BSD-3-Clause (1)
+  * CDDL-1.0 OR (GPL-2.0 WITH Classpath-exception-2.0) (1)
+  * EPL-1.0 (31)
+  * EPL-2.0 (4)
+  * LGPL-2.0 (2)
+  * MIT (6)
+  * Public domain (1)
+```
+
+Example detailed output:
+
+```
+$ clj -T:build licenses :output :detailed
+This project:
+  * com.github.pmonks/tools-licenses: Apache-2.0
+
+Direct dependencies:
+  * camel-snake-kebab/camel-snake-kebab: EPL-1.0
+  * cheshire/cheshire: MIT
+  * clj-xml-validation/clj-xml-validation: EPL-1.0
+  * com.github.pmonks/tools-convenience: Apache-2.0
+  * io.github.clojure/tools.build: EPL-1.0
+  * io.github.seancorfield/build-clj: Apache-2.0
+  * org.clojure/clojure: EPL-1.0
+  * org.clojure/data.xml: EPL-1.0
+  * tolitius/xml-in: EPL-1.0
+
+Transitive dependencies:
+  * aopalliance/aopalliance: Public domain
+  * ch.qos.logback/logback-classic: EPL-1.0, LGPL-2.0
+  * ch.qos.logback/logback-core: EPL-1.0, LGPL-2.0
+  * clj-commons/pomegranate: EPL-1.0
+  * com.amazonaws/aws-java-sdk-core: Apache-2.0
+  * com.amazonaws/aws-java-sdk-kms: Apache-2.0
+  * com.amazonaws/aws-java-sdk-s3: Apache-2.0
+  * com.amazonaws/aws-java-sdk-sts: Apache-2.0
+  * com.amazonaws/jmespath-java: Apache-2.0
+  * com.cognitect/http-client: Apache-2.0
+  * com.cognitect.aws/api: Apache-2.0
+  * com.cognitect.aws/endpoints: Apache-2.0
+  * com.cognitect.aws/s3: Apache-2.0
+  * com.fasterxml.jackson.core/jackson-annotations: Apache-2.0
+  * com.fasterxml.jackson.core/jackson-core: Apache-2.0
+  * com.fasterxml.jackson.core/jackson-databind: Apache-2.0
+  * com.fasterxml.jackson.dataformat/jackson-dataformat-cbor: Apache-2.0
+  * com.fasterxml.jackson.dataformat/jackson-dataformat-smile: Apache-2.0
+  * com.google.code.findbugs/jsr305: Apache-2.0
+  * com.google.errorprone/error_prone_annotations: Apache-2.0
+  * com.google.guava/guava: Apache-2.0
+  * com.google.inject/guice$no_aop: Apache-2.0
+  * com.google.j2objc/j2objc-annotations: Apache-2.0
+  * commons-codec/commons-codec: Apache-2.0
+  * commons-io/commons-io: Apache-2.0
+  * commons-logging/commons-logging: Apache-2.0
+  * io.github.seancorfield/build-uber-log4j2-handler: Apache-2.0
+  * javax.annotation/jsr250-api: CDDL-1.0 OR (GPL-2.0 WITH Classpath-exception-2.0)
+  * javax.enterprise/cdi-api: Apache-2.0
+  * javax.inject/javax.inject: Apache-2.0
+  * joda-time/joda-time: Apache-2.0
+  * org.apache.commons/commons-lang3: Apache-2.0
+  * org.apache.httpcomponents/httpclient: Apache-2.0
+  * org.apache.httpcomponents/httpcore: Apache-2.0
+  * org.apache.logging.log4j/log4j-api: Apache-2.0
+  * org.apache.logging.log4j/log4j-core: Apache-2.0
+  * org.apache.maven/maven-artifact: Apache-2.0
+  * org.apache.maven/maven-builder-support: Apache-2.0
+  * org.apache.maven/maven-core: Apache-2.0
+  * org.apache.maven/maven-model: Apache-2.0
+  * org.apache.maven/maven-model-builder: Apache-2.0
+  * org.apache.maven/maven-plugin-api: Apache-2.0
+  * org.apache.maven/maven-repository-metadata: Apache-2.0
+  * org.apache.maven/maven-resolver-provider: Apache-2.0
+  * org.apache.maven/maven-settings: Apache-2.0
+  * org.apache.maven/maven-settings-builder: Apache-2.0
+  * org.apache.maven.resolver/maven-resolver-api: Apache-2.0
+  * org.apache.maven.resolver/maven-resolver-connector-basic: Apache-2.0
+  * org.apache.maven.resolver/maven-resolver-impl: Apache-2.0
+  * org.apache.maven.resolver/maven-resolver-spi: Apache-2.0
+  * org.apache.maven.resolver/maven-resolver-transport-file: Apache-2.0
+  * org.apache.maven.resolver/maven-resolver-transport-http: Apache-2.0
+  * org.apache.maven.resolver/maven-resolver-transport-wagon: Apache-2.0
+  * org.apache.maven.resolver/maven-resolver-util: Apache-2.0
+  * org.apache.maven.shared/maven-shared-utils: Apache-2.0
+  * org.apache.maven.wagon/wagon-http: Apache-2.0
+  * org.apache.maven.wagon/wagon-http-shared: Apache-2.0
+  * org.apache.maven.wagon/wagon-provider-api: Apache-2.0
+  * org.checkerframework/checker-compat-qual: MIT
+  * org.clojure/core.async: EPL-1.0
+  * org.clojure/core.cache: EPL-1.0
+  * org.clojure/core.memoize: EPL-1.0
+  * org.clojure/core.specs.alpha: EPL-1.0
+  * org.clojure/data.codec: EPL-1.0
+  * org.clojure/data.json: EPL-1.0
+  * org.clojure/data.priority-map: EPL-1.0
+  * org.clojure/java.classpath: EPL-1.0
+  * org.clojure/spec.alpha: EPL-1.0
+  * org.clojure/tools.analyzer: EPL-1.0
+  * org.clojure/tools.analyzer.jvm: EPL-1.0
+  * org.clojure/tools.cli: EPL-1.0
+  * org.clojure/tools.deps.alpha: EPL-1.0
+  * org.clojure/tools.gitlibs: EPL-1.0
+  * org.clojure/tools.logging: EPL-1.0
+  * org.clojure/tools.namespace: EPL-1.0
+  * org.clojure/tools.reader: EPL-1.0
+  * org.codehaus.mojo/animal-sniffer-annotations: MIT
+  * org.codehaus.plexus/plexus-classworlds: Apache-2.0
+  * org.codehaus.plexus/plexus-component-annotations: Apache-2.0
+  * org.codehaus.plexus/plexus-interpolation: Apache-2.0
+  * org.codehaus.plexus/plexus-utils: Apache-2.0
+  * org.eclipse.jetty/jetty-client: EPL-2.0
+  * org.eclipse.jetty/jetty-http: EPL-2.0
+  * org.eclipse.jetty/jetty-io: EPL-2.0
+  * org.eclipse.jetty/jetty-util: EPL-2.0
+  * org.eclipse.sisu/org.eclipse.sisu.inject: EPL-1.0
+  * org.eclipse.sisu/org.eclipse.sisu.plexus: EPL-1.0
+  * org.jsoup/jsoup: MIT
+  * org.ow2.asm/asm: BSD-3-Clause
+  * org.slf4j/jcl-over-slf4j: Apache-2.0
+  * org.slf4j/slf4j-api: MIT
+  * org.slf4j/slf4j-nop: MIT
+  * org.sonatype.plexus/plexus-cipher: Apache-2.0
+  * org.sonatype.plexus/plexus-sec-dispatcher: Apache-2.0
+  * org.springframework.build/aws-maven: Apache-2.0
+  * org.tcrawley/dynapath: EPL-1.0
+  * s3-wagon-private/s3-wagon-private: Apache-2.0
+  * slipset/deps-deploy: EPL-1.0
+  * software.amazon.ion/ion-java: Apache-2.0
+  * tigris/tigris: EPL-1.0
 ```
 
 ### API Documentation
