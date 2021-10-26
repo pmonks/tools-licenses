@@ -120,11 +120,11 @@
           (recur licenses license-files (.getNextEntry zip)))
         (do
           (when verbose (println "ℹ️" dep (str "(" jar-file ")") "contains" (count license-files) "probable license file(s):" (s/join ", " license-files)))
-          licenses)))))
+          (vec licenses))))))
 
 (defn- dir-licenses
   "Attempts to determine the license(s) used by the given directory (assumed to represent a single project)."
-  [dep verbose dir]
+  [verbose dep dir]
   (let [license-files (seq (filter probable-license-file? (file-seq (io/file dir))))
         licenses      (if-let [licenses (seq (distinct (filter #(not (s/blank? %))
                                                                (mapcat #(with-open [is (io/input-stream %)] (licenses-from-file verbose dep (filename %) is))
@@ -132,7 +132,7 @@
                         licenses
                         (get-in fallbacks [dep :licenses]))]
     (when verbose (println "ℹ️" dep "contains" (count licenses) "license(s):" (s/join ", " licenses)))
-    licenses))
+    (vec licenses)))
 
 (defmulti ^:private dep-licenses
   "Attempts to determine the license(s) used by the given dep."
@@ -161,14 +161,15 @@
 (defn licenses
   "Lists all licenses used transitively by the project.
 
+  :lib     -- req: the 
   :output  -- opt: output format, one of :summary, :detailed, :edn (defaults to :summary)
-  :verbose -- opt: boolean controlling whether to emit verbose output or not (defaults to false)"
+  :verbose -- opt: flag indicating whether to produce verbose output during processing (defaults to false)"
   [opts]
   (let [basis         (bb/default-basis)
         lib-map       (d/resolve-deps basis {})
         _             (d/prep-libs! lib-map {:action :prep :log :info} {})  ; Make sure everything is "prepped" (downloaded locally) before we start looking for licenses
         verbose       (get opts :verbose false)
-        proj-licenses (dir-licenses (:lib opts) verbose ".")
+        proj-licenses (dir-licenses verbose (:lib opts) ".")
         dep-licenses  (into {} (for [[k v] lib-map] (dep-licenses verbose k v)))]
     (case (get opts :output :summary)
       :summary  (let [freqs    (frequencies (filter identity (mapcat :licenses (vals dep-licenses))))
@@ -177,7 +178,7 @@
                   (if proj-licenses
                     (doall (map #(println "  *" %) (sort proj-licenses)))
                     (println "  - no licenses found -"))
-                  (println "Upstream dependencies (occurrences):")
+                  (println "\nUpstream dependencies (occurrences):")
                   (if licenses
                     (doall (map #(println "  *" % (str "(" (get freqs %) ")")) licenses))
                     (println "  - no licenses found -")))
@@ -185,9 +186,9 @@
                       transitive-deps (into {} (filter (fn [[_ v]] (seq (:dependents v))) dep-licenses))]
                   (println "This project:")
                   (if proj-licenses
-                    (doall (map #(println "  *" %) (sort proj-licenses)))
+                    (println "  *" (str (:lib opts) ":") (s/join ", " (sort proj-licenses)))
                     (println "  - no licenses found -"))
-                  (println "Direct dependencies:")
+                  (println "\nDirect dependencies:")
                   (if direct-deps
                     (doall (for [[k v] (sort-by key direct-deps)] (println "  *" (str k ":") (s/join ", " (:licenses v)))))
                     (println "  - no direct dependencies -"))
@@ -195,8 +196,8 @@
                   (if transitive-deps
                     (doall (for [[k v] (sort-by key transitive-deps)] (println "  *" (str k ":") (s/join ", " (:licenses v)))))
                     (println "  - no transitive dependencies -")))
-      :edn      (pp/pprint {:this-project proj-licenses
-                            :dependencies dep-licenses}))
+      :edn      (pp/pprint (into {(:lib opts) {:this-project true :licenses proj-licenses :paths [(.getCanonicalPath (io/file "."))]}}
+                                 dep-licenses)))
     (let [deps-without-licenses (seq (sort (keys (remove #(:licenses (val %)) dep-licenses))))]
       (when deps-without-licenses
         (println "Unable to determine licenses for these dependencies:")
