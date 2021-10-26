@@ -25,6 +25,7 @@ clojure -A:deps -T:build help/doc"
   (:require [clojure.tools.build.api :as b]
             [org.corfield.build      :as bb]
             [tools-convenience.api   :as tc]
+            [tools-pom.tasks         :as pom]
             [tools-licenses.tasks    :as lic]
             [pbr.tasks               :as pbr]))
 
@@ -115,30 +116,15 @@ clojure -A:deps -T:build help/doc"
   [opts]
   (-> opts
       (set-opts)
-      (pbr/pom)
+      (pom/pom)
       (bb/jar)))
 
-; ####TODO: awaiting next version of PBR
-(comment
 (defn deploy
   "Deploys the library JAR to Clojars."
   [opts]
   (-> opts
       (set-opts)
       (pbr/deploy)))
-)
-; Temporary implementations while we await the version of PBR that includes these tasks
-(defn deploy
-  "Deploys the library JAR to Clojars."
-  [opts]
-  (let [current-branch (tc/git-current-branch)]
-    (if (= current-branch "main")
-      (let [deploy-opts (assoc (set-opts opts) :version (tc/git-nearest-tag))]
-        (println "ℹ️ Deploying" (:lib deploy-opts) "version" (:version deploy-opts) "to Clojars.")
-        (pbr/pom   deploy-opts)  ; Note: we can't simply call (pom) again here, since it clobbers our custom deploy-opts
-        (bb/jar    deploy-opts)  ; Note: we can't simply call (jar) again here, since it clobbers our custom deploy-opts
-        (bb/deploy deploy-opts))
-      (throw (ex-info (str "deploy task must be run from 'main' branch (current branch is '" current-branch "').") (into {} opts))))))
 
 (defn docs
   "Generates codox documentation"
