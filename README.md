@@ -18,14 +18,18 @@ A Clojure [tools.build](https://github.com/clojure/tools.build) task library rel
 
 ### Dependency
 
-Express a maven dependency in your `deps.edn`, for a build tool alias:
+Express the correct maven dependencies in your `deps.edn`, for a build tool alias:
 
 ```edn
   :aliases
     :build
-      {:deps       {com.github.pmonks/tools-licenses {:mvn/version "LATEST_CLOJARS_VERSION"}}
+      {:deps       {com.github.pmonks/tools-licenses {:mvn/version "LATEST_CLOJARS_VERSION"}
+                    io.github.seancorfield/build-clj {:git/tag "v0.5.2" :git/sha "8f75b81"}}
        :ns-default your.build.ns}
 ```
+
+Note that you must express an explicit dependency on `io.github.seancorfield/build-clj`, as that project [doesn't publish artifacts to Clojars yet](https://github.com/seancorfield/build-clj/issues/11), and transitive dependencies that only have git coordinates are not supported by tools.deps yet.
+
 
 ### Require the namespace
 
@@ -38,7 +42,7 @@ Express a maven dependency in your `deps.edn`, for a build tool alias:
 
 ```clojure
 (defn licenses
-  "Construct a comprehensive pom.xml file for this project"
+  "Attempts to list all licenses for the transitive set of dependencies of the project, using SPDX license expressions."
   [opts]
   (-> opts
       (set-opts)
@@ -48,6 +52,22 @@ Express a maven dependency in your `deps.edn`, for a build tool alias:
 ### API Documentation
 
 [API documentation is available here](https://pmonks.github.io/tools-licenses/).
+
+## FAQ
+
+[//]: # (Comment: Every Question in this list has two spaces at the end THAT MUST NOT BE REMOVED!!)
+
+**Q.** How comprehensive is the license task?  
+**A.** While it makes a pretty good effort to find license information included in the published artifacts for a project's dependencies, and [falls back](https://github.com/pmonks/tools-licenses/blob/data/fallbacks.edn) on manually verified information when necessary, this logic is no substitute for a forensic software license compliance service (such as [WhiteSource](https://www.whitesourcesoftware.com/), [fossa](https://fossa.com/), [SourceAuditor](https://sourceauditor.com/compliance/index.php/legal-and-compliance-professionals/) etc.).  It is, however, substantially cheaper than those services.
+
+**Q.** The license task says "Unable to determine licenses for these dependencies", gives me a list of deps and then asks me to raise an issue [here](https://github.com/pmonks/tools-licenses/issues/new?assignees=pmonks&labels=unknown+licenses&template=Unknown_licenses.md). Why?  
+**A.** If an artifact contains no identifiable license information, the logic falls back on a [manually curated list of dependency -> licenses](https://github.com/pmonks/tools-licenses/blob/data/fallbacks.edn).  That message appears when there is no identifiable license information in the artifact AND the dependency has no fallback information either.  By raising a bug including the list of deps(s) that the tool emitted, you give the author an opportunity to manually determine the licenses for those dep(s) and update the fallback list accordingly.
+
+**Q.** When the fallback list is updated, will I need to update my new version of tools-licenses to get it?  
+**A.** No - the fallback list is retrieved at runtime, so any updates to it will be picked up soon after they are made by all versions of tools-licenses.
+
+**Q.** Doesn't that mean that tools-licenses requires an internet connection in order to function?  
+**A.** Yes indeed.
 
 ## Contributor Information
 
