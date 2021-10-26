@@ -55,6 +55,8 @@ Note that you must express an explicit dependency on `io.github.seancorfield/bui
 
 ## FAQ
 
+[//]: # (Comment: Every Question in this list has two spaces at the end THAT MUST NOT BE REMOVED!!)
+
 **Q.** How comprehensive is the license task?  
 **A.** While it makes a pretty good effort to find license information included in the published artifacts for a project's dependencies, and [falls back](https://github.com/pmonks/tools-licenses/blob/data/fallbacks.edn) on manually verified information when necessary, this logic is no substitute for a forensic software license compliance service (such as [WhiteSource](https://www.whitesourcesoftware.com/), [fossa](https://fossa.com/), [SourceAuditor](https://sourceauditor.com/compliance/index.php/legal-and-compliance-professionals/) etc.).  It is, however, substantially cheaper than those services.
 
