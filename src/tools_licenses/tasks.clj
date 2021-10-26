@@ -32,9 +32,7 @@
             [xml-in.core              :as xi]
             [tools-licenses.spdx      :as spdx]))
 
-;####TODO: FIX THIS ONCE THE REFACTORING IS COMPLETE
-(def ^:private fallbacks-uri "https://cdn.jsdelivr.net/gh/pmonks/pbr@data/fallbacks.edn")
-;(def ^:private fallbacks-uri "https://cdn.jsdelivr.net/gh/pmonks/tools-licenses@data/fallbacks.edn")
+(def ^:private fallbacks-uri "https://cdn.jsdelivr.net/gh/pmonks/tools-licenses@data/fallbacks.edn")
 (def ^:private fallbacks (try
                            (edn/read-string (slurp fallbacks-uri))
                            (catch Exception e
