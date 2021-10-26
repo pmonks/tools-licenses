@@ -200,5 +200,5 @@
       (when deps-without-licenses
         (println "Unable to determine licenses for these dependencies:")
         (doall (map (partial println "  *") deps-without-licenses))
-        (println "Please raise a bug at https://github.com/pmonks/tools-licenses/issues/new?assignees=&labels=&template=Bug_report.md and include this list of dependencies.")))
+        (println "Please raise an issue at https://github.com/pmonks/tools-licenses/issues/new?assignees=pmonks&labels=unknown+licenses&template=Unknown_licenses.md and include this list of dependencies.")))
     opts))
