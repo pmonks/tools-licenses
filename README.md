@@ -8,7 +8,7 @@
 
 # tools-licenses
 
-A Clojure tools.build task library related to dependency licenses.
+A Clojure [tools.build](https://github.com/clojure/tools.build) task library related to dependency licenses.
 
 ## Tasks
 
