@@ -159,9 +159,11 @@
 (defn licenses
   "Lists all licenses used transitively by the project.
 
-  :lib     -- req: the 
+  :lib     -- req: a symbol representing the name of your library / project (e.g. com.github.yourusername/yourproject)
   :output  -- opt: output format, one of :summary, :detailed, :edn (defaults to :summary)
-  :verbose -- opt: flag indicating whether to produce verbose output during processing (defaults to false)"
+  :verbose -- opt: flag indicating whether to produce verbose output during processing (defaults to false)
+
+  Note: has the side effect of 'prepping' your project with its transitive dependencies (i.e. downloading them if they haven't already been downloaded)."
   [opts]
   (let [basis         (bb/default-basis)
         lib-map       (d/resolve-deps basis {})
