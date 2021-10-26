@@ -91,7 +91,7 @@ clojure -A:deps -T:build help/doc"
     (lint)))
 
 (defn licenses
-  "Attempts to determine all licenses used by all dependencies in the project."
+  "Attempts to list all licenses for the transitive set of dependencies of the project, using SPDX license expressions."
   [opts]
   (-> opts
     (set-opts)
