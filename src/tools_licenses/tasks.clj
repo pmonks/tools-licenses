@@ -178,7 +178,7 @@
                   (if proj-licenses
                     (doall (map #(println "  *" %) (sort proj-licenses)))
                     (println "  - no licenses found -"))
-                  (println "\nUpstream dependencies (occurrences):")
+                  (println "\nDependencies' licenses (occurrences):")
                   (if licenses
                     (doall (map #(println "  *" % (str "(" (get freqs %) ")")) licenses))
                     (println "  - no licenses found -")))
