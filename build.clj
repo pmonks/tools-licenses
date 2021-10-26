@@ -26,6 +26,7 @@ clojure -A:deps -T:build help/doc"
             [codox.main              :as codox]
             [org.corfield.build      :as bb]
             [tools-convenience.api   :as tc]
+            [tools-licenses.tasks    :as lic]
             [pbr.tasks               :as pbr]))
 
 (def lib       'com.github.pmonks/tools-licenses)
@@ -92,7 +93,9 @@ clojure -A:deps -T:build help/doc"
 (defn licenses
   "Attempts to determine all licenses used by all dependencies in the project."
   [opts]
-  (pbr/licenses opts))
+  (-> opts
+    (set-opts)
+    (lic/licenses)))
 
 (defn check-release
   "Check that a release can be done from the current directory."
