@@ -8,13 +8,20 @@
 
 # tools-licenses
 
-A Clojure [tools.build](https://github.com/clojure/tools.build) task library related to dependency licenses.  Somewhat inspired by the (discontinued) [`lein-licenses`](https://github.com/technomancy/lein-licenses/) Leiningen plugin, but with the added benefit of license canonicalisation (leveraging the *excellent* [Software Package Data Exchange (SPDX)](https://spdx.dev/) standard).
+A Clojure [tools.build](https://github.com/clojure/tools.build) task library related to dependency licenses.  Somewhat inspired by the (discontinued) [`lein-licenses`](https://github.com/technomancy/lein-licenses/) Leiningen plugin, but with the added benefit of license canonicalisation (leveraging the *excellent* [Software Package Data Exchange (SPDX)](https://spdx.dev/) standard), and with the ability to check your project against the [Apache Software Foundation's 3rd Party License Policy](https://www.apache.org/legal/resolved.html).
 
 ## Tasks
 
 1. `licenses` - attempt to display the licenses used by all transitive dependencies of the project
+2. `check-asf-policy` - attempt to check your project's compliance with the ASF's 3rd Party License Policy
 
 ## Using the library
+
+### Documentation
+
+[API documentation is available here](https://pmonks.github.io/tools-licenses/).
+
+[FAQ is available here](https://github.com/pmonks/tools-licenses/wiki/FAQ).
 
 ### Dependency
 
@@ -38,7 +45,7 @@ Note that you must express an explicit dependency on `io.github.seancorfield/bui
   (:require [tools-licenses.tasks :as lic]))
 ```
 
-### Add a `licenses` build task to your build
+### Add one or more of the build tasks to your build
 
 ```clojure
 (defn licenses
@@ -47,9 +54,18 @@ Note that you must express an explicit dependency on `io.github.seancorfield/bui
   (-> opts
       (set-opts)
       (lic/licenses)))
+
+(defn check-asf-policy
+  "Checks this project's dependencies' licenses against the ASF's 3rd party license policy (https://www.apache.org/legal/resolved.html)."
+  [opts]
+  (-> opts
+      (set-opts)
+      (lic/check-asf-policy)))
 ```
 
-### Use the `licenses` build task
+### Use the build tasks
+
+#### `licenses` task
 
 Example summary output:
 
@@ -190,25 +206,24 @@ Transitive dependencies:
   * tigris/tigris: EPL-1.0
 ```
 
-### API Documentation
+#### `check-asf-policy` task
 
-[API documentation is available here](https://pmonks.github.io/tools-licenses/).
+Example summary output:
 
-## FAQ
+```
+$ clj -T:build check-asf-policy
+Category                       Number of Deps
+------------------------------ --------------
+Category A                     72
+Category A (with caveats)      1
+Category B                     35
+Creative Commons Licenses      0
+Category X                     0
+Non-OSI Approved Licenses      0
+Unknown                        1
 
-[//]: # (Comment: Every Question in this list has two spaces at the end THAT MUST NOT BE REMOVED!!)
-
-**Q.** How comprehensive is the license task?  
-**A.** While it makes a pretty good effort to find license information included in the published artifacts for a project's dependencies, and [falls back](https://github.com/pmonks/tools-licenses/blob/data/fallbacks.edn) on manually verified information when necessary, this logic is no substitute for a forensic software license compliance service (such as [WhiteSource](https://www.whitesourcesoftware.com/), [fossa](https://fossa.com/), [SourceAuditor](https://sourceauditor.com/compliance/index.php/legal-and-compliance-professionals/) etc.).  It is, however, substantially cheaper than those services.
-
-**Q.** The license task says "Unable to determine licenses for these dependencies", gives me a list of deps and then asks me to raise an issue [here](https://github.com/pmonks/tools-licenses/issues/new?assignees=pmonks&labels=unknown+licenses&template=Unknown_licenses.md). Why?  
-**A.** If an artifact contains no identifiable license information, the logic falls back on a [manually curated list of dependency -> licenses](https://github.com/pmonks/tools-licenses/blob/data/fallbacks.edn).  That message appears when there is no identifiable license information in the artifact AND the dependency has no fallback information either.  By raising a bug including the list of deps(s) that the tool emitted, you give the author an opportunity to manually determine the licenses for those dep(s) and update the fallback list accordingly.
-
-**Q.** When the fallback list is updated, will I need to update my new version of tools-licenses to get it?  
-**A.** No - the fallback list is retrieved at runtime, so any updates to it will be picked up soon after they are made by all versions of tools-licenses.
-
-**Q.** Doesn't that mean that tools-licenses requires an internet connection in order to function?  
-**A.** Yes indeed.
+For more information, please see https://github.com/pmonks/tools-licenses/wiki/FAQ
+```
 
 ## Contributor Information
 
