@@ -13,6 +13,7 @@ A Clojure [tools.build](https://github.com/clojure/tools.build) task library rel
 ## Tasks
 
 1. `licenses` - attempt to display the licenses used by all transitive dependencies of the project
+2. `check-asf-compliance` - attempt to check your project's compliance with the [Apache Software Foundation's 3rd Party License Policy](https://www.apache.org/legal/resolved.html)
 
 ## Using the library
 
@@ -38,7 +39,7 @@ Note that you must express an explicit dependency on `io.github.seancorfield/bui
   (:require [tools-licenses.tasks :as lic]))
 ```
 
-### Add a `licenses` build task to your build
+### Add one or more of the build tasks to your build
 
 ```clojure
 (defn licenses
@@ -47,9 +48,18 @@ Note that you must express an explicit dependency on `io.github.seancorfield/bui
   (-> opts
       (set-opts)
       (lic/licenses)))
+
+(defn check-asf-compliance
+  "Checks this project's dependencies' licenses against the ASF's 3rd party license policy (https://www.apache.org/legal/resolved.html)."
+  [opts]
+  (-> opts
+      (set-opts)
+      (lic/check-asf-compliance)))
 ```
 
-### Use the `licenses` build task
+### Use the build tasks
+
+#### `licenses` task
 
 Example summary output:
 
@@ -190,6 +200,25 @@ Transitive dependencies:
   * tigris/tigris: EPL-1.0
 ```
 
+#### `check-asf-compliance` task
+
+Example summary output:
+
+```
+$ clj -T:build check-asf-compliance
+Category                       Number of Deps
+------------------------------ --------------
+Category A                     72
+Category A (with caveats)      1
+Category B                     35
+Creative Commons Licenses      0
+Category X                     0
+Non-OSI Approved Licenses      0
+Unknown                        1
+
+For more information, please review https://www.apache.org/legal/resolved.html
+```
+
 ### API Documentation
 
 [API documentation is available here](https://pmonks.github.io/tools-licenses/).
@@ -208,7 +237,7 @@ Transitive dependencies:
 **A.** No - the fallback list is retrieved at runtime, so any updates to it will be picked up soon after they are made by all versions of tools-licenses.
 
 **Q.** Doesn't that mean that tools-licenses requires an internet connection in order to function?  
-**A.** Yes indeed.
+**A.** Yes indeed.  In fact the [SPDX license list](https://spdx.org/licenses/) is retrieved at runtime too.
 
 ## Contributor Information
 
