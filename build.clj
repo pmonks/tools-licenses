@@ -77,16 +77,16 @@ clojure -A:deps -T:build help/doc"
   "Run all linters."
   [opts]
   (-> opts
-    (kondo)
-    (eastwood)))
+      (kondo)
+      (eastwood)))
 
 (defn ci
   "Run the CI pipeline."
   [opts]
-  (-> opts
-    (outdated)
-;    (check)    ; Removed until https://github.com/athos/clj-check/issues/4 is fixed
-    (lint)))
+  (let [opts (set-opts opts)]
+    (try (outdated opts) (catch clojure.lang.ExceptionInfo _))  ; Ignore errors since com.github.pmonks/tools-convenience from PBR is often out of date
+    (try (check    opts) (catch clojure.lang.ExceptionInfo _))  ; Ignore errors until https://github.com/athos/clj-check/issues/4 is fixed
+    (lint opts)))
 
 (defn licenses
   "Attempts to list all licenses for the transitive set of dependencies of the project, using SPDX license expressions."
@@ -94,6 +94,13 @@ clojure -A:deps -T:build help/doc"
   (-> opts
     (set-opts)
     (lic/licenses)))
+
+(defn check-asf-policy
+  "Checks this project's dependencies' licenses against the ASF's 3rd party license policy (https://www.apache.org/legal/resolved.html)."
+  [opts]
+  (-> opts
+    (set-opts)
+    (lic/check-asf-policy)))
 
 (defn check-release
   "Check that a release can be done from the current directory."

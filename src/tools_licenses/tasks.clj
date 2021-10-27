@@ -30,9 +30,10 @@
             [clojure.tools.deps.alpha :as d]
             [org.corfield.build       :as bb]
             [xml-in.core              :as xi]
-            [tools-licenses.spdx      :as spdx]))
+            [tools-licenses.spdx      :as spdx]
+            [tools-licenses.asf       :as asf]))
 
-(def ^:private fallbacks-uri "https://cdn.jsdelivr.net/gh/pmonks/tools-licenses@data/fallbacks.edn")
+(def ^:private fallbacks-uri "https://raw.githubusercontent.com/pmonks/tools-licenses/data/fallbacks.edn")
 (def ^:private fallbacks (try
                            (edn/read-string (slurp fallbacks-uri))
                            (catch Exception e
@@ -56,14 +57,14 @@
 
 (defn- lookup-license-fragment
   [verbose dep fragment]
-  (if-let [spdx-expr (spdx/guess fragment)]
-    spdx-expr
+  (if-let [licenses (spdx/guess fragment)]
+    licenses
     (when verbose (println "⚠️ The license text" (str "'" fragment "',") "found in dep" (str "'" dep "',")  "has no SPDX equivalent."))))
 
 (defn- lookup-license-url
   [verbose dep url]
-  (if-let [spdx-expr (spdx/license-url->spdx-id url)]
-    spdx-expr
+  (if-let [license (spdx/license-url->spdx-id url)]
+    license
     (when verbose (println "⚠️ The license url" (str "'" url "',") "found in dep" (str "'" dep "',")  "does not map to a SPDX identifier."))))
 
 (defmulti ^:private licenses-from-file
@@ -77,11 +78,11 @@
   (let [pom-xml (xml/parse input-stream)]
     (if-let [pom-licenses (seq
                             (distinct
-                              (concat (keep (partial lookup-license-fragment verbose dep) (xi/find-all pom-xml [::pom/project ::pom/licenses ::pom/license ::pom/name]))
-                                      (keep (partial lookup-license-url      verbose dep) (xi/find-all pom-xml [::pom/project ::pom/licenses ::pom/license ::pom/url]))
+                              (concat (flatten (keep (partial lookup-license-fragment verbose dep) (xi/find-all pom-xml [::pom/project ::pom/licenses ::pom/license ::pom/name])))
+                                      (keep          (partial lookup-license-url      verbose dep) (xi/find-all pom-xml [::pom/project ::pom/licenses ::pom/license ::pom/url]))
                                       ; Note: a few rare pom.xml files are missing an xmlns declation (e.g. software.amazon.ion/ion-java) - the following two lines will catch those
-                                      (keep (partial lookup-license-fragment verbose dep) (xi/find-all pom-xml [:project      :licenses      :license      :name]))
-                                      (keep (partial lookup-license-url      verbose dep) (xi/find-all pom-xml [:project      :licenses      :license      :url])))))]
+                                      (flatten (keep (partial lookup-license-fragment verbose dep) (xi/find-all pom-xml [:project      :licenses      :license      :name])))
+                                      (keep          (partial lookup-license-url      verbose dep) (xi/find-all pom-xml [:project      :licenses      :license      :url])))))]
       pom-licenses
       (when verbose (println "ℹ️" dep "has a pom.xml file but it does not contain a <licenses> element")))))
 
@@ -96,7 +97,7 @@
   [verbose dep _ input-stream]
   (let [rdr         (io/reader input-stream)    ; Note: we don't wrap this in "with-open", since the input-stream we're handed is closed by the calling fns
         first-lines (s/trim (s/join " " (take 2 (remove s/blank? (map s/trim (line-seq rdr))))))]  ; Take the first two non-blank lines, since many licenses put the name on line 1, and the version on line 2
-    [(lookup-license-fragment verbose dep first-lines)]))
+    (seq (distinct (lookup-license-fragment verbose dep first-lines)))))
 
 (def ^:private probable-license-filenames #{"pom.xml" "license" "license.txt" "copying"})   ;TODO: consider "license.md" and #".+\.spdx" (see https://github.com/spdx/spdx-maven-plugin for why the latter is important)...
 
@@ -156,6 +157,19 @@
   [_ dep info]
   (throw (ex-info (str "Unexpected manifest type" (:deps/manifest info) "for dependency" dep) {dep info})))
 
+(defn- prep-project
+  "Prepares the project and returns the lib-map for it."
+  []
+  (let [basis         (bb/default-basis)
+        lib-map       (d/resolve-deps basis {})
+        _             (d/prep-libs! lib-map {:action :prep :log :info} {})]  ; Make sure everything is "prepped" (downloaded locally) before we start looking for licenses])
+    lib-map))
+
+(defn- lib-map-with-licences
+  "Determines the :licenses for each of the deps in the given lib-map"
+  [verbose lib-map]
+  (into {} (pmap #(dep-licenses verbose (key %) (val %)) lib-map)))
+
 (defn licenses
   "Lists all licenses used transitively by the project.
 
@@ -165,12 +179,10 @@
 
   Note: has the side effect of 'prepping' your project with its transitive dependencies (i.e. downloading them if they haven't already been downloaded)."
   [opts]
-  (let [basis         (bb/default-basis)
-        lib-map       (d/resolve-deps basis {})
-        _             (d/prep-libs! lib-map {:action :prep :log :info} {})  ; Make sure everything is "prepped" (downloaded locally) before we start looking for licenses
+  (let [lib-map       (prep-project)
         verbose       (get opts :verbose false)
         proj-licenses (dir-licenses verbose (:lib opts) ".")
-        dep-licenses  (into {} (for [[k v] lib-map] (dep-licenses verbose k v)))]
+        dep-licenses  (lib-map-with-licences verbose lib-map)]
     (case (get opts :output :summary)
       :summary  (let [freqs    (frequencies (filter identity (mapcat :licenses (vals dep-licenses))))
                       licenses (seq (sort (keys freqs)))]
@@ -178,7 +190,7 @@
                   (if proj-licenses
                     (doall (map #(println "  *" %) (sort proj-licenses)))
                     (println "  - no licenses found -"))
-                  (println "\nUpstream dependencies (occurrences):")
+                  (println "\nDependencies' licenses (count):")
                   (if licenses
                     (doall (map #(println "  *" % (str "(" (get freqs %) ")")) licenses))
                     (println "  - no licenses found -")))
@@ -204,3 +216,40 @@
         (doall (map (partial println "  *") deps-without-licenses))
         (println "Please raise an issue at https://github.com/pmonks/tools-licenses/issues/new?assignees=pmonks&labels=unknown+licenses&template=Unknown_licenses.md and include this list of dependencies.")))
     opts))
+
+(defn check-asf-policy
+  "Checks your project's dependencies against the ASF's 3rd party license policy (https://www.apache.org/legal/resolved.html).
+
+  :output  -- opt: output format, one of :summary, :detailed, :edn (defaults to :summary)
+  :verbose -- opt: flag indicating whether to produce verbose output during processing (defaults to false)
+
+  Note: has the side effect of 'prepping' your project with its transitive dependencies (i.e. downloading them if they haven't already been downloaded)."
+  [opts]
+  (let [lib-map                  (prep-project)
+        verbose                  (get opts :verbose false)
+        proj-licenses            (dir-licenses verbose (:lib opts) ".")
+        dep-licenses-by-category (group-by #(asf/least-problematic-category (:licenses (val %))) (lib-map-with-licences verbose lib-map))]
+    (when-not (seq (filter #(= "Apache-2.0" %) proj-licenses))
+      (println "⚠️ Your project is not Apache-2.0 licensed, so this report will need further investigation.\n"))
+    (case (get opts :output :summary)
+      :summary  (do
+                  (println "Category                       Number of Deps")
+                  (println "------------------------------ --------------")
+                  (doall
+                     (map (fn [category]
+                            (let [category-info (get asf/category-info category)]
+                              (println (format "%-30s %d" (:name category-info) (count (get dep-licenses-by-category category))))))
+                          asf/least-to-most-problematic-categories))
+                  (println "\nFor more information, please see https://github.com/pmonks/tools-licenses/wiki/FAQ"))
+      :detailed (do
+                  (doall
+                    (map (fn [category]
+                           (let [category-info (get asf/category-info category)
+                                 dep-licenses  (get dep-licenses-by-category category)]
+                             (when dep-licenses
+                               (println (str (:name category-info) ":"))
+                               (doall (map #(println "  *" %)  (sort (keys (get dep-licenses-by-category category)))))
+                               (println))))
+                       asf/least-to-most-problematic-categories))
+                  (println "For more information, please see https://github.com/pmonks/tools-licenses/wiki/FAQ"))
+      :edn      (pp/pprint dep-licenses-by-category))))
