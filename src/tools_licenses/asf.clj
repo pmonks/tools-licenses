@@ -175,7 +175,7 @@
   :creative-commons   - see https://www.apache.org/legal/resolved.html#cc-by (may be any category...)
   :category-x         - see https://www.apache.org/legal/resolved.html#category-x
   :non-osi-approved   - see https://www.apache.org/legal/resolved.html#criteria (effectively the same as :category-x)
-  :unknown            - the ASF category could not be determined"
+  :uncategorised      - the ASF category could not be determined for this license"
   [spdx-id]
   (if (seq (filter #(= spdx-id %) asf-cat-a))
     :category-a
@@ -189,7 +189,7 @@
             :category-x
             (if (seq (filter #(= spdx-id %) non-osi-approved))
               :non-osi-approved
-              :unknown)))))))
+              :uncategorised)))))))
 
 (def ^:private category-order
   {:category-a         0
@@ -198,7 +198,7 @@
    :creative-commons   4
    :category-x         5
    :non-osi-approved   6
-   :unknown            7})
+   :uncategorised      7})
 
 (def third-party-license-uri "https://www.apache.org/legal/resolved.html")
 
@@ -210,7 +210,7 @@
    :creative-commons   {:name "Creative Commons Licenses" :url "https://www.apache.org/legal/resolved.html#cc-by"}
    :category-x         {:name "Category X"                :url "https://www.apache.org/legal/resolved.html#category-x"}
    :non-osi-approved   {:name "Non-OSI Approved Licenses" :url "https://www.apache.org/legal/resolved.html#criteria"}
-   :unknown            {:name "Unknown"                   :url "https://www.apache.org/legal/resolved.html#criteria"}})
+   :uncategorised      {:name "Uncategorised"             :url "https://www.apache.org/legal/resolved.html#criteria"}})
 
 (def category-compare
   "A comparator for ASF category keywords (see category fn for that list)."

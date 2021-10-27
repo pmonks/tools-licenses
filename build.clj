@@ -95,12 +95,12 @@ clojure -A:deps -T:build help/doc"
     (set-opts)
     (lic/licenses)))
 
-(defn check-asf-compliance
+(defn check-asf-policy
   "Checks this project's dependencies' licenses against the ASF's 3rd party license policy (https://www.apache.org/legal/resolved.html)."
   [opts]
   (-> opts
     (set-opts)
-    (lic/check-asf-compliance)))
+    (lic/check-asf-policy)))
 
 (defn check-release
   "Check that a release can be done from the current directory."
