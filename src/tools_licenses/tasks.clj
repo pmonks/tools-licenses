@@ -33,7 +33,7 @@
             [tools-licenses.spdx      :as spdx]
             [tools-licenses.asf       :as asf]))
 
-(def ^:private fallbacks-uri "https://cdn.jsdelivr.net/gh/pmonks/tools-licenses@data/fallbacks.edn")
+(def ^:private fallbacks-uri "https://raw.githubusercontent.com/pmonks/tools-licenses/data/fallbacks.edn")
 (def ^:private fallbacks (try
                            (edn/read-string (slurp fallbacks-uri))
                            (catch Exception e
