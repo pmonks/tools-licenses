@@ -216,11 +216,133 @@ Category                       Number of Deps
 ------------------------------ --------------
 Category A                     72
 Category A (with caveats)      1
-Category B                     35
+Category B                     36
 Creative Commons Licenses      0
 Category X                     0
 Non-OSI Approved Licenses      0
-Unknown                        1
+Uncategorised                  0
+
+For more information, please see https://github.com/pmonks/tools-licenses/wiki/FAQ
+```
+
+Example detailed output:
+
+```
+clj -T:build check-asf-policy :output :detailed
+Category A:
+  * cheshire/cheshire
+  * com.amazonaws/aws-java-sdk-core
+  * com.amazonaws/aws-java-sdk-kms
+  * com.amazonaws/aws-java-sdk-s3
+  * com.amazonaws/aws-java-sdk-sts
+  * com.amazonaws/jmespath-java
+  * com.cognitect/http-client
+  * com.cognitect.aws/api
+  * com.cognitect.aws/endpoints
+  * com.cognitect.aws/s3
+  * com.fasterxml.jackson.core/jackson-annotations
+  * com.fasterxml.jackson.core/jackson-core
+  * com.fasterxml.jackson.core/jackson-databind
+  * com.fasterxml.jackson.dataformat/jackson-dataformat-cbor
+  * com.fasterxml.jackson.dataformat/jackson-dataformat-smile
+  * com.github.pmonks/tools-convenience
+  * com.google.code.findbugs/jsr305
+  * com.google.errorprone/error_prone_annotations
+  * com.google.guava/guava
+  * com.google.inject/guice$no_aop
+  * com.google.j2objc/j2objc-annotations
+  * commons-codec/commons-codec
+  * commons-io/commons-io
+  * commons-logging/commons-logging
+  * io.github.seancorfield/build-clj
+  * io.github.seancorfield/build-uber-log4j2-handler
+  * javax.enterprise/cdi-api
+  * javax.inject/javax.inject
+  * joda-time/joda-time
+  * org.apache.commons/commons-lang3
+  * org.apache.httpcomponents/httpclient
+  * org.apache.httpcomponents/httpcore
+  * org.apache.logging.log4j/log4j-api
+  * org.apache.logging.log4j/log4j-core
+  * org.apache.maven/maven-artifact
+  * org.apache.maven/maven-builder-support
+  * org.apache.maven/maven-core
+  * org.apache.maven/maven-model
+  * org.apache.maven/maven-model-builder
+  * org.apache.maven/maven-plugin-api
+  * org.apache.maven/maven-repository-metadata
+  * org.apache.maven/maven-resolver-provider
+  * org.apache.maven/maven-settings
+  * org.apache.maven/maven-settings-builder
+  * org.apache.maven.resolver/maven-resolver-api
+  * org.apache.maven.resolver/maven-resolver-connector-basic
+  * org.apache.maven.resolver/maven-resolver-impl
+  * org.apache.maven.resolver/maven-resolver-spi
+  * org.apache.maven.resolver/maven-resolver-transport-file
+  * org.apache.maven.resolver/maven-resolver-transport-http
+  * org.apache.maven.resolver/maven-resolver-transport-wagon
+  * org.apache.maven.resolver/maven-resolver-util
+  * org.apache.maven.shared/maven-shared-utils
+  * org.apache.maven.wagon/wagon-http
+  * org.apache.maven.wagon/wagon-http-shared
+  * org.apache.maven.wagon/wagon-provider-api
+  * org.checkerframework/checker-compat-qual
+  * org.codehaus.mojo/animal-sniffer-annotations
+  * org.codehaus.plexus/plexus-classworlds
+  * org.codehaus.plexus/plexus-component-annotations
+  * org.codehaus.plexus/plexus-interpolation
+  * org.codehaus.plexus/plexus-utils
+  * org.jsoup/jsoup
+  * org.ow2.asm/asm
+  * org.slf4j/jcl-over-slf4j
+  * org.slf4j/slf4j-api
+  * org.slf4j/slf4j-nop
+  * org.sonatype.plexus/plexus-cipher
+  * org.sonatype.plexus/plexus-sec-dispatcher
+  * org.springframework.build/aws-maven
+  * s3-wagon-private/s3-wagon-private
+  * software.amazon.ion/ion-java
+
+Category A (with caveats):
+  * aopalliance/aopalliance
+
+Category B:
+  * camel-snake-kebab/camel-snake-kebab
+  * ch.qos.logback/logback-classic
+  * ch.qos.logback/logback-core
+  * clj-commons/pomegranate
+  * clj-xml-validation/clj-xml-validation
+  * io.github.clojure/tools.build
+  * javax.annotation/jsr250-api
+  * org.clojure/clojure
+  * org.clojure/core.async
+  * org.clojure/core.cache
+  * org.clojure/core.memoize
+  * org.clojure/core.specs.alpha
+  * org.clojure/data.codec
+  * org.clojure/data.json
+  * org.clojure/data.priority-map
+  * org.clojure/data.xml
+  * org.clojure/java.classpath
+  * org.clojure/spec.alpha
+  * org.clojure/tools.analyzer
+  * org.clojure/tools.analyzer.jvm
+  * org.clojure/tools.cli
+  * org.clojure/tools.deps.alpha
+  * org.clojure/tools.gitlibs
+  * org.clojure/tools.logging
+  * org.clojure/tools.namespace
+  * org.clojure/tools.reader
+  * org.eclipse.jetty/jetty-client
+  * org.eclipse.jetty/jetty-http
+  * org.eclipse.jetty/jetty-io
+  * org.eclipse.jetty/jetty-util
+  * org.eclipse.sisu/org.eclipse.sisu.inject
+  * org.eclipse.sisu/org.eclipse.sisu.plexus
+  * org.tcrawley/dynapath
+  * slipset/deps-deploy
+  * tigris/tigris
+  * tolitius/xml-in
 
 For more information, please see https://github.com/pmonks/tools-licenses/wiki/FAQ
 ```

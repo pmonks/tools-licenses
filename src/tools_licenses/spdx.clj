@@ -19,7 +19,6 @@
 (ns tools-licenses.spdx
   "SPDX license information handling logic."
   (:require [clojure.string       :as s]
-            [clojure.set          :as set]
             [clojure.reflect      :as cr]
             [cheshire.core        :as json]
             [tools-licenses.utils :as u]))
@@ -30,11 +29,6 @@
                                        (catch Exception e
                                          (throw (ex-info (str "Unexpected " (cr/typename (type e)) " while reading " spdx-license-list-uri ". Please check your internet connection and try again.") {})))))
 
-; Alternative indexes into the SPDX list
-(def ^:private spdx-name-to-id (apply merge (map #(hash-map (s/lower-case (:name %)) (:license-id %)) (:licenses spdx-license-list))))
-(def ^:private spdx-url-to-id  (into {} (for [lic (:licenses spdx-license-list) url (:see-also lic)] (hash-map (s/lower-case url) (:license-id lic)))))
-
-
 (def license-list-version
   "The version of the license list in use."
   (:license-list-version spdx-license-list))
@@ -43,33 +37,54 @@
   "The SPDX license list."
   (:licenses spdx-license-list))
 
+(defn- canonicalise-url
+  "Attempts to canonicalise a URL."
+  [url]
+  (when url
+    (s/replace (s/replace (s/lower-case url) "https://" "http://") "://www." "://")))
+
+; Alternative indexes into the SPDX list
+(def ^:private idx-id-to-info (into {} (map #(vec [(:license-id %) %]) license-list)))
+(def ^:private idx-name-to-id (apply merge (map #(hash-map (s/lower-case (:name %)) (:license-id %)) license-list)))
+(def ^:private idx-url-to-id  (into {} (mapcat (fn [lic] (map #(vec [(canonicalise-url %) (:license-id lic)]) (:see-also lic))) license-list)))
+
 (def ids
   "All SPDX license identifiers in the list."
-  (map :license-id (:licenses spdx-license-list)))
+  (keys idx-id-to-info))
 
-(defn license-name->spdx-id
+(defn id->info
+  "Returns the SPDX license information for the given SPDX license identifier, or nil if unable to do so."
+  [spdx-id]
+  (get idx-id-to-info spdx-id))
+
+(defn id->name
+  "Returns the official license name for the given SPDX id, or nil if unable to do so."
+  [spdx-id]
+  (:name (id->info spdx-id)))
+
+(defn name->id
   "Returns the SPDX license identifier equivalent of the given license name, or nil if unable to do so."
   [name]
   (when name
-    (get spdx-name-to-id (s/lower-case name))))
+    (get idx-name-to-id (s/lower-case name))))
 
-(defn license-url->spdx-id
-  "Returns the SPDX license identifier equivalent for the given URL, or nil if unable to do so."
+(defn url->id
+  "Returns the SPDX license identifier equivalent for the given URL, or nil if unable to do so.
+
+  Notes:
+  1. this does not perform exact matching; rather it checks whether the given URL matches the start of any of the known license URLs.
+  2. URLs in the SPDX license list are not unique to a license (approximately 70 out of 600 are duplicates)"
   [url]
   (when url
-    (let [lcase-url (s/lower-case (str url))
-          url-match (first (filter (partial s/starts-with? lcase-url) (keys spdx-url-to-id)))]
-      (get spdx-url-to-id url-match))))
-
-(def spdx-id->license-name
-  "Returns the official license name for the given SPDX id, or nil if unable to do so."
-  (set/map-invert spdx-name-to-id))
+    (let [canonical-url (canonicalise-url url)
+          url-match     (first (filter (partial s/starts-with? canonical-url) (keys idx-url-to-id)))]
+      (get idx-url-to-id url-match))))
 
 (def ^:private aliases
   (merge ; Start with all of the official license names
          (into {}
-          (for [[k v] spdx-name-to-id]
-            [(re-pattern (u/escape-re (s/lower-case k))) [v]]))
+          (for [[k v] idx-name-to-id]
+            [(re-pattern (u/escape-re k)) [v]]))
 
          ; Then add some common variants
          {
@@ -110,7 +125,7 @@
   "Attempts to guess the SPDX license identifier(s) (a sequence), from the given license text fragment. Returns nil if unable to do so."
   [text]
   (when text
-    (if-let [exact-match (license-name->spdx-id text)]
+    (if-let [exact-match (name->id text)]
       [exact-match]
       (let [ltext (s/lower-case text)]
         (loop [f (first alias-regexes)

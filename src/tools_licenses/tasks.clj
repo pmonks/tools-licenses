@@ -63,7 +63,7 @@
 
 (defn- lookup-license-url
   [verbose dep url]
-  (if-let [license (spdx/license-url->spdx-id url)]
+  (if-let [license (spdx/url->id url)]
     license
     (when verbose (println "⚠️ The license url" (str "'" url "',") "found in dep" (str "'" dep "',")  "does not map to a SPDX identifier."))))
 

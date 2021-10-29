@@ -20,4 +20,4 @@ jobs:
       image: uochan/antq
     steps:
       - uses: actions/checkout@v2
-      - run: java -jar /tmp/antq/antq.jar --error-format="::error file={{file}}::{{message}}"
+      - run: java -jar /tmp/antq/antq.jar --skip=pom --error-format="::error file={{file}}::{{message}}"
