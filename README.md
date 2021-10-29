@@ -74,13 +74,13 @@ $ clj -T:build licenses
 This project:
   * Apache-2.0
 
-Upstream dependencies (occurrences):
+Dependencies' licenses (count):
   * Apache-2.0 (65)
   * BSD-3-Clause (1)
-  * CDDL-1.0 OR (GPL-2.0 WITH Classpath-exception-2.0) (1)
+  * CDDL-1.0 (1)
   * EPL-1.0 (31)
   * EPL-2.0 (4)
-  * LGPL-2.0 (2)
+  * GPL-2.0-with-classpath-exception (1)
   * MIT (6)
   * Public domain (1)
 ```
@@ -105,8 +105,8 @@ Direct dependencies:
 
 Transitive dependencies:
   * aopalliance/aopalliance: Public domain
-  * ch.qos.logback/logback-classic: EPL-1.0, LGPL-2.0
-  * ch.qos.logback/logback-core: EPL-1.0, LGPL-2.0
+  * ch.qos.logback/logback-classic: EPL-1.0
+  * ch.qos.logback/logback-core: EPL-1.0
   * clj-commons/pomegranate: EPL-1.0
   * com.amazonaws/aws-java-sdk-core: Apache-2.0
   * com.amazonaws/aws-java-sdk-kms: Apache-2.0
@@ -131,7 +131,7 @@ Transitive dependencies:
   * commons-io/commons-io: Apache-2.0
   * commons-logging/commons-logging: Apache-2.0
   * io.github.seancorfield/build-uber-log4j2-handler: Apache-2.0
-  * javax.annotation/jsr250-api: CDDL-1.0 OR (GPL-2.0 WITH Classpath-exception-2.0)
+  * javax.annotation/jsr250-api: CDDL-1.0, GPL-2.0-with-classpath-exception
   * javax.enterprise/cdi-api: Apache-2.0
   * javax.inject/javax.inject: Apache-2.0
   * joda-time/joda-time: Apache-2.0
@@ -228,7 +228,7 @@ For more information, please see https://github.com/pmonks/tools-licenses/wiki/F
 Example detailed output:
 
 ```
-clj -T:build check-asf-policy :output :detailed
+$ clj -T:build check-asf-policy :output :detailed
 Category A:
   * cheshire/cheshire
   * com.amazonaws/aws-java-sdk-core
