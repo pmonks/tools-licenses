@@ -59,13 +59,13 @@
   [verbose dep fragment]
   (if-let [licenses (spdx/guess fragment)]
     licenses
-    (when verbose (println "⚠️ The license text" (str "'" fragment "',") "found in dep" (str "'" dep "',")  "has no SPDX equivalent."))))
+    (when verbose (println "The license text" (str "'" fragment "',") "found in dep" (str "'" dep "',")  "has no SPDX equivalent."))))
 
 (defn- lookup-license-url
   [verbose dep url]
   (if-let [license (spdx/url->id url)]
     license
-    (when verbose (println "⚠️ The license url" (str "'" url "',") "found in dep" (str "'" dep "',")  "does not map to a SPDX identifier."))))
+    (when verbose (println "The license url" (str "'" url "',") "found in dep" (str "'" dep "',")  "does not map to a SPDX identifier."))))
 
 (defmulti ^:private licenses-from-file
   "Attempts to determine the license(s) for the given file."
@@ -84,11 +84,11 @@
                                       (flatten (keep (partial lookup-license-fragment verbose dep) (xi/find-all pom-xml [:project      :licenses      :license      :name])))
                                       (keep          (partial lookup-license-url      verbose dep) (xi/find-all pom-xml [:project      :licenses      :license      :url])))))]
       pom-licenses
-      (when verbose (println "ℹ️" dep "has a pom.xml file but it does not contain a <licenses> element")))))
+      (when verbose (println dep "has a pom.xml file but it does not contain a <licenses> element")))))
 
 (defmethod licenses-from-file "license.spdx"
   [_ _ name _]
-  (println "⚠️ Processing" (str "'" name "'") "files is not yet implemented.")
+  (println "Processing" (str "'" name "'") "files is not yet implemented.")
   (flush)
   nil)
 
@@ -118,7 +118,7 @@
           (recur (doall (concat licenses (licenses-from-file verbose dep (filename entry) zip))) (concat license-files [(.getName entry)]) (.getNextEntry zip))
           (recur licenses license-files (.getNextEntry zip)))
         (do
-          (when verbose (println "ℹ️" dep (str "(" jar-file ")") "contains" (count license-files) "probable license file(s):" (s/join ", " license-files)))
+          (when verbose (println dep (str "(" jar-file ")") "contains" (count license-files) "probable license file(s):" (s/join ", " license-files)))
           (vec licenses))))))
 
 (defn- dir-licenses
@@ -130,7 +130,7 @@
                                                                        license-files))))]
                         licenses
                         (get-in fallbacks [dep :licenses]))]
-    (when verbose (println "ℹ️" dep "contains" (count licenses) "license(s):" (s/join ", " licenses)))
+    (when verbose (println dep "contains" (count licenses) "license(s):" (s/join ", " licenses)))
     (vec licenses)))
 
 (defmulti ^:private dep-licenses
@@ -144,7 +144,7 @@
         licenses  (if-let [licenses (seq (distinct (filter #(not (s/blank? %)) (mapcat (partial jar-licenses dep verbose) jar-files))))]
                     licenses
                     (get-in fallbacks [dep :licenses]))]
-    (when verbose (println "ℹ️" dep "contains" (count licenses) "license(s):" (s/join ", " licenses)))
+    (when verbose (println dep "contains" (count licenses) "license(s):" (s/join ", " licenses)))
     [dep (merge info (when licenses {:licenses licenses}))]))
 
 ; :deps dependencies are simple uncompressed directory structures on disk
@@ -230,7 +230,7 @@
         proj-licenses            (dir-licenses verbose (:lib opts) ".")
         dep-licenses-by-category (group-by #(asf/least-problematic-category (:licenses (val %))) (lib-map-with-licences verbose lib-map))]
     (when-not (seq (filter #(= "Apache-2.0" %) proj-licenses))
-      (println "⚠️ Your project is not Apache-2.0 licensed, so this report will need further investigation.\n"))
+      (println "Your project is not Apache-2.0 licensed, so this report will need further investigation.\n"))
     (case (get opts :output :summary)
       :summary  (do
                   (println "Category                       Number of Deps")
