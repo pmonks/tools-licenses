@@ -160,9 +160,9 @@
 (defn- prep-project
   "Prepares the project and returns the lib-map for it."
   []
-  (let [basis         (bb/default-basis)
-        lib-map       (d/resolve-deps basis {})
-        _             (d/prep-libs! lib-map {:action :prep :log :info} {})]  ; Make sure everything is "prepped" (downloaded locally) before we start looking for licenses])
+  (let [basis   (bb/default-basis)
+        lib-map (d/resolve-deps basis {})
+        _       (d/prep-libs! lib-map {:action :prep :log :info} {})]  ; Make sure everything is "prepped" (downloaded locally) before we start looking for licenses])
     lib-map))
 
 (defn- lib-map-with-licences
