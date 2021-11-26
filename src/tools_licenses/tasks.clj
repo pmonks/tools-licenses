@@ -160,9 +160,9 @@
 (defn- prep-project
   "Prepares the project and returns the lib-map for it."
   []
-  (let [basis         (bb/default-basis)
-        lib-map       (d/resolve-deps basis {})
-        _             (d/prep-libs! lib-map {:action :prep :log :info} {})]  ; Make sure everything is "prepped" (downloaded locally) before we start looking for licenses])
+  (let [basis   (bb/default-basis)
+        lib-map (d/resolve-deps basis {})
+        _       (d/prep-libs! lib-map {:action :prep :log :info} {})]  ; Make sure everything is "prepped" (downloaded locally) before we start looking for licenses])
     lib-map))
 
 (defn- lib-map-with-licences
@@ -212,9 +212,9 @@
                                  dep-licenses)))
     (let [deps-without-licenses (seq (sort (keys (remove #(:licenses (val %)) dep-licenses))))]
       (when deps-without-licenses
-        (println "Unable to determine licenses for these dependencies:")
+        (println "\nUnable to determine licenses for these dependencies:")
         (doall (map (partial println "  *") deps-without-licenses))
-        (println "Please raise an issue at https://github.com/pmonks/tools-licenses/issues/new?assignees=pmonks&labels=unknown+licenses&template=Unknown_licenses.md and include this list of dependencies.")))
+        (println "\nPlease raise an issue at https://github.com/pmonks/tools-licenses/issues/new?assignees=pmonks&labels=unknown+licenses&template=Unknown_licenses.md and include this list of dependencies.")))
     opts))
 
 (defn check-asf-policy
