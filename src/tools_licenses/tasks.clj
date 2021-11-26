@@ -212,9 +212,9 @@
                                  dep-licenses)))
     (let [deps-without-licenses (seq (sort (keys (remove #(:licenses (val %)) dep-licenses))))]
       (when deps-without-licenses
-        (println "Unable to determine licenses for these dependencies:")
+        (println "\nUnable to determine licenses for these dependencies:")
         (doall (map (partial println "  *") deps-without-licenses))
-        (println "Please raise an issue at https://github.com/pmonks/tools-licenses/issues/new?assignees=pmonks&labels=unknown+licenses&template=Unknown_licenses.md and include this list of dependencies.")))
+        (println "\nPlease raise an issue at https://github.com/pmonks/tools-licenses/issues/new?assignees=pmonks&labels=unknown+licenses&template=Unknown_licenses.md and include this list of dependencies.")))
     opts))
 
 (defn check-asf-policy
