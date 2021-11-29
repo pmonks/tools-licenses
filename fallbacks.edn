@@ -24,6 +24,32 @@
   net.java.dev.jna/jna-platform                             {:spdx true  :licenses ["Apache-2.0" "LGPL-2.1"]                       :evidence "https://github.com/java-native-access/jna/blob/master/LICENSE"}
   net.jpountz.lz4/lz4                                       {:spdx true  :licenses ["Apache-2.0"]                                  :evidence "https://github.com/lz4/lz4-java/blob/master/LICENSE.txt"}
   org.activecomponents.jadex/jadex-distribution-minimal     {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-kernel-application       {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-kernel-base              {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-kernel-bdiv3             {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-kernel-bpmn              {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-kernel-component         {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-kernel-micro             {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-kernel-microservice      {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-kernel-model-bpmn        {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-platform-base            {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-platform-bridge          {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-rules-eca                {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-serialization-binary     {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-serialization-json       {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-serialization-traverser  {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-serialization-xml        {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-transport-base           {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-transport-relay          {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-transport-tcp            {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-transport-websocket      {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-util-bytecode            {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-util-commons             {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-util-concurrent          {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-util-gui                 {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-util-javaparser          {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-util-nativetools         {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
+  org.activecomponents.jadex/jadex-util-security            {:spdx true  :licenses ["GPL-3.0"]                                     :evidence "https://github.com/actoron/jadex/blob/master/LICENSE"}
   org.bouncycastle/bcpkix-jdk15on                           {:spdx true  :licenses ["MIT"]                                         :evidence "https://github.com/spdx/license-list-XML/issues/910"}
   org.bouncycastle/bcprov-jdk15on                           {:spdx true  :licenses ["MIT"]                                         :evidence "https://github.com/spdx/license-list-XML/issues/910"}
   org.bouncycastle/bcutil-jdk15on                           {:spdx true  :licenses ["MIT"]                                         :evidence "https://github.com/spdx/license-list-XML/issues/910"}
