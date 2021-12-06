@@ -30,8 +30,8 @@
             [clojure.tools.deps.alpha :as d]
             [org.corfield.build       :as bb]
             [xml-in.core              :as xi]
-            [tools-licenses.spdx      :as spdx]
-            [tools-licenses.asf       :as asf]))
+            [asf-cat.api              :as asf]
+            [tools-licenses.spdx      :as spdx]))
 
 (def ^:private fallbacks-uri "https://raw.githubusercontent.com/pmonks/tools-licenses/data/fallbacks.edn")
 (def ^:private fallbacks (try
@@ -228,7 +228,7 @@
   (let [lib-map                  (prep-project)
         verbose                  (get opts :verbose false)
         proj-licenses            (dir-licenses verbose (:lib opts) ".")
-        dep-licenses-by-category (group-by #(asf/least-problematic-category (:licenses (val %))) (lib-map-with-licences verbose lib-map))]
+        dep-licenses-by-category (group-by #(asf/least-category (:licenses (val %))) (lib-map-with-licences verbose lib-map))]
     (when-not (seq (filter #(= "Apache-2.0" %) proj-licenses))
       (println "Your project is not Apache-2.0 licensed, so this report will need further investigation.\n"))
     (case (get opts :output :summary)
@@ -239,17 +239,17 @@
                      (map (fn [category]
                             (let [category-info (get asf/category-info category)]
                               (println (format "%-30s %d" (:name category-info) (count (get dep-licenses-by-category category))))))
-                          asf/least-to-most-problematic-categories))
+                          asf/ordered-categories))
                   (println "\nFor more information, please see https://github.com/pmonks/tools-licenses/wiki/FAQ"))
       :detailed (do
                   (doall
                     (map (fn [category]
-                           (let [category-info (get asf/category-info category)
+                           (let [category-info (asf/category-info category)
                                  dep-licenses  (get dep-licenses-by-category category)]
                              (when dep-licenses
                                (println (str (:name category-info) ":"))
                                (doall (map #(println "  *" %)  (sort (keys (get dep-licenses-by-category category)))))
                                (println))))
-                       asf/least-to-most-problematic-categories))
+                       asf/ordered-categories))
                   (println "For more information, please see https://github.com/pmonks/tools-licenses/wiki/FAQ"))
       :edn      (pp/pprint dep-licenses-by-category))))
