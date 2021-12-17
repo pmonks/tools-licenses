@@ -86,6 +86,8 @@ Dependencies' licenses (count):
 
 Use `clj -T:build licenses :output :detailed` to get detailed, per-dependency output (too long to reasonably include here).
 
+If you see `NON-SPDX-Unknown (<name>)` and/or the task reports list of dependencies with unknown licenses, **[please raise an issue here](https://github.com/pmonks/lice-comb/issues/new?assignees=pmonks&labels=unknown+licenses&template=Unknown_licenses_tools.md)**.
+
 #### `check-asf-policy` task
 
 Example summary output:
