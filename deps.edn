@@ -28,7 +28,7 @@
     ; clj -T:build <taskname>
     :build
       {:deps       {io.github.seancorfield/build-clj    {:git/tag "v0.6.3" :git/sha "9b8e09b"}
-                    com.github.pmonks/pbr               {:mvn/version "2.0.115"}
+                    com.github.pmonks/pbr               {:mvn/version "2.0.123"}
                     com.github.pmonks/tools-convenience {:mvn/version "1.0.52"}   ; Override whatever PBR pulls in with the latest & greatest
                     com.github.pmonks/tools-licenses    {:local/root "."}}        ; Override whatever PBR pulls in with the latest & greatest
        :ns-default build}
@@ -40,6 +40,12 @@
     :check
       {:extra-deps {com.github.athos/clj-check {:git/sha "518d5a1cbfcd7c952f548e6dbfcb9a4a5faf9062"}}
        :main-opts  ["-m" "clj-check.check"]}
+
+    ; clj -M:test or clj -X:test
+    :test {:extra-paths ["test"]
+           :extra-deps  {io.github.cognitect-labs/test-runner {:git/tag "v0.5.0" :git/sha "b3fd0d2"}}
+           :main-opts   ["-m" "cognitect.test-runner"]
+           :exec-fn     cognitect.test-runner.api/test}
 
     ; clj -M:kondo
     :kondo
