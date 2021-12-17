@@ -17,24 +17,19 @@
 ;
 
 {:deps
-   {org.clojure/data.xml                  {:mvn/version "0.2.0-alpha6"}
-    cheshire/cheshire                     {:mvn/version "5.10.1"}
-    io.github.clojure/tools.build         {:git/tag "v0.6.8" :git/sha "d79ae84"}
-    clj-xml-validation/clj-xml-validation {:mvn/version "1.0.2"}
-    camel-snake-kebab/camel-snake-kebab   {:mvn/version "0.4.2"}
-    tolitius/xml-in                       {:mvn/version "0.1.1"}
-;    org.spdx/java-spdx-library            {:mvn/version "1.0.8"}    ; For future SPDX file support (perhaps...)
-    com.github.pmonks/asf-cat             {:mvn/version "1.0.12"}
-    io.github.seancorfield/build-clj      {:git/tag "v0.6.0" :git/sha "2451bea"}
-    com.github.pmonks/tools-convenience   {:mvn/version "1.0.46"}}
+   {io.github.clojure/tools.build       {:git/tag "v0.7.2" :git/sha "0361dde"}
+    io.github.seancorfield/build-clj    {:git/tag "v0.6.3" :git/sha "9b8e09b"}
+    com.github.pmonks/lice-comb         {:mvn/version "1.0.44"}
+    com.github.pmonks/asf-cat           {:mvn/version "1.0.25"}
+    com.github.pmonks/tools-convenience {:mvn/version "1.0.52"}}
  :aliases
    {; ---- TOOL ALIASES ----
 
     ; clj -T:build <taskname>
     :build
-      {:deps       {io.github.seancorfield/build-clj    {:git/tag "v0.6.0" :git/sha "2451bea"}
+      {:deps       {io.github.seancorfield/build-clj    {:git/tag "v0.6.3" :git/sha "9b8e09b"}
                     com.github.pmonks/pbr               {:mvn/version "2.0.115"}
-                    com.github.pmonks/tools-convenience {:mvn/version "1.0.46"}   ; Override whatever PBR pulls in with the latest & greatest
+                    com.github.pmonks/tools-convenience {:mvn/version "1.0.52"}   ; Override whatever PBR pulls in with the latest & greatest
                     com.github.pmonks/tools-licenses    {:local/root "."}}        ; Override whatever PBR pulls in with the latest & greatest
        :ns-default build}
 
@@ -48,12 +43,12 @@
 
     ; clj -M:kondo
     :kondo
-      {:extra-deps {clj-kondo/clj-kondo {:mvn/version "2021.12.01"}}
+      {:extra-deps {clj-kondo/clj-kondo {:mvn/version "2021.12.16"}}
        :main-opts  ["-m" "clj-kondo.main" "--lint" "src"]}
 
     ; clj -M:eastwood
     :eastwood
-      {:extra-deps {jonase/eastwood {:mvn/version "0.9.9"}}
+      {:extra-deps {jonase/eastwood {:mvn/version "1.0.0"}}
        :main-opts  ["-m" "eastwood.lint" "{:source-paths,[\"src\"]}"]}
 
     ; clj -M:outdated
