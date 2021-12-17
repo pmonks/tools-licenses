@@ -35,7 +35,7 @@ Express the correct maven dependencies in your `deps.edn`, for a build tool alia
        :ns-default your.build.ns}
 ```
 
-Note that you must express an explicit dependency on `io.github.seancorfield/build-clj`, as that project [doesn't publish artifacts to Clojars yet](https://github.com/seancorfield/build-clj/issues/11), and transitive got coordinate dependencies are not supported by tools.deps yet.
+Note that you must express an explicit dependency on `io.github.seancorfield/build-clj`, as that project [doesn't publish artifacts to Clojars yet](https://github.com/seancorfield/build-clj/issues/11), and transitive git coordinate dependencies are not supported by tools.deps.
 
 ### Require the namespace
 
