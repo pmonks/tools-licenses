@@ -28,7 +28,7 @@
     ; clj -T:build <taskname>
     :build
       {:deps       {io.github.seancorfield/build-clj    {:git/tag "v0.6.3" :git/sha "9b8e09b"}
-                    com.github.pmonks/pbr               {:mvn/version "2.0.123"}
+                    com.github.pmonks/pbr               {:mvn/version "2.0.129"}
                     com.github.pmonks/tools-convenience {:mvn/version "1.0.52"}   ; Override whatever PBR pulls in with the latest & greatest
                     com.github.pmonks/tools-licenses    {:local/root "."}}        ; Override whatever PBR pulls in with the latest & greatest
        :ns-default build}
