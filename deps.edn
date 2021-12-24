@@ -17,19 +17,19 @@
 ;
 
 {:deps
-   {io.github.clojure/tools.build       {:git/tag "v0.7.2" :git/sha "0361dde"}
-    io.github.seancorfield/build-clj    {:git/tag "v0.6.3" :git/sha "9b8e09b"}
-    com.github.pmonks/lice-comb         {:mvn/version "1.0.52"}
-    com.github.pmonks/asf-cat           {:mvn/version "1.0.25"}
-    com.github.pmonks/tools-convenience {:mvn/version "1.0.52"}}
+   {io.github.clojure/tools.build       {:git/tag "v0.7.4" :git/sha "ac442da"}
+    io.github.seancorfield/build-clj    {:git/tag "v0.6.5" :git/sha "972031a"}
+    com.github.pmonks/lice-comb         {:mvn/version "1.0.56"}
+    com.github.pmonks/asf-cat           {:mvn/version "1.0.30"}
+    com.github.pmonks/tools-convenience {:mvn/version "1.0.59"}}
  :aliases
    {; ---- TOOL ALIASES ----
 
     ; clj -T:build <taskname>
     :build
-      {:deps       {io.github.seancorfield/build-clj    {:git/tag "v0.6.3" :git/sha "9b8e09b"}
-                    com.github.pmonks/pbr               {:mvn/version "2.0.123"}
-                    com.github.pmonks/tools-convenience {:mvn/version "1.0.52"}   ; Override whatever PBR pulls in with the latest & greatest
+      {:deps       {io.github.seancorfield/build-clj    {:git/tag "v0.6.5" :git/sha "972031a"}
+                    com.github.pmonks/pbr               {:mvn/version "2.0.129"}
+                    com.github.pmonks/tools-convenience {:mvn/version "1.0.59"}   ; Override whatever PBR pulls in with the latest & greatest
                     com.github.pmonks/tools-licenses    {:local/root "."}}        ; Override whatever PBR pulls in with the latest & greatest
        :ns-default build}
 
