@@ -1,7 +1,7 @@
 SPDXVersion: SPDX-2.2.1
 DataLicense: CC0-1.0
 Creator: Peter Monks
-PackageName: tools-licenses
+PackageName: com.github.pmonks/tools-licenses
 PackageOriginator: Peter Monks
 PackageHomePage: https://github.com/pmonks/tools-licenses
 PackageLicenseDeclared: Apache-2.0
