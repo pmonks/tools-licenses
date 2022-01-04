@@ -38,6 +38,10 @@
         _       (d/prep-libs! lib-map {:action :prep :log :info} {})]  ; Make sure everything is "prepped" (downloaded locally) before we start looking for licenses
     lib-map))
 
+(defn- dep-and-licenses
+  [dep licenses]
+  (str dep " [" (s/join ", " licenses) "]"))
+
 (defn licenses
   "Lists all licenses used transitively by the project.
 
@@ -52,27 +56,28 @@
     (case (get opts :output :summary)
       :summary  (let [freqs    (frequencies (filter identity (mapcat :lice-comb/licenses (vals dep-licenses))))
                       licenses (seq (sort (keys freqs)))]
-                  (println "This project:")
+                  (print "This project:")
                   (if proj-licenses
-                    (doall (map #(println "  *" %) (sort proj-licenses)))
-                    (println "  - no licenses found -"))
-                  (println "\nDependencies' licenses (count):")
+                    (println (dep-and-licenses nil (sort proj-licenses)))
+                    (println " - no licenses found -"))
+                  (println "\nLicense                                  Number of Deps")
+                  (println "---------------------------------------- --------------")
                   (if licenses
-                    (doall (map #(println "  *" % (str "(" (get freqs %) ")")) licenses))
+                    (doall (map #(println (format "%-40s %d" % (get freqs %))) licenses))
                     (println "  - no licenses found -")))
       :detailed (let [direct-deps     (into {} (remove (fn [[_ v]] (seq (:dependents v))) dep-licenses))
                       transitive-deps (into {} (filter (fn [[_ v]] (seq (:dependents v))) dep-licenses))]
                   (println "This project:")
                   (if proj-licenses
-                    (println "  *" (str (:lib opts) ":") (s/join ", " (sort proj-licenses)))
+                    (println "  *" (dep-and-licenses (:lib opts) (sort proj-licenses)))
                     (println "  - no licenses found -"))
                   (println "\nDirect dependencies:")
                   (if direct-deps
-                    (doall (for [[k v] (sort-by key direct-deps)] (println "  *" (str k ":") (s/join ", " (:lice-comb/licenses v)))))
+                    (doall (for [[k v] (sort-by key direct-deps)] (println "  *" (dep-and-licenses k (:lice-comb/licenses v)))))
                     (println "  - no direct dependencies -"))
                   (println "\nTransitive dependencies:")
                   (if transitive-deps
-                    (doall (for [[k v] (sort-by key transitive-deps)] (println "  *" (str k ":") (s/join ", " (:lice-comb/licenses v)))))
+                    (doall (for [[k v] (sort-by key transitive-deps)] (println "  *" (dep-and-licenses k (:lice-comb/licenses v)))))
                     (println "  - no transitive dependencies -")))
       :edn      (pp/pprint (into {(:lib opts) {:this-project true :lice-comb/licenses proj-licenses :paths [(.getCanonicalPath (io/file "."))]}}
                                  dep-licenses)))
@@ -109,11 +114,14 @@
                   (doall
                     (map (fn [category]
                            (let [category-info (asf/category-info category)
-                                 dep-licenses  (get dep-licenses-by-category category)]
+                                 dep-licenses  (seq (get dep-licenses-by-category category))]
                              (when dep-licenses
-                               (println (str (:name category-info) ":"))
-                               (doall (map #(println "  *" %)  (sort (keys (get dep-licenses-by-category category)))))
-                               (println))))
+                               (let [dep-licenses (apply hash-map (flatten dep-licenses))]
+                                 (println (str (:name category-info) ":"))
+                                 (doall
+                                   (map #(println "  *" (dep-and-licenses % (sort asf/license-comparator (:lice-comb/licenses (get dep-licenses %)))))
+                                        (sort (keys (get dep-licenses-by-category category)))))
+                                 (println)))))
                        asf/categories))
                   (println "For more information, please see https://github.com/pmonks/tools-licenses/wiki/FAQ"))
       :edn      (pp/pprint dep-licenses-by-category))))
