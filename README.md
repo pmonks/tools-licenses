@@ -31,7 +31,7 @@ Express the correct maven dependencies in your `deps.edn`, for a build tool alia
   :aliases
     :build
       {:deps       {com.github.pmonks/tools-licenses {:mvn/version "LATEST_CLOJARS_VERSION"}
-                    io.github.seancorfield/build-clj {:git/tag "v0.6.3" :git/sha "9b8e09b"}}
+                    io.github.seancorfield/build-clj {:git/tag "v0.6.6" :git/sha "171d5f1"}}
        :ns-default your.build.ns}
 ```
 
