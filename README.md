@@ -31,7 +31,7 @@ Express the correct maven dependencies in your `deps.edn`, for a build tool alia
   :aliases
     :build
       {:deps       {com.github.pmonks/tools-licenses {:mvn/version "LATEST_CLOJARS_VERSION"}
-                    io.github.seancorfield/build-clj {:git/tag "v0.6.6" :git/sha "171d5f1"}}
+                    io.github.seancorfield/build-clj {:git/tag "v0.6.7" :git/sha "22c2d09"}}
        :ns-default your.build.ns}
 ```
 
@@ -70,18 +70,18 @@ Example summary output:
 
 ```
 $ clj -T:build licenses
-This project:
-  * Apache-2.0
+This project: Apache-2.0
 
-Dependencies' licenses (count):
-  * Apache-2.0 (72)
-  * BSD-3-Clause (1)
-  * CDDL-1.0 (1)
-  * EPL-1.0 (35)
-  * GPL-2.0-with-classpath-exception (2)
-  * LGPL-2.1 (2)
-  * MIT (6)
-  * NON-SPDX-Public-Domain (1)
+License                                  Number of Deps
+---------------------------------------- --------------
+Apache-2.0                               72
+BSD-3-Clause                             1
+CDDL-1.0                                 1
+EPL-1.0                                  35
+GPL-2.0-with-classpath-exception         2
+LGPL-2.1                                 2
+MIT                                      6
+NON-SPDX-Public-Domain                   1
 ```
 
 Use `clj -T:build licenses :output :detailed` to get detailed, per-dependency output (too long to reasonably include here).
