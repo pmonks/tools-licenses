@@ -1,7 +1,7 @@
 | | | |
 |---:|:---:|:---:|
-| [**main**](https://github.com/pmonks/tools-licenses/tree/main) | [![Lint](https://github.com/pmonks/tools-licenses/workflows/lint/badge.svg?branch=main)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Alint) | [![Dependencies](https://github.com/pmonks/tools-licenses/workflows/dependencies/badge.svg?branch=main)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies) |
-| [**dev**](https://github.com/pmonks/tools-licenses/tree/dev)  | [![Lint](https://github.com/pmonks/tools-licenses/workflows/lint/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Alint) | [![Dependencies](https://github.com/pmonks/tools-licenses/workflows/dependencies/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies) |
+| [**main**](https://github.com/pmonks/tools-licenses/tree/main) | [![CI](https://github.com/pmonks/tools-licenses/workflows/CI/badge.svg?branch=main)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3ACI+branch%3Amain) | [![Dependencies](https://github.com/pmonks/tools-licenses/workflows/dependencies/badge.svg?branch=main)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies+branch%3Amain) |
+| [**dev**](https://github.com/pmonks/tools-licenses/tree/dev) | [![CI](https://github.com/pmonks/tools-licenses/workflows/CI/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3ACI+branch%3Adev) | [![Dependencies](https://github.com/pmonks/tools-licenses/workflows/dependencies/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies+branch%3Adev) |
 
 [![Latest Version](https://img.shields.io/clojars/v/com.github.pmonks/tools-licenses)](https://clojars.org/com.github.pmonks/tools-licenses/) [![Open Issues](https://img.shields.io/github/issues/pmonks/tools-licenses.svg)](https://github.com/pmonks/tools-licenses/issues) [![License](https://img.shields.io/github/license/pmonks/tools-licenses.svg)](https://github.com/pmonks/tools-licenses/blob/main/LICENSE)
 
@@ -31,7 +31,7 @@ Express the correct maven dependencies in your `deps.edn`, for a build tool alia
   :aliases
     :build
       {:deps       {com.github.pmonks/tools-licenses {:mvn/version "LATEST_CLOJARS_VERSION"}
-                    io.github.seancorfield/build-clj {:git/tag "v0.6.3" :git/sha "9b8e09b"}}
+                    io.github.seancorfield/build-clj {:git/tag "v0.6.7" :git/sha "22c2d09"}}
        :ns-default your.build.ns}
 ```
 
@@ -70,18 +70,18 @@ Example summary output:
 
 ```
 $ clj -T:build licenses
-This project:
-  * Apache-2.0
+This project: Apache-2.0
 
-Dependencies' licenses (count):
-  * Apache-2.0 (72)
-  * BSD-3-Clause (1)
-  * CDDL-1.0 (1)
-  * EPL-1.0 (35)
-  * GPL-2.0-with-classpath-exception (2)
-  * LGPL-2.1 (2)
-  * MIT (6)
-  * NON-SPDX-Public-Domain (1)
+License                                  Number of Deps
+---------------------------------------- --------------
+Apache-2.0                               72
+BSD-3-Clause                             1
+CDDL-1.0                                 1
+EPL-1.0                                  35
+GPL-2.0-with-classpath-exception         2
+LGPL-2.1                                 2
+MIT                                      6
+NON-SPDX-Public-Domain                   1
 ```
 
 Use `clj -T:build licenses :output :detailed` to get detailed, per-dependency output (too long to reasonably include here).

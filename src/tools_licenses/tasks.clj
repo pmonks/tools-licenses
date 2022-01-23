@@ -56,10 +56,10 @@
     (case (get opts :output :summary)
       :summary  (let [freqs    (frequencies (filter identity (mapcat :lice-comb/licenses (vals dep-licenses))))
                       licenses (seq (sort (keys freqs)))]
-                  (print "This project:")
-                  (if proj-licenses
-                    (println (dep-and-licenses nil (sort proj-licenses)))
-                    (println " - no licenses found -"))
+                  (print "This project: ")
+                  (if (seq proj-licenses)
+                    (println (s/join ", " (sort proj-licenses)))
+                    (println "- no licenses found -"))
                   (println "\nLicense                                  Number of Deps")
                   (println "---------------------------------------- --------------")
                   (if licenses

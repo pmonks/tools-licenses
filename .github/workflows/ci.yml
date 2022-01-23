@@ -1,4 +1,4 @@
-name: lint
+name: CI
 
 on: [push, pull_request]
 
@@ -11,7 +11,7 @@ jobs:
       - id: skip_check
         uses: fkirc/skip-duplicate-actions@master
 
-  lint:
+  CI:
     needs: skip_check
     if: ${{ needs.skip_check.outputs.should_skip != 'true' }}
     runs-on: ubuntu-latest
@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-java@v2
         with:
           distribution: 'temurin'
-          java-version: 11
+          java-version: 17
       - uses: DeLaGuardo/setup-clojure@3.7
         with:
           tools-deps: latest
@@ -34,5 +34,5 @@ jobs:
             ~/.cpcache
           key: ${{ runner.os }}-${{ hashFiles('**/deps.edn') }}
 
-      - name: Compile and lint code
-        run: clojure -Srepro -J-Dclojure.main.report=stderr -T:build lint
+      - name: Continuous integration
+        run: clojure -Srepro -J-Dclojure.main.report=stderr -T:build ci
