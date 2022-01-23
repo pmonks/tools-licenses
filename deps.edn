@@ -21,10 +21,9 @@
     io.github.seancorfield/build-clj    {:git/tag "v0.6.7" :git/sha "22c2d09"}
     com.github.pmonks/lice-comb         {:mvn/version "1.0.82"}
     com.github.pmonks/asf-cat           {:mvn/version "1.0.51"}
-    com.github.pmonks/tools-convenience {:mvn/version "1.0.82"}}
+    com.github.pmonks/tools-convenience {:mvn/version "1.0.86"}}
  :aliases
-   {:build
-      {:deps       {io.github.seancorfield/build-clj {:git/tag "v0.6.7" :git/sha "22c2d09"}
-                    com.github.pmonks/pbr            {:mvn/version "RELEASE"}
-                    com.github.pmonks/tools-licenses {:local/root "."}}
-       :ns-default pbr.build}}}
+   {:build {:deps       {io.github.seancorfield/build-clj {:git/tag "v0.6.7" :git/sha "22c2d09"}
+                         com.github.pmonks/pbr            {:mvn/version "RELEASE"}
+                         com.github.pmonks/tools-licenses {:local/root "."}}
+            :ns-default pbr.build}}}
