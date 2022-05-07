@@ -17,7 +17,7 @@
 ;
 
 {:deps
-   {io.github.clojure/tools.build       {:git/tag "v0.8.1" :git/sha "7d40500"}
+   {io.github.clojure/tools.build       {:git/tag "v0.8.2" :git/sha "ba1a2bf"}
     io.github.seancorfield/build-clj    {:git/tag "v0.8.0" :git/sha "9bd8b8a"}
     com.github.pmonks/lice-comb         {:mvn/version "1.0.82"}
     com.github.pmonks/asf-cat           {:mvn/version "1.0.51"}
