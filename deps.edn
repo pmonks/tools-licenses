@@ -18,12 +18,12 @@
 
 {:deps
    {io.github.clojure/tools.build       {:git/tag "v0.8.2" :git/sha "ba1a2bf"}
-    io.github.seancorfield/build-clj    {:git/tag "v0.8.0" :git/sha "9bd8b8a"}
+    io.github.seancorfield/build-clj    {:git/tag "v0.8.2" :git/sha "0ffdb4c"}
     com.github.pmonks/lice-comb         {:mvn/version "1.0.96"}
     com.github.pmonks/asf-cat           {:mvn/version "1.0.65"}
     com.github.pmonks/tools-convenience {:mvn/version "1.0.100"}}
  :aliases
-   {:build {:deps       {io.github.seancorfield/build-clj {:git/tag "v0.8.0" :git/sha "9bd8b8a"}
+   {:build {:deps       {io.github.seancorfield/build-clj {:git/tag "v0.8.2" :git/sha "0ffdb4c"}
                          com.github.pmonks/pbr            {:mvn/version "RELEASE"}
                          com.github.pmonks/tools-licenses {:local/root "."}}
             :ns-default pbr.build}}}
