@@ -25,7 +25,7 @@
             [clojure.pprint           :as pp]
             [clojure.java.io          :as io]
             [clojure.tools.deps.alpha :as d]
-            [org.corfield.build       :as bb]
+            [clojure.tools.build.api  :as b]
             [lice-comb.deps           :as lcd]
             [lice-comb.files          :as lcf]
             [asf-cat.api              :as asf]))
@@ -33,7 +33,7 @@
 (defn- prep-project
   "Prepares the project and returns the lib-map for it."
   []
-  (let [basis   (bb/default-basis)
+  (let [basis   (b/create-basis {})
         lib-map (d/resolve-deps basis {})
         _       (d/prep-libs! lib-map {:action :prep :log :info} {})]  ; Make sure everything is "prepped" (downloaded locally) before we start looking for licenses
     lib-map))
