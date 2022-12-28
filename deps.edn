@@ -17,12 +17,12 @@
 ;
 
 {:deps
-   {io.github.clojure/tools.build       {:git/tag "v0.8.5" :git/sha "9c738da"}
+   {io.github.clojure/tools.build       {:git/tag "v0.9.0" :git/sha "8c93e0c"}
     com.github.pmonks/lice-comb         {:mvn/version "1.0.110"}
     com.github.pmonks/asf-cat           {:mvn/version "1.0.75"}
     com.github.pmonks/tools-convenience {:mvn/version "1.0.116"}}
  :aliases
-   {:build {:deps       {io.github.clojure/tools.build    {:git/tag "v0.8.5" :git/sha "9c738da"}
+   {:build {:deps       {io.github.clojure/tools.build    {:git/tag "v0.9.0" :git/sha "8c93e0c"}
                          com.github.pmonks/pbr            {:mvn/version "RELEASE"}
                          com.github.pmonks/tools-licenses {:local/root "."}}
             :ns-default pbr.build}}}
