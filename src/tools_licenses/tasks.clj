@@ -21,14 +21,14 @@
 
   All of the build tasks return the opts hash map they were passed
   (unlike some of the functions in clojure.tools.build.api)."
-  (:require [clojure.string           :as s]
-            [clojure.pprint           :as pp]
-            [clojure.java.io          :as io]
-            [clojure.tools.deps.alpha :as d]
-            [clojure.tools.build.api  :as b]
-            [lice-comb.deps           :as lcd]
-            [lice-comb.files          :as lcf]
-            [asf-cat.api              :as asf]))
+  (:require [clojure.string          :as s]
+            [clojure.pprint          :as pp]
+            [clojure.java.io         :as io]
+            [clojure.tools.deps      :as d]
+            [clojure.tools.build.api :as b]
+            [lice-comb.deps          :as lcd]
+            [lice-comb.files         :as lcf]
+            [asf-cat.api             :as asf]))
 
 (defn- prep-project
   "Prepares the project and returns the lib-map for it."
