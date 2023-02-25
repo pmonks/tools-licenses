@@ -18,9 +18,9 @@
 
 {:deps
    {io.github.clojure/tools.build       {:git/tag "v0.9.3" :git/sha "e537cd1"}
-    com.github.pmonks/lice-comb         {:mvn/version "1.0.110"}
-    com.github.pmonks/asf-cat           {:mvn/version "1.0.75"}
-    com.github.pmonks/tools-convenience {:mvn/version "1.0.116"}}
+    com.github.pmonks/lice-comb         {:mvn/version "1.0.114"}
+    com.github.pmonks/asf-cat           {:mvn/version "1.0.83"}
+    com.github.pmonks/tools-convenience {:mvn/version "1.0.125"}}
  :aliases
    {:build {:deps       {io.github.clojure/tools.build    {:git/tag "v0.9.3" :git/sha "e537cd1"}
                          com.github.pmonks/pbr            {:mvn/version "RELEASE"}
