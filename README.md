@@ -1,7 +1,7 @@
-| | | |
-|---:|:---:|:---:|
-| [**main**](https://github.com/pmonks/tools-licenses/tree/main) | [![CI](https://github.com/pmonks/tools-licenses/workflows/CI/badge.svg?branch=main)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3ACI+branch%3Amain) | [![Dependencies](https://github.com/pmonks/tools-licenses/workflows/dependencies/badge.svg?branch=main)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies+branch%3Amain) |
-| [**dev**](https://github.com/pmonks/tools-licenses/tree/dev) | [![CI](https://github.com/pmonks/tools-licenses/workflows/CI/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3ACI+branch%3Adev) | [![Dependencies](https://github.com/pmonks/tools-licenses/workflows/dependencies/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies+branch%3Adev) |
+| | | | |
+|---:|:---:|:---:|:---:|
+| [**main**](https://github.com/pmonks/tools-licenses/tree/main) | [![CI](https://github.com/pmonks/tools-licenses/workflows/CI/badge.svg?branch=main)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3ACI+branch%3Amain) | [![Dependencies](https://github.com/pmonks/tools-licenses/workflows/dependencies/badge.svg?branch=main)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies+branch%3Amain) | [![Vulnerabilities](https://github.com/pmonks/lice-comb/workflows/vulnerabilities/badge.svg?branch=main)](https://pmonks.github.io/tools-licenses/nvd/dependency-check-report.html) |
+| [**dev**](https://github.com/pmonks/tools-licenses/tree/dev) | [![CI](https://github.com/pmonks/tools-licenses/workflows/CI/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3ACI+branch%3Adev) | [![Dependencies](https://github.com/pmonks/tools-licenses/workflows/dependencies/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies+branch%3Adev) | [![Vulnerabilities](https://github.com/pmonks/lice-comb/workflows/vulnerabilities/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Avulnerabilities+branch%3Adev) |
 
 [![Latest Version](https://img.shields.io/clojars/v/com.github.pmonks/tools-licenses)](https://clojars.org/com.github.pmonks/tools-licenses/) [![Open Issues](https://img.shields.io/github/issues/pmonks/tools-licenses.svg)](https://github.com/pmonks/tools-licenses/issues) [![License](https://img.shields.io/github/license/pmonks/tools-licenses.svg)](https://github.com/pmonks/tools-licenses/blob/main/LICENSE)
 
@@ -15,11 +15,20 @@ A Clojure [tools.build](https://github.com/clojure/tools.build) task library rel
 1. `licenses` - attempt to display the licenses used by all transitive dependencies of the project
 2. `check-asf-policy` - attempt to check your project's compliance with the ASF's 3rd Party License Policy
 
+## Why not [`tools.deps`' built-in license detection](https://clojure.org/reference/deps_and_cli#_other_programs)?
+
+That functionality:
+1. only looks for license information declared in `pom.xml` files (which may not exist for git dependencies)
+2. [makes only rudimentary efforts to normalise licenses into a canonical form](https://github.com/clojure/tools.deps/blob/master/src/main/resources/clojure/tools/deps/license-abbrev.edn) (i.e. SPDX license identifiers)
+3. doesn't make use of SPDX license expressions
+
+In contrast, `tools-licenses` leverages the [`lice-comb` library](https://github.com/pmonks/lice-comb), which takes a more comprehensive approach to license detection.
+
 ## Using the library
 
 ### Documentation
 
-[API documentation is available here](https://pmonks.github.io/tools-licenses/), though since the refactoring out of the [license detection](https://github.com/pmonks/lice-comb) and [ASF policy validation](https://github.com/pmonks/asf-cat) code, that's not very interesting or useful any longer.
+[API documentation is available here](https://pmonks.github.io/tools-licenses/), or [here on cljdoc](https://cljdoc.org/d/com.github.pmonks/tools-licenses/).
 
 [FAQ is available here](https://github.com/pmonks/tools-licenses/wiki/FAQ).
 
@@ -30,12 +39,9 @@ Express the correct maven dependencies in your `deps.edn`, for a build tool alia
 ```edn
   :aliases
     :build
-      {:deps       {com.github.pmonks/tools-licenses {:mvn/version "LATEST_CLOJARS_VERSION"}
-                    io.github.seancorfield/build-clj {:git/tag "v0.6.7" :git/sha "22c2d09"}}
+      {:deps {com.github.pmonks/tools-licenses {:mvn/version "LATEST_CLOJARS_VERSION"}}
        :ns-default your.build.ns}
 ```
-
-Note that you must express an explicit dependency on `io.github.seancorfield/build-clj`, as that project [doesn't publish artifacts to Clojars yet](https://github.com/seancorfield/build-clj/issues/11), and transitive git coordinate dependencies are not supported by tools.deps.
 
 ### Require the namespace
 
@@ -48,7 +54,7 @@ Note that you must express an explicit dependency on `io.github.seancorfield/bui
 
 ```clojure
 (defn licenses
-  "Attempts to list all licenses for the transitive set of dependencies of the project, using SPDX license expressions."
+  "Attempts to list all licenses for the transitive set of dependencies of the project, as SPDX license expressions."
   [opts]
   (-> opts
       (set-opts)
