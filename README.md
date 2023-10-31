@@ -12,6 +12,10 @@ A Clojure [tools.build](https://github.com/clojure/tools.build) task library for
 
 It also provides the ability to check your (Apache-2.0 licensed) project against the [Apache Software Foundation's 3rd Party License Policy](https://www.apache.org/legal/resolved.html).
 
+## Disclaimer
+
+**The author and contributors to `tools-licenses` are not lawyers, and neither they nor `tools-licenses` itself provide legal advice. This is simply a tool that might help you and your legal counsel perform licensing due diligence on your projects.**
+
 ## Tasks
 
 1. `licenses` - attempt to display the licenses used by all transitive dependencies of the project
