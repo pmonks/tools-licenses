@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: 17
-      - uses: DeLaGuardo/setup-clojure@10.2
+      - uses: DeLaGuardo/setup-clojure@12.1
         with:
           cli: latest
       - uses: actions/cache@v3
@@ -33,4 +33,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          keep_files: true    # Required so that we don't clobber the NVD report (published separately)
           publish_dir: ./target/doc

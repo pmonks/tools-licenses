@@ -17,12 +17,13 @@
 ;
 
 {:deps
-   {io.github.clojure/tools.build       {:git/tag "v0.9.3" :git/sha "e537cd1"}
-    com.github.pmonks/lice-comb         {:mvn/version "1.0.114"}
-    com.github.pmonks/asf-cat           {:mvn/version "1.0.83"}
-    com.github.pmonks/tools-convenience {:mvn/version "1.0.125"}}
+   {io.github.clojure/tools.build       {:mvn/version "0.9.6"}
+    jansi-clj/jansi-clj                 {:mvn/version "1.0.2"}   ; Note: this version has a major bug in the cursor positioning fns (which tools-licenses doesn't use)
+    com.github.pmonks/clj-wcwidth       {:mvn/version "1.0.85"}
+    com.github.pmonks/lice-comb         {:mvn/version "2.0.194"}
+    com.github.pmonks/asf-cat           {:mvn/version "2.0.98"}
+    com.github.pmonks/tools-convenience {:mvn/version "1.0.142"}}
  :aliases
-   {:build {:deps       {io.github.clojure/tools.build    {:git/tag "v0.9.3" :git/sha "e537cd1"}
-                         com.github.pmonks/pbr            {:mvn/version "RELEASE"}
+   {:build {:deps       {com.github.pmonks/pbr            {:mvn/version "RELEASE"}
                          com.github.pmonks/tools-licenses {:local/root "."}}
             :ns-default pbr.build}}}
