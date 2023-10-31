@@ -17,12 +17,13 @@
 ;
 
 {:deps
-   {io.github.clojure/tools.build       {:git/tag "v0.9.5" :git/sha "24f2894"}
-    com.github.pmonks/lice-comb         {:mvn/version "1.0.120"}
-    com.github.pmonks/asf-cat           {:mvn/version "1.0.83"}
+   {io.github.clojure/tools.build       {:mvn/version "0.9.6"}
+    jansi-clj/jansi-clj                 {:mvn/version "1.0.1"}   ; Note: don't upgrade to 1.0.2 - it's buggy
+    com.github.pmonks/clj-wcwidth       {:mvn/version "1.0.85"}
+    com.github.pmonks/lice-comb         {:mvn/version "2.0.194"}
+    com.github.pmonks/asf-cat           {:mvn/version "2.0.98"}
     com.github.pmonks/tools-convenience {:mvn/version "1.0.135"}}
  :aliases
-   {:build {:deps       {io.github.clojure/tools.build    {:git/tag "v0.9.5" :git/sha "24f2894"}
-                         com.github.pmonks/pbr            {:mvn/version "RELEASE"}
+   {:build {:deps       {com.github.pmonks/pbr            {:mvn/version "RELEASE"}
                          com.github.pmonks/tools-licenses {:local/root "."}}
             :ns-default pbr.build}}}
