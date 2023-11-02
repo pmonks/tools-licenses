@@ -33,6 +33,10 @@ It also provides the ability to check your (Apache-2.0 licensed) project against
 
 In contrast, `tools-licenses` leverages the [`lice-comb` library](https://github.com/pmonks/lice-comb), a build-tool-agnostic library that takes a more comprehensive approach to license detection.
 
+## I use Leiningen - is something like `tools-licenses` available?
+
+While Leiningen's original [`lein-licenses` plugin](https://github.com/technomancy/lein-licenses) was discontinued some years ago and finally archived in 2020, [JohnnyJayJay has developed an alternative `lein-licenses` plugin](https://github.com/JohnnyJayJay/lein-licenses/) that leverages the same underlying license detection library ([`lice-comb`](https://github.com/pmonks/lice-comb)) as `tools-licenses`, thereby offering similar capabilities.
+
 ## Usage
 
 ### Documentation
@@ -73,31 +77,55 @@ Require the namespace in your tools.build script (typically called `build.clj`),
   (lic/check-asf-policy opts))
 ```
 
+Optionally, you may also wish to configure logging for your `build` alias, since this tool can emit logging output.  For example (using log4j2):
+
+```edn
+    :build
+      {:deps {com.github.pmonks/tools-licenses           {:mvn/version "LATEST_CLOJARS_VERSION"}  ; Or use "RELEASE" to blindly follow the latest release of the tool
+              org.apache.logging.log4j/log4j-api         {:mvn/version "2.21.1"}
+              org.apache.logging.log4j/log4j-core        {:mvn/version "2.21.1"}
+              org.apache.logging.log4j/log4j-jul         {:mvn/version "2.21.1"}    ; Java utils clogging bridge
+              org.apache.logging.log4j/log4j-jcl         {:mvn/version "2.21.1"}    ; Apache commons clogging bridge
+              org.apache.logging.log4j/log4j-slf4j2-impl {:mvn/version "2.21.1"}    ; SLF4J clogging bridge
+              org.apache.logging.log4j/log4j-1.2-api     {:mvn/version "2.21.1"}}   ; log4j1 clogging bridge
+       :ns-default your.build.ns}
+```
+
+Then add this `log4j2.xml` in the root directory of your project (or another directory, which would then need to be added to the `:paths` of your build alias):
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" strict="true">
+  <Properties>
+    <Property name="filename">build.log</Property>
+  </Properties>
+  <Appenders>
+    <Appender type="File" name="File" fileName="${filename}">
+      <Layout type="PatternLayout" pattern="%d %p %C{1.} [%t] %m%n" />
+    </Appender>
+  </Appenders>
+  <Loggers>
+    <!-- These libraries tend to be exceptionally noisy, even at WARN -->
+    <Logger name="org.apache" level="FATAL">
+      <AppenderRef ref="File"/>
+    </Logger>
+    <Logger name="org.eclipse" level="FATAL">
+      <AppenderRef ref="File"/>
+    </Logger>
+    <Root level="WARN">
+      <AppenderRef ref="File"/>
+    </Root>
+  </Loggers>
+</Configuration>
+```
+
 ### Using the tasks from the command line
 
 #### `licenses` task
 
 Example summary output:
 
-```
-$ clj -T:build licenses
-
-This project: Apache-2.0
-
-License Expression                                           # of Deps
------------------------------------------------------------- ---------
-Apache-2.0                                                          61
-BSD-3-Clause                                                         1
-CDDL-1.1                                                             1
-EPL-1.0                                                             25
-EPL-2.0                                                              5
-GPL-2.0-only WITH Classpath-exception-2.0                            1
-Public domain                                                        1
-MIT                                                                  7
-No licenses found                                                    1
-```
-
-If you see `Unlisted (<some text>)` licenses in the output, **[please raise an issue here](https://github.com/pmonks/lice-comb/issues/new?assignees=pmonks&labels=unknown+licenses&template=Unknown_licenses.md)**.
+![Example output from licenses task, summary sub-task](demo-licenses-summary.png)
 
 Other invocation possibilities:
 * `clj -T:build licenses :output :summary` - the default (see above)
@@ -105,37 +133,15 @@ Other invocation possibilities:
 * `clj -T:build licenses :output :edn` - detailed per-dependency license information in EDN format
 * `clj -T:build licenses :output :explain :dep <dep symbol>` - an explanation of how the tool arrived at the given license(s) for a single dep (expressed as a tools.dep symbol). For example:
 
-```
-$ clj -T:build licenses :output :explain :dep org.clojure/clojure
-Dependency: org.clojure/clojure
-Licenses: EPL-1.0
+![Example output from licenses task, explain sub-task](demo-licenses-explain.png)
 
-EPL-1.0 Concluded
-    Confidence: high
-    Strategy: SPDX listed name (case insensitive match)
-    Source:
-      org.clojure/clojure@1.11.1
-      /Users/pmonks/.m2/repository/org/clojure/clojure/1.11.1/clojure-1.11.1.pom
-      <licenses><license><name>
-      Eclipse Public License 1.0
-```
+If you see `Unidentified (<some text>)` licenses in the output, **[please raise an issue here](https://github.com/pmonks/lice-comb/issues/new?assignees=pmonks&labels=unknown+licenses&template=Unknown_licenses.md)**.
 
 #### `check-asf-policy` task
 
 Example summary output:
 
-```
-$ clj -T:build check-asf-policy
-
-ASF Category                  # of Deps
------------------------------ ---------
-Category A                           69
-Category A (with caveats)             1
-Category B                           27
-Creative Commons Licenses             0
-Category X                            0
-Uncategorised                         1
-```
+![Example output from check-asf-policy task](demo-check-asf-policy.png)
 
 Other invocation possibilities:
 * `clj -T:build check-asf-policy :output :summary` - the default (see above)
