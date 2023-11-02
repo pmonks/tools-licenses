@@ -179,7 +179,7 @@
   (if dep-ga
     (if dep-info
       (let [dep-expr-info (get dep-info :lice-comb/license-info)]
-        (println (str "\n" (ansi/bold "Dependency: ") (str dep-ga)))
+        (println (str "\n" (ansi/bold "Dependency: ") (str dep-ga "@" (get-version dep-info))))
         (if (empty? dep-expr-info)
           (explain-without-licenses dep)
           (explain-with-licenses! dep)))
