@@ -53,10 +53,24 @@
     (ansi/fg-bright :black (lcm/id->name exp))  ; "Bright black" = dark grey
     exp))
 
-(defn- dep-and-licenses
-  [dep licenses]
-  (let [sorted-license-expressions (seq (sort (if (map? licenses) (keys licenses) licenses)))]
-    (str dep " [" (if sorted-license-expressions (s/join ", " (map expression-minus-license-refs sorted-license-expressions)) (ansi/fg-bright :red "No licenses found")) "]")))
+(defn- get-version
+  [dep-info]
+  (case (:deps/manifest dep-info)
+    :mvn  (:mvn/version dep-info)
+    :deps (str (when (:git/tag dep-info) (str (:git/tag dep-info) "@"))
+               (:git/sha dep-info))))
+
+(defn- dep-and-license-expressions
+  [dep-name license-expressions]
+  (let [sorted-license-expressions (seq (sort (if (map? license-expressions) (keys license-expressions) license-expressions)))]
+    (str dep-name " [" (if sorted-license-expressions (s/join ", " (map expression-minus-license-refs sorted-license-expressions)) (ansi/fg-bright :red "No licenses found")) "]")))
+
+(defn- dep-and-licenses->string
+  [[dep-ga dep-info]]
+  (let [dep-ga              (str dep-ga)
+        dep-v               (get-version dep-info)
+        license-expressions (:lice-comb/license-info dep-info)]
+    (dep-and-license-expressions (str dep-ga "@" dep-v) license-expressions)))
 
 (defn- fit-width
   "Pads or trims string s to display width w, with control over whether padding
@@ -105,16 +119,14 @@
         direct-deps     (into {} (remove (fn [[_ v]] (seq (:dependents v))) deps-lib-map-with-info))
         transitive-deps (into {} (filter (fn [[_ v]] (seq (:dependents v))) deps-lib-map-with-info))]
     (println (str "\n" (ansi/bold "This project:")))
-    (if expressions
-      (println (dep-and-licenses (:lib opts) expressions))
-      (println (ansi/fg-bright :red "No licenses found")))
+    (println (dep-and-license-expressions (str (:lib opts) "@" (:version opts)) expressions))
     (println (ansi/bold "\nDirect dependencies:"))
     (if direct-deps
-      (doall (for [[k v] (sort-by key direct-deps)] (println (dep-and-licenses k (:lice-comb/license-info v)))))
+      (doall (for [[k v] (sort-by key direct-deps)] (println (dep-and-licenses->string [k v]))))
       (println "- no direct dependencies -"))
     (println (ansi/bold "\nTransitive dependencies:"))
     (if transitive-deps
-      (doall (for [[k v] (sort-by key transitive-deps)] (println (dep-and-licenses k (:lice-comb/license-info v)))))
+      (doall (for [[k v] (sort-by key transitive-deps)] (println (dep-and-licenses->string [k v]))))
       (println "- no transitive dependencies -"))
     (println)))
 
@@ -259,7 +271,7 @@
                   (println)
                   (run! (fn [category]
                           (when-let [deps-in-category (seq (sort (map first (get dep-licenses-by-category category))))]
-                            (run! #(println (str % " [" (asf-category->ansi-string category) "]")) deps-in-category)
+                            (run! #(println (str % "@" (get-version (get lib-map %)) " [" (asf-category->ansi-string category) "]")) deps-in-category)
                             (println)))
                         asf/categories))
       :edn      (pp/pprint dep-licenses-by-category))))

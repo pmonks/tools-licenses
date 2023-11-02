@@ -25,13 +25,13 @@ It also provides the ability to check your (Apache-2.0 licensed) project against
 
 `tools.deps`' license discovery logic (provided via the command `clj -X:deps list`) has several serious shortcomings, including:
 
-* It only scans pom.xml files for license information, and silently ignores projects that don't have license tags in their pom.xml file, or don't have a pom.xml file at all. This is a problem because:
-  * git-only dependencies don't need a pom.xml file (and in practice most don't provide one)
-  * [Clojars only recently started mandating license information in the pom.xml files it hosts](https://github.com/clojars/clojars-web/issues/873), and as of mid-2023 around 1/3 of all projects deployed hosted there do not include any licensing information in their pom.xml files
-* It's coupled to tools.deps and cannot easily be consumed as an independent library. It's also dependent on tools.deps state management (e.g. requires pom.xml files to be downloaded locally).
+* It only scans Maven POM files for license information, and silently ignores projects that don't have license tags in their POM file, or don't have a POM file at all. This is a problem because:
+  * git dependencies (whose use is encouraged by tools.deps/tools.build) don't need a POM file (and in practice most don't provide one)
+  * [Clojars only recently started mandating license information in the POM files it hosts](https://github.com/clojars/clojars-web/issues/873), and as of mid-2023 around 1/3 of all projects deployed hosted there do not include any licensing information in their POM files
+* It's coupled to tools.deps and cannot easily be consumed as an independent library. It's also dependent on tools.deps state management (e.g. requires POM files to be downloaded locally).
 * It doesn't canonicalise license information to SPDX License Expressions (it leaves canonicalisation, a fairly difficult problem, to the caller).
 
-In contrast, `tools-licenses` leverages the [`lice-comb` library](https://github.com/pmonks/lice-comb), which takes a more comprehensive approach to license detection.
+In contrast, `tools-licenses` leverages the [`lice-comb` library](https://github.com/pmonks/lice-comb), a build-tool-agnostic library that takes a more comprehensive approach to license detection.
 
 ## Usage
 
