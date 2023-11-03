@@ -21,7 +21,7 @@
     jansi-clj/jansi-clj                 {:mvn/version "1.0.2"}   ; Note: this version has a major bug in the cursor positioning fns (which tools-licenses doesn't use)
     com.github.pmonks/clj-wcwidth       {:mvn/version "1.0.85"}
     com.github.pmonks/lice-comb         {:mvn/version "2.0.208"}
-    com.github.pmonks/asf-cat           {:mvn/version "2.0.106"}
+    com.github.pmonks/asf-cat           {:mvn/version "2.0.108"}
     com.github.pmonks/tools-convenience {:mvn/version "1.0.142"}}
  :aliases
    {:build {:deps       {com.github.pmonks/pbr            {:mvn/version "RELEASE"}
