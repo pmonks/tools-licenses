@@ -16,6 +16,16 @@ It also provides the ability to check your (Apache-2.0 licensed) project against
 
 **The author and contributors to `tools-licenses` are not lawyers, and neither they nor `tools-licenses` itself provide legal advice. This is simply a tool that might help you and your legal counsel perform licensing due diligence on your projects.**
 
+## System Requirements
+
+This tool uses the [`lice-comb` library](https://github.com/pmonks/lice-comb), which has these system requirements:
+
+* JDK 11 or higher.
+
+* An internet connection.
+
+* Assumes Maven is installed and in the `PATH` (but has fallback logic if it isn't available).
+
 ## Tasks
 
 1. `licenses` - attempt to display the licenses used by all transitive dependencies of the project
