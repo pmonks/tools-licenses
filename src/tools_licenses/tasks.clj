@@ -47,10 +47,10 @@
 
 (defn- expression-minus-license-refs
   "Converts lice-comb specific LicenseRefs to a human readable name (and colours
-  them grey), but leaves other expressions unchanged."
+  them yellow), but leaves other expressions unchanged."
   [exp]
   (if (lcm/lice-comb-license-ref? exp)
-    (ansi/fg-bright :black (lcm/id->name exp))  ; "Bright black" = dark grey
+    (ansi/fg-bright :yellow (lcm/id->name exp))
     exp))
 
 (defn- get-version
@@ -146,13 +146,13 @@
                                 (case (:type %)
                                   :declared  (ansi/fg-bright :green  "Declared")
                                   :concluded (ansi/fg-bright :yellow "Concluded"))
-                                (when-let [confidence (:confidence %)]   (str (ansi/bold "\n    Confidence: ")
+                                (when-let [confidence (:confidence %)]   (str (ansi/bold "\n  Confidence: ")
                                                                               (case confidence
                                                                                 :low    (ansi/fg-bright :red    "low")
                                                                                 :medium (ansi/fg-bright :yellow "medium")
                                                                                 :high   (ansi/fg-bright :green  "high"))))
-                                (when-let [strategy   (:strategy %)]     (str (ansi/bold "\n    Strategy: ") (get lcu/strategy->string strategy (name strategy))))
-                                (when-let [source     (seq (map remove-file-prefix (:source %)))] (str (ansi/bold "\n    Source:") "\n      " (s/join "\n      " source))))
+                                (when-let [strategy   (:strategy %)]     (str (ansi/bold "\n  Strategy: ") (get lcu/strategy->string strategy (name strategy))))
+                                (when-let [source     (seq (map remove-file-prefix (:source %)))] (str (ansi/bold "\n  Source:") "\n    " (s/join "\n    " source))))
                           info-list))))))
 
 (defn- explain-with-licenses!
@@ -166,12 +166,13 @@
 (defn- explain-without-licenses
   [[_ dep-info :as dep]]
   (println (ansi/bold "Licenses:") (ansi/fg-bright :red "No licenses found"))
-  (println (ansi/bold "Locations checked:"))
+  (println (ansi/bold "\nLocations checked:"))
   (case (:deps/manifest dep-info)
     :mvn  (do (println (remove-file-prefix (str (lcd/dep->pom-uri dep))))
               (println (s/join "\n" (:paths dep-info))))
     :deps (do (print   (str (:deps/root dep-info) ":\n  "))
-              (println (s/join "\n  " (lcf/probable-license-files (:deps/root dep-info)))))))
+              (println (s/join "\n  " (lcf/probable-license-files (:deps/root dep-info))))))
+  (println))
 
 (defn- explain-output!
   "Emit explain output to stdout."
