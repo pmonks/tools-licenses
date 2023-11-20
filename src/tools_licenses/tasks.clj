@@ -53,22 +53,15 @@
     (ansi/fg-bright :yellow (lcm/id->name exp))
     exp))
 
-(defn- get-version
-  [dep-info]
-  (case (:deps/manifest dep-info)
-    :mvn  (:mvn/version dep-info)
-    :deps (str (when (:git/tag dep-info) (str (:git/tag dep-info) "@"))
-               (:git/sha dep-info))))
-
 (defn- dep-and-license-expressions
   [dep-name license-expressions]
   (let [sorted-license-expressions (seq (sort (if (map? license-expressions) (keys license-expressions) license-expressions)))]
     (str dep-name " [" (if sorted-license-expressions (s/join ", " (map expression-minus-license-refs sorted-license-expressions)) (ansi/fg-bright :red "No licenses found")) "]")))
 
 (defn- dep-and-licenses->string
-  [[dep-ga dep-info]]
+  [[dep-ga dep-info :as dep]]
   (let [dep-ga              (str dep-ga)
-        dep-v               (get-version dep-info)
+        dep-v               (lcd/dep->version dep)
         license-expressions (:lice-comb/license-info dep-info)]
     (dep-and-license-expressions (str dep-ga "@" dep-v) license-expressions)))
 
@@ -133,9 +126,10 @@
 (defn- remove-file-prefix
   [s]
   (when s
-    (if (s/starts-with? s "file:")
-      (subs s (count "file:"))
-      s)))
+    (let [s (str s)]
+      (if (s/starts-with? s "file:")
+        (subs s (count "file:"))
+        s))))
 
 (defn- expression-info->string
   [m expr]
@@ -156,35 +150,29 @@
                           info-list))))))
 
 (defn- explain-with-licenses!
-  "Emit "
-  [[_ dep-info]]
-  (let [dep-expr-info (get dep-info :lice-comb/license-info)
-        exprs         (sort (keys dep-expr-info))]
+  [dep-expr-info]
+  (let [exprs (sort (keys dep-expr-info))]
     (println (ansi/bold "Licenses:") (s/join ", " (map expression-minus-license-refs exprs)) "\n")
     (println (s/join "\n\n" (map (partial expression-info->string dep-expr-info) exprs)) "\n")))
 
-(defn- explain-without-licenses
-  [[_ dep-info :as dep]]
+(defn- explain-without-licenses!
+  [dep]
   (println (ansi/bold "Licenses:") (ansi/fg-bright :red "No licenses found"))
   (println (ansi/bold "\nLocations checked:"))
-  (case (:deps/manifest dep-info)
-    :mvn  (do (println (remove-file-prefix (str (lcd/dep->pom-uri dep))))
-              (println (s/join "\n" (:paths dep-info))))
-    :deps (do (print   (str (:deps/root dep-info) ":\n  "))
-              (println (s/join "\n  " (lcf/probable-license-files (:deps/root dep-info))))))
+  (println (s/join "\n" (map remove-file-prefix (lcd/dep->locations dep))))
   (println))
 
 (defn- explain-output!
   "Emit explain output to stdout."
-  [[dep-ga dep-info :as dep]]
-  (if dep-ga
-    (if dep-info
-      (let [dep-expr-info (get dep-info :lice-comb/license-info)]
-        (println (str "\n" (ansi/bold "Dependency: ") (str dep-ga "@" (get-version dep-info))))
+  [[ga _ :as dep] dep-expr-info]
+  (if ga
+    (if-let [version (lcd/dep->version dep)]
+      (do
+        (println (str "\n" (ansi/bold "Dependency: ") (str ga "@" version)))
         (if (empty? dep-expr-info)
-          (explain-without-licenses dep)
-          (explain-with-licenses! dep)))
-      (println (str "No dependency info for " dep-ga ". Are you sure it's a dependency of this project?")))
+          (explain-without-licenses! dep)
+          (explain-with-licenses! dep-expr-info)))
+      (println "No dependency" ga "was found - are you sure it exists?"))
     (println "No dependency provided - please provide one via the :dep option.")))
 
 (defn- edn-output!
@@ -212,11 +200,9 @@
     (if (= :explain output-type)
       ; Handle :output :explain separately, as it only needs license info for a single dependency, not all of them
       (let [dep-ga        (get opts :dep)
-            dep-info      (get lib-map dep-ga)
-            dep           [dep-ga dep-info]
-            dep-expr-info (lcd/dep->expressions-info dep)
-            dep           [dep-ga (assoc dep-info :lice-comb/license-info dep-expr-info)]]
-        (explain-output! dep))
+            dep           [dep-ga (get lib-map dep-ga)]
+            dep-expr-info (lcd/dep->expressions-info dep)]
+        (explain-output! dep dep-expr-info))
       ; Other :output variants need all info for all dependencies
       (let [proj-expressions-info  (lcf/dir->expressions-info ".")
             deps-lib-map-with-info (lcd/deps-expressions lib-map)]
@@ -272,7 +258,7 @@
                   (println)
                   (run! (fn [category]
                           (when-let [deps-in-category (seq (sort (map first (get dep-licenses-by-category category))))]
-                            (run! #(println (str % "@" (get-version (get lib-map %)) " [" (asf-category->ansi-string category) "]")) deps-in-category)
+                            (run! #(println (str % "@" (lcd/dep->version [% (get lib-map %)]) " [" (asf-category->ansi-string category) "]")) deps-in-category)
                             (println)))
                         asf/categories))
       :edn      (pp/pprint dep-licenses-by-category))))
