@@ -37,6 +37,7 @@ This tool uses the [`lice-comb` library](https://github.com/pmonks/lice-comb), w
 
 * It only scans Maven POM files for license information, and silently ignores projects that don't have license tags in their POM file, or don't have a POM file at all. This is a problem because:
   * git dependencies (whose use is encouraged by tools.deps/tools.build) don't need a POM file (and in practice most don't provide one)
+  * silently ignoring projects that lack a `pom.xml` file (or have one that doesn't contain licensing information) may lull users into a false sense of security vis-a-vis license compliance
   * [Clojars only recently started mandating license information in the POM files it hosts](https://github.com/clojars/clojars-web/issues/873), and as of mid-2023 around 1/3 of all projects deployed hosted there do not include any licensing information in their POM files
 * It's coupled to tools.deps and cannot easily be consumed as an independent library. It's also dependent on tools.deps state management (e.g. requires POM files to be downloaded locally).
 * It doesn't canonicalise license information to SPDX License Expressions (it leaves canonicalisation, a fairly difficult problem, to the caller).
