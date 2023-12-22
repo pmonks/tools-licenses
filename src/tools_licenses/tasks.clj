@@ -168,7 +168,7 @@
   (if ga
     (if-let [version (lcd/dep->version dep)]
       (do
-        (println (str "\n" (ansi/bold "Dependency: ") (str ga "@" version)))
+        (println (str "\n" (ansi/bold "Artifact: ") (str ga "@" version)))
         (if (empty? dep-expr-info)
           (explain-without-licenses! dep)
           (explain-with-licenses! dep-expr-info)))
@@ -200,7 +200,9 @@
     (if (= :explain output-type)
       ; Handle :output :explain separately, as it only needs license info for a single dependency, not all of them
       (let [dep-ga        (get opts :dep)
-            dep           [dep-ga (get lib-map dep-ga)]
+            dep-info      (get lib-map dep-ga)
+            _             (when-not dep-info (println (str "\n" (str (ansi/bold "Note: ") dep-ga " is not a dependency of this project"))))
+            dep           [dep-ga dep-info]
             dep-expr-info (lcd/dep->expressions-info dep)]
         (explain-output! dep dep-expr-info))
       ; Other :output variants need all info for all dependencies
