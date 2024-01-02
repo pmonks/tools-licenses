@@ -5,109 +5,111 @@ Downloading: org/slf4j/slf4j-simple/2.0.9/slf4j-simple-2.0.9.pom from central
 Downloading: org/owasp/dependency-check-parent/8.4.3/dependency-check-parent-8.4.3.pom from central
 Downloading: com/fasterxml/jackson/jackson-bom/2.15.3/jackson-bom-2.15.3.pom from central
 Downloading: com/fasterxml/jackson/jackson-parent/2.15/jackson-parent-2.15.pom from central
-Downloading: com/fasterxml/oss-parent/50/oss-parent-50.pom from central
 Downloading: trptcolin/versioneer/0.2.0/versioneer-0.2.0.pom from clojars
+Downloading: com/fasterxml/oss-parent/50/oss-parent-50.pom from central
 Downloading: com/fasterxml/jackson/core/jackson-databind/2.16.0/jackson-databind-2.16.0.pom from central
 Downloading: com/fasterxml/jackson/jackson-base/2.16.0/jackson-base-2.16.0.pom from central
-Downloading: com/fasterxml/jackson/core/jackson-annotations/2.16.0/jackson-annotations-2.16.0.pom from central
+Downloading: clansi/clansi/1.0.0/clansi-1.0.0.pom from clojars
 Downloading: org/junit/junit-bom/5.9.2/junit-bom-5.9.2.pom from central
+Downloading: rm-hull/table/0.7.1/table-0.7.1.pom from clojars
+Downloading: com/fasterxml/jackson/core/jackson-annotations/2.16.0/jackson-annotations-2.16.0.pom from central
 Downloading: com/fasterxml/jackson/core/jackson-core/2.16.0/jackson-core-2.16.0.pom from central
-Downloading: com/fasterxml/jackson/module/jackson-module-afterburner/2.16.0/jackson-module-afterburner-2.16.0.pom from central
 Downloading: org/junit/junit-bom/5.9.3/junit-bom-5.9.3.pom from central
-Downloading: com/fasterxml/jackson/module/jackson-modules-base/2.16.0/jackson-modules-base-2.16.0.pom from central
+Downloading: com/fasterxml/jackson/module/jackson-module-afterburner/2.16.0/jackson-module-afterburner-2.16.0.pom from central
 Downloading: org/apache/maven/resolver/maven-resolver-transport-http/1.9.16/maven-resolver-transport-http-1.9.16.pom from central
-Downloading: org/yaml/snakeyaml/2.2/snakeyaml-2.2.pom from central
+Downloading: com/fasterxml/jackson/module/jackson-modules-base/2.16.0/jackson-modules-base-2.16.0.pom from central
 Downloading: org/apache/maven/resolver/maven-resolver/1.9.16/maven-resolver-1.9.16.pom from central
+Downloading: org/yaml/snakeyaml/2.2/snakeyaml-2.2.pom from central
 Downloading: org/apache/maven/maven-core/3.9.5/maven-core-3.9.5.pom from central
 Downloading: org/eclipse/jetty/jetty-client/12.0.3/jetty-client-12.0.3.pom from central
+Downloading: org/apache/maven/resolver/maven-resolver-spi/1.9.16/maven-resolver-spi-1.9.16.pom from central
 Downloading: org/apache/maven/maven/3.9.5/maven-3.9.5.pom from central
 Downloading: org/eclipse/jetty/jetty-core/12.0.3/jetty-core-12.0.3.pom from central
-Downloading: org/apache/maven/resolver/maven-resolver-spi/1.9.16/maven-resolver-spi-1.9.16.pom from central
-Downloading: org/eclipse/jetty/jetty-project/12.0.3/jetty-project-12.0.3.pom from central
 Downloading: org/apache/maven/resolver/maven-resolver-api/1.9.16/maven-resolver-api-1.9.16.pom from central
-Downloading: org/infinispan/infinispan-bom/11.0.18.Final/infinispan-bom-11.0.18.Final.pom from central
+Downloading: org/eclipse/jetty/jetty-project/12.0.3/jetty-project-12.0.3.pom from central
 Downloading: org/apache/maven/resolver/maven-resolver-util/1.9.16/maven-resolver-util-1.9.16.pom from central
-Downloading: org/infinispan/infinispan-build-configuration-parent/11.0.18.Final/infinispan-build-configuration-parent-11.0.18.Final.pom from central
 Downloading: org/apache/maven/resolver/maven-resolver-impl/1.9.16/maven-resolver-impl-1.9.16.pom from central
-Downloading: org/junit/junit-bom/5.10.0/junit-bom-5.10.0.pom from central
 Downloading: org/apache/maven/maven-resolver-provider/3.9.5/maven-resolver-provider-3.9.5.pom from central
-Downloading: org/ow2/asm/asm-bom/9.6/asm-bom-9.6.pom from central
 Downloading: org/codehaus/plexus/plexus-utils/4.0.0/plexus-utils-4.0.0.pom from central
-Downloading: org/testcontainers/testcontainers-bom/1.19.1/testcontainers-bom-1.19.1.pom from central
+Downloading: org/infinispan/infinispan-bom/11.0.18.Final/infinispan-bom-11.0.18.Final.pom from central
 Downloading: org/codehaus/plexus/plexus/13/plexus-13.pom from central
-Downloading: rm-hull/table/0.7.1/table-0.7.1.pom from clojars
-Downloading: clansi/clansi/1.0.0/clansi-1.0.0.pom from clojars
 Downloading: org/anarres/jdiagnostics/jdiagnostics/1.0.7/jdiagnostics-1.0.7.pom from central
 Downloading: org/whitesource/pecoff4j/0.0.2.1/pecoff4j-0.0.2.1.pom from central
+Downloading: org/infinispan/infinispan-build-configuration-parent/11.0.18.Final/infinispan-build-configuration-parent-11.0.18.Final.pom from central
 Downloading: org/apache/commons/commons-jcs3-core/3.2/commons-jcs3-core-3.2.pom from central
-Downloading: com/github/package-url/packageurl-java/1.4.1/packageurl-java-1.4.1.pom from central
+Downloading: io/github/jeremylong/jcs3-slf4j/1.0.1/jcs3-slf4j-1.0.1.pom from central
 Downloading: org/apache/commons/commons-jcs3/3.2/commons-jcs3-3.2.pom from central
 Downloading: us/springett/cpe-parser/2.0.3/cpe-parser-2.0.3.pom from central
-Downloading: io/github/jeremylong/jcs3-slf4j/1.0.1/jcs3-slf4j-1.0.1.pom from central
-Downloading: org/semver4j/semver4j/5.2.2/semver4j-5.2.2.pom from central
-Downloading: org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.pom from central
-Downloading: org/owasp/dependency-check-utils/8.4.3/dependency-check-utils-8.4.3.pom from central
 Downloading: org/apache/commons/commons-parent/58/commons-parent-58.pom from central
-Downloading: org/apache/commons/commons-parent/48/commons-parent-48.pom from central
+Downloading: org/junit/junit-bom/5.10.0/junit-bom-5.10.0.pom from central
+Downloading: com/github/package-url/packageurl-java/1.4.1/packageurl-java-1.4.1.pom from central
+Downloading: org/semver4j/semver4j/5.2.2/semver4j-5.2.2.pom from central
+Downloading: org/owasp/dependency-check-utils/8.4.3/dependency-check-utils-8.4.3.pom from central
+Downloading: org/ow2/asm/asm-bom/9.6/asm-bom-9.6.pom from central
+Downloading: org/testcontainers/testcontainers-bom/1.19.1/testcontainers-bom-1.19.1.pom from central
+Downloading: org/apache/apache/29/apache-29.pom from central
 Downloading: org/apache/commons/commons-compress/1.24.0/commons-compress-1.24.0.pom from central
+Downloading: org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.pom from central
 Downloading: commons-io/commons-io/2.15.0/commons-io-2.15.0.pom from central
 Downloading: org/apache/commons/commons-parent/61/commons-parent-61.pom from central
 Downloading: org/apache/commons/commons-lang3/3.13.0/commons-lang3-3.13.0.pom from central
-Downloading: org/apache/apache/29/apache-29.pom from central
-Downloading: org/apache/commons/commons-parent/64/commons-parent-64.pom from central
 Downloading: org/apache/commons/commons-text/1.11.0/commons-text-1.11.0.pom from central
+Downloading: org/apache/commons/commons-parent/48/commons-parent-48.pom from central
+Downloading: org/apache/commons/commons-parent/64/commons-parent-64.pom from central
 Downloading: org/apache/commons/commons-dbcp2/2.11.0/commons-dbcp2-2.11.0.pom from central
-Downloading: org/apache/lucene/lucene-core/8.11.2/lucene-core-8.11.2.pom from central
-Downloading: org/apache/lucene/lucene-analyzers-common/8.11.2/lucene-analyzers-common-8.11.2.pom from central
-Downloading: org/apache/lucene/lucene-parent/8.11.2/lucene-parent-8.11.2.pom from central
-Downloading: org/apache/lucene/lucene-queryparser/8.11.2/lucene-queryparser-8.11.2.pom from central
 Downloading: org/apache/velocity/velocity-engine-core/2.3/velocity-engine-core-2.3.pom from central
-Downloading: org/apache/lucene/lucene-solr-grandparent/8.11.2/lucene-solr-grandparent-8.11.2.pom from central
+Downloading: org/apache/lucene/lucene-analyzers-common/8.11.2/lucene-analyzers-common-8.11.2.pom from central
+Downloading: org/apache/lucene/lucene-core/8.11.2/lucene-core-8.11.2.pom from central
+Downloading: org/apache/lucene/lucene-queryparser/8.11.2/lucene-queryparser-8.11.2.pom from central
+Downloading: org/apache/lucene/lucene-parent/8.11.2/lucene-parent-8.11.2.pom from central
 Downloading: org/apache/velocity/velocity-engine-parent/2.3/velocity-engine-parent-2.3.pom from central
+Downloading: org/apache/lucene/lucene-solr-grandparent/8.11.2/lucene-solr-grandparent-8.11.2.pom from central
 Downloading: org/apache/velocity/velocity-master/4/velocity-master-4.pom from central
 Downloading: com/h2database/h2/2.1.214/h2-2.1.214.pom from central
-Downloading: com/fasterxml/jackson/module/jackson-module-blackbird/2.15.3/jackson-module-blackbird-2.15.3.pom from central
 Downloading: org/glassfish/javax.json/1.1.4/javax.json-1.1.4.pom from central
-Downloading: org/jsoup/jsoup/1.16.2/jsoup-1.16.2.pom from central
-Downloading: com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.15.3/jackson-dataformat-yaml-2.15.3.pom from central
-Downloading: com/fasterxml/jackson/module/jackson-modules-base/2.15.3/jackson-modules-base-2.15.3.pom from central
 Downloading: org/glassfish/json/1.1.4/json-1.1.4.pom from central
+Downloading: org/jsoup/jsoup/1.16.2/jsoup-1.16.2.pom from central
+Downloading: com/fasterxml/jackson/module/jackson-module-blackbird/2.15.3/jackson-module-blackbird-2.15.3.pom from central
+Downloading: com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.15.3/jackson-dataformat-yaml-2.15.3.pom from central
 Downloading: com/h3xstream/retirejs/retirejs-core/3.0.4/retirejs-core-3.0.4.pom from central
-Downloading: com/fasterxml/jackson/dataformat/jackson-dataformats-text/2.15.3/jackson-dataformats-text-2.15.3.pom from central
-Downloading: com/h3xstream/retirejs/retirejs-root-pom/3.0.4/retirejs-root-pom-3.0.4.pom from central
 Downloading: org/sonatype/ossindex/ossindex-service-client/1.8.2/ossindex-service-client-1.8.2.pom from central
+Downloading: com/fasterxml/jackson/module/jackson-modules-base/2.15.3/jackson-modules-base-2.15.3.pom from central
+Downloading: com/fasterxml/jackson/dataformat/jackson-dataformats-text/2.15.3/jackson-dataformats-text-2.15.3.pom from central
 Downloading: com/fasterxml/jackson/jackson-base/2.15.3/jackson-base-2.15.3.pom from central
+Downloading: com/h3xstream/retirejs/retirejs-root-pom/3.0.4/retirejs-root-pom-3.0.4.pom from central
 Downloading: org/sonatype/ossindex/ossindex-service/1.8.2/ossindex-service-1.8.2.pom from central
 Downloading: com/google/guava/guava/32.1.3-jre/guava-32.1.3-jre.pom from central
 Downloading: com/moandjiezana/toml/toml4j/0.7.2/toml4j-0.7.2.pom from central
-Downloading: com/hankcs/aho-corasick-double-array-trie/1.2.3/aho-corasick-double-array-trie-1.2.3.pom from central
 Downloading: org/sonatype/buildsupport/public-parent/28/public-parent-28.pom from central
 Downloading: com/google/guava/guava-parent/32.1.3-jre/guava-parent-32.1.3-jre.pom from central
 Downloading: org/sonatype/buildsupport/buildsupport/28/buildsupport-28.pom from central
-Downloading: org/eclipse/packager/packager-rpm/0.19.0/packager-rpm-0.19.0.pom from central
+Downloading: com/hankcs/aho-corasick-double-array-trie/1.2.3/aho-corasick-double-array-trie-1.2.3.pom from central
 Downloading: org/sonatype/ossindex/ossindex-service-bom/1.8.2/ossindex-service-bom-1.8.2.pom from central
+Downloading: org/eclipse/packager/packager-rpm/0.19.0/packager-rpm-0.19.0.pom from central
+Downloading: commons-validator/commons-validator/1.7/commons-validator-1.7.pom from central
 Downloading: org/eclipse/packager/packager/0.19.0/packager-0.19.0.pom from central
+Downloading: org/apache/commons/commons-parent/51/commons-parent-51.pom from central
 Downloading: commons-codec/commons-codec/1.16.0/commons-codec-1.16.0.pom from central
-Downloading: org/apache/maven/maven-settings/3.9.5/maven-settings-3.9.5.pom from central
 Downloading: org/apache/maven/maven-model/3.9.5/maven-model-3.9.5.pom from central
-Downloading: org/apache/maven/maven-settings-builder/3.9.5/maven-settings-builder-3.9.5.pom from central
+Downloading: org/apache/maven/maven-settings/3.9.5/maven-settings-3.9.5.pom from central
 Downloading: org/apache/maven/maven-builder-support/3.9.5/maven-builder-support-3.9.5.pom from central
-Downloading: org/apache/maven/maven-artifact/3.9.5/maven-artifact-3.9.5.pom from central
+Downloading: org/apache/maven/maven-settings-builder/3.9.5/maven-settings-builder-3.9.5.pom from central
 Downloading: org/apache/maven/maven-repository-metadata/3.9.5/maven-repository-metadata-3.9.5.pom from central
+Downloading: org/apache/maven/maven-artifact/3.9.5/maven-artifact-3.9.5.pom from central
 Downloading: org/apache/maven/maven-plugin-api/3.9.5/maven-plugin-api-3.9.5.pom from central
 Downloading: org/apache/maven/maven-model-builder/3.9.5/maven-model-builder-3.9.5.pom from central
+Downloading: com/google/inject/guice/5.1.0/guice-5.1.0.pom from central
 Downloading: org/codehaus/plexus/plexus-classworlds/2.7.0/plexus-classworlds-2.7.0.pom from central
 Downloading: org/eclipse/jetty/jetty-alpn-client/12.0.3/jetty-alpn-client-12.0.3.pom from central
 Downloading: org/eclipse/jetty/jetty-http/12.0.3/jetty-http-12.0.3.pom from central
-Downloading: com/google/inject/guice/5.1.0/guice-5.1.0.pom from central
+Downloading: com/google/inject/guice-parent/5.1.0/guice-parent-5.1.0.pom from central
 Downloading: org/eclipse/jetty/jetty-alpn/12.0.3/jetty-alpn-12.0.3.pom from central
 Downloading: org/eclipse/jetty/jetty-io/12.0.3/jetty-io-12.0.3.pom from central
-Downloading: com/google/inject/guice-parent/5.1.0/guice-parent-5.1.0.pom from central
 Downloading: org/apache/maven/resolver/maven-resolver-named-locks/1.9.16/maven-resolver-named-locks-1.9.16.pom from central
 Downloading: jakarta/transaction/jakarta.transaction-api/1.3.3/jakarta.transaction-api-1.3.3.pom from central
 Downloading: org/apache/commons/commons-pool2/2.12.0/commons-pool2-2.12.0.pom from central
-Downloading: org/apache/lucene/lucene-queries/8.11.2/lucene-queries-8.11.2.pom from central
 Downloading: org/eclipse/ee4j/project/1.0.5/project-1.0.5.pom from central
+Downloading: org/apache/lucene/lucene-queries/8.11.2/lucene-queries-8.11.2.pom from central
 Downloading: org/apache/commons/commons-parent/62/commons-parent-62.pom from central
 Downloading: org/apache/lucene/lucene-sandbox/8.11.2/lucene-sandbox-8.11.2.pom from central
 Downloading: com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.pom from central
@@ -115,23 +117,23 @@ Downloading: com/esotericsoftware/minlog/1.3.1/minlog-1.3.1.pom from central
 Downloading: com/github/spullara/mustache/java/compiler/0.9.6/compiler-0.9.6.pom from central
 Downloading: org/sonatype/ossindex/ossindex-service-api/1.8.2/ossindex-service-api-1.8.2.pom from central
 Downloading: joda-time/joda-time/2.10.4/joda-time-2.10.4.pom from central
-Downloading: com/github/spullara/mustache/java/mustache.java/0.9.6/mustache.java-0.9.6.pom from central
 Downloading: com/google/code/gson/gson/2.9.0/gson-2.9.0.pom from central
-Downloading: javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.pom from central
+Downloading: com/github/spullara/mustache/java/mustache.java/0.9.6/mustache.java-0.9.6.pom from central
 Downloading: com/google/code/gson/gson-parent/2.9.0/gson-parent-2.9.0.pom from central
+Downloading: javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.pom from central
 Downloading: org/checkerframework/checker-qual/3.37.0/checker-qual-3.37.0.pom from central
 Downloading: javax/xml/bind/jaxb-api-parent/2.3.1/jaxb-api-parent-2.3.1.pom from central
-Downloading: com/google/j2objc/j2objc-annotations/2.8/j2objc-annotations-2.8.pom from central
 Downloading: com/google/errorprone/error_prone_annotations/2.21.1/error_prone_annotations-2.21.1.pom from central
 Downloading: com/google/errorprone/error_prone_parent/2.21.1/error_prone_parent-2.21.1.pom from central
-Downloading: org/tukaani/xz/1.9/xz-1.9.pom from central
+Downloading: com/google/j2objc/j2objc-annotations/2.8/j2objc-annotations-2.8.pom from central
 Downloading: org/eclipse/packager/packager-core/0.19.0/packager-core-0.19.0.pom from central
-Downloading: org/eclipse/jetty/jetty-util/12.0.3/jetty-util-12.0.3.pom from central
+Downloading: org/tukaani/xz/1.9/xz-1.9.pom from central
 Downloading: javax/ws/rs/javax.ws.rs-api/2.0.1/javax.ws.rs-api-2.0.1.pom from central
 Downloading: org/sonatype/goodies/package-url-java/1.1.1/package-url-java-1.1.1.pom from central
 Downloading: org/bouncycastle/bcprov-jdk18on/1.71/bcprov-jdk18on-1.71.pom from central
-Downloading: org/bouncycastle/bcpg-jdk18on/1.71/bcpg-jdk18on-1.71.pom from central
 Downloading: org/sonatype/buildsupport/public-parent/13/public-parent-13.pom from central
+Downloading: org/eclipse/jetty/jetty-util/12.0.3/jetty-util-12.0.3.pom from central
+Downloading: org/bouncycastle/bcpg-jdk18on/1.71/bcpg-jdk18on-1.71.pom from central
 Downloading: org/sonatype/buildsupport/buildsupport/13/buildsupport-13.pom from central
 Downloading: commons-codec/commons-codec/1.16.0/commons-codec-1.16.0.jar from central
 Downloading: joda-time/joda-time/2.10.4/joda-time-2.10.4.jar from central
@@ -139,14 +141,15 @@ Downloading: com/fasterxml/jackson/module/jackson-module-blackbird/2.15.3/jackso
 Downloading: org/apache/commons/commons-compress/1.24.0/commons-compress-1.24.0.jar from central
 Downloading: com/google/errorprone/error_prone_annotations/2.21.1/error_prone_annotations-2.21.1.jar from central
 Downloading: org/apache/commons/commons-lang3/3.13.0/commons-lang3-3.13.0.jar from central
+Downloading: commons-validator/commons-validator/1.7/commons-validator-1.7.jar from central
 Downloading: com/esotericsoftware/minlog/1.3.1/minlog-1.3.1.jar from central
 Downloading: org/tukaani/xz/1.9/xz-1.9.jar from central
 Downloading: org/bouncycastle/bcpg-jdk18on/1.71/bcpg-jdk18on-1.71.jar from central
 Downloading: com/h3xstream/retirejs/retirejs-core/3.0.4/retirejs-core-3.0.4.jar from central
 Downloading: com/fasterxml/jackson/core/jackson-databind/2.16.0/jackson-databind-2.16.0.jar from central
 Downloading: com/google/inject/guice/5.1.0/guice-5.1.0.jar from central
-Downloading: org/eclipse/jetty/jetty-alpn-client/12.0.3/jetty-alpn-client-12.0.3.jar from central
 Downloading: org/eclipse/packager/packager-rpm/0.19.0/packager-rpm-0.19.0.jar from central
+Downloading: org/eclipse/jetty/jetty-alpn-client/12.0.3/jetty-alpn-client-12.0.3.jar from central
 Downloading: jakarta/transaction/jakarta.transaction-api/1.3.3/jakarta.transaction-api-1.3.3.jar from central
 Downloading: org/eclipse/jetty/jetty-http/12.0.3/jetty-http-12.0.3.jar from central
 Downloading: org/eclipse/jetty/jetty-util/12.0.3/jetty-util-12.0.3.jar from central
@@ -163,222 +166,222 @@ Downloading: com/h2database/h2/2.1.214/h2-2.1.214.jar from central
 Downloading: org/codehaus/plexus/plexus-utils/4.0.0/plexus-utils-4.0.0.jar from central
 Downloading: commons-io/commons-io/2.15.0/commons-io-2.15.0.jar from central
 Downloading: org/apache/maven/maven-settings-builder/3.9.5/maven-settings-builder-3.9.5.jar from central
-Downloading: org/owasp/dependency-check-core/8.4.3/dependency-check-core-8.4.3.jar from central
 Downloading: com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar from central
 Downloading: com/github/spullara/mustache/java/compiler/0.9.6/compiler-0.9.6.jar from central
+Downloading: org/owasp/dependency-check-core/8.4.3/dependency-check-core-8.4.3.jar from central
 Downloading: org/apache/velocity/velocity-engine-core/2.3/velocity-engine-core-2.3.jar from central
 Downloading: com/fasterxml/jackson/core/jackson-core/2.16.0/jackson-core-2.16.0.jar from central
 Downloading: org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar from central
+Downloading: clansi/clansi/1.0.0/clansi-1.0.0.jar from clojars
 Downloading: org/apache/maven/maven-settings/3.9.5/maven-settings-3.9.5.jar from central
 Downloading: org/apache/commons/commons-jcs3-core/3.2/commons-jcs3-core-3.2.jar from central
+Downloading: rm-hull/table/0.7.1/table-0.7.1.jar from clojars
 Downloading: org/owasp/dependency-check-utils/8.4.3/dependency-check-utils-8.4.3.jar from central
 Downloading: org/apache/lucene/lucene-core/8.11.2/lucene-core-8.11.2.jar from central
-Downloading: trptcolin/versioneer/0.2.0/versioneer-0.2.0.jar from clojars
+Downloading: org/semver4j/semver4j/5.2.2/semver4j-5.2.2.jar from central
 Downloading: org/slf4j/slf4j-simple/2.0.9/slf4j-simple-2.0.9.jar from central
 Downloading: org/apache/maven/maven-core/3.9.5/maven-core-3.9.5.jar from central
-Downloading: org/semver4j/semver4j/5.2.2/semver4j-5.2.2.jar from central
 Downloading: org/apache/lucene/lucene-queryparser/8.11.2/lucene-queryparser-8.11.2.jar from central
 Downloading: org/bouncycastle/bcprov-jdk18on/1.71/bcprov-jdk18on-1.71.jar from central
 Downloading: org/eclipse/packager/packager-core/0.19.0/packager-core-0.19.0.jar from central
-Downloading: org/apache/maven/resolver/maven-resolver-api/1.9.16/maven-resolver-api-1.9.16.jar from central
 Downloading: com/fasterxml/jackson/core/jackson-annotations/2.16.0/jackson-annotations-2.16.0.jar from central
+Downloading: org/apache/maven/resolver/maven-resolver-api/1.9.16/maven-resolver-api-1.9.16.jar from central
+Downloading: trptcolin/versioneer/0.2.0/versioneer-0.2.0.jar from clojars
 Downloading: org/apache/maven/maven-resolver-provider/3.9.5/maven-resolver-provider-3.9.5.jar from central
 Downloading: org/apache/commons/commons-text/1.11.0/commons-text-1.11.0.jar from central
 Downloading: us/springett/cpe-parser/2.0.3/cpe-parser-2.0.3.jar from central
 Downloading: org/apache/lucene/lucene-queries/8.11.2/lucene-queries-8.11.2.jar from central
-Downloading: nvd-clojure/nvd-clojure/3.6.0/nvd-clojure-3.6.0.jar from clojars
-Downloading: com/google/guava/guava/32.1.3-jre/guava-32.1.3-jre.jar from central
+Downloading: commons-logging/commons-logging/1.2/commons-logging-1.2.jar from central
 Downloading: org/apache/maven/resolver/maven-resolver-spi/1.9.16/maven-resolver-spi-1.9.16.jar from central
 Downloading: org/sonatype/ossindex/ossindex-service-api/1.8.2/ossindex-service-api-1.8.2.jar from central
-Downloading: clansi/clansi/1.0.0/clansi-1.0.0.jar from clojars
+Downloading: com/google/guava/guava/32.1.3-jre/guava-32.1.3-jre.jar from central
 Downloading: com/google/j2objc/j2objc-annotations/2.8/j2objc-annotations-2.8.jar from central
 Downloading: org/codehaus/plexus/plexus-classworlds/2.7.0/plexus-classworlds-2.7.0.jar from central
-Downloading: org/apache/lucene/lucene-sandbox/8.11.2/lucene-sandbox-8.11.2.jar from central
 Downloading: org/checkerframework/checker-qual/3.37.0/checker-qual-3.37.0.jar from central
+Downloading: org/apache/lucene/lucene-sandbox/8.11.2/lucene-sandbox-8.11.2.jar from central
 Downloading: org/eclipse/jetty/jetty-client/12.0.3/jetty-client-12.0.3.jar from central
 Downloading: org/eclipse/jetty/jetty-io/12.0.3/jetty-io-12.0.3.jar from central
-Downloading: rm-hull/table/0.7.1/table-0.7.1.jar from clojars
 Downloading: org/sonatype/ossindex/ossindex-service-client/1.8.2/ossindex-service-client-1.8.2.jar from central
 Downloading: org/jsoup/jsoup/1.16.2/jsoup-1.16.2.jar from central
 Downloading: org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar from central
 Downloading: io/github/jeremylong/jcs3-slf4j/1.0.1/jcs3-slf4j-1.0.1.jar from central
 Downloading: org/apache/maven/resolver/maven-resolver-impl/1.9.16/maven-resolver-impl-1.9.16.jar from central
 Downloading: org/apache/maven/maven-model/3.9.5/maven-model-3.9.5.jar from central
-Downloading: org/apache/maven/resolver/maven-resolver-util/1.9.16/maven-resolver-util-1.9.16.jar from central
+Downloading: nvd-clojure/nvd-clojure/3.6.0/nvd-clojure-3.6.0.jar from clojars
 Downloading: org/apache/maven/resolver/maven-resolver-named-locks/1.9.16/maven-resolver-named-locks-1.9.16.jar from central
+Downloading: org/apache/maven/resolver/maven-resolver-util/1.9.16/maven-resolver-util-1.9.16.jar from central
 Downloading: org/apache/maven/maven-repository-metadata/3.9.5/maven-repository-metadata-3.9.5.jar from central
-Downloading: com/github/package-url/packageurl-java/1.4.1/packageurl-java-1.4.1.jar from central
 Downloading: com/moandjiezana/toml/toml4j/0.7.2/toml4j-0.7.2.jar from central
+Downloading: com/github/package-url/packageurl-java/1.4.1/packageurl-java-1.4.1.jar from central
 Downloading: org/apache/maven/maven-builder-support/3.9.5/maven-builder-support-3.9.5.jar from central
-Downloading: javax/ws/rs/javax.ws.rs-api/2.0.1/javax.ws.rs-api-2.0.1.jar from central
 Downloading: org/apache/maven/maven-plugin-api/3.9.5/maven-plugin-api-3.9.5.jar from central
-Downloading: org/sonatype/goodies/package-url-java/1.1.1/package-url-java-1.1.1.jar from central
-Downloading: org/whitesource/pecoff4j/0.0.2.1/pecoff4j-0.0.2.1.jar from central
+Downloading: javax/ws/rs/javax.ws.rs-api/2.0.1/javax.ws.rs-api-2.0.1.jar from central
 Downloading: org/glassfish/javax.json/1.1.4/javax.json-1.1.4.jar from central
 Downloading: org/apache/maven/maven-artifact/3.9.5/maven-artifact-3.9.5.jar from central
-Downloading: javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar from central
+Downloading: org/whitesource/pecoff4j/0.0.2.1/pecoff4j-0.0.2.1.jar from central
+Downloading: org/sonatype/goodies/package-url-java/1.1.1/package-url-java-1.1.1.jar from central
 Downloading: com/google/code/gson/gson/2.9.0/gson-2.9.0.jar from central
-[2023-12-19 02:21:07.173] INFO nvd-clojure - User-provided config: {:delete-config? false, :group "com.github.pmonks", :name "tools-licenses", :version "2.0.179", :nvd {:output-dir "../target/nvd"}}
-Dec 19, 2023 2:21:07 AM org.apache.commons.jcs3.engine.control.CompositeCacheManager 
+Downloading: javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar from central
+[2024-01-02 02:21:24.971] INFO nvd-clojure - User-provided config: {:delete-config? false, :group "com.github.pmonks", :name "tools-licenses", :version "2.0.188", :nvd {:output-dir "../target/nvd"}}
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.engine.control.CompositeCacheManager 
 INFO: Instance is null, returning unconfigured instance
-Dec 19, 2023 2:21:07 AM org.apache.commons.jcs3.engine.control.CompositeCacheManager 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.engine.control.CompositeCacheManager 
 INFO: Setting default auxiliaries to "ODC"
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.engine.control.CompositeCacheManager 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.engine.control.CompositeCacheManager 
 INFO: setting defaultCompositeCacheAttributes to [ useLateral = true, useRemote = true, useDisk = true, maxObjs = 0, maxSpoolPerRun = -1, diskUsagePattern = UPDATE, spoolChunkSize = 2 ]
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.engine.control.CompositeCacheManager 
-INFO: setting defaultElementAttributes to [ IS_LATERAL = false, IS_SPOOL = true, IS_REMOTE = false, IS_ETERNAL = false, MaxLifeSeconds = 86400, IdleTime = 1800, CreateTime = 1702952468155, LastAccessTime = 1702952468155, getTimeToLiveSeconds() = 86399, createTime = 1702952468155 ]
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.engine.memory.AbstractDoubleLinkedListMemoryCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.engine.control.CompositeCacheManager 
+INFO: setting defaultElementAttributes to [ IS_LATERAL = false, IS_SPOOL = true, IS_REMOTE = false, IS_ETERNAL = false, MaxLifeSeconds = 86400, IdleTime = 1800, CreateTime = 1704162085799, LastAccessTime = 1704162085799, getTimeToLiveSeconds() = 86399, createTime = 1704162085799 ]
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.engine.memory.AbstractDoubleLinkedListMemoryCache 
 INFO: initialized MemoryCache for CENTRAL
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.engine.control.CompositeCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.engine.control.CompositeCache 
 INFO: Constructed cache with name [CENTRAL] and cache attributes [ useLateral = true, useRemote = true, useDisk = true, maxObjs = 0, maxSpoolPerRun = -1, diskUsagePattern = UPDATE, spoolChunkSize = 2 ]
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.AuxiliaryCacheConfigurator 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.AuxiliaryCacheConfigurator 
 INFO: No cache event logger defined for auxiliary [jcs.auxiliary.ODC]
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.AuxiliaryCacheConfigurator 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.AuxiliaryCacheConfigurator 
 INFO: Using standard serializer [org.apache.commons.jcs3.utils.serialization.StandardSerializer@1946384] for auxiliary [jcs.auxiliary.ODC]
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
 INFO: Region [CENTRAL] : Set maxKeySize to: "1,000,000"
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
 INFO: Region [CENTRAL] : Cache file root directory: /home/runner/.m2/repository/org/owasp/dependency-check-utils/8.4.3/data/7.0/cache
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
 INFO: Region [CENTRAL] : Indexed Disk Cache is alive.
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.engine.memory.AbstractDoubleLinkedListMemoryCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.engine.memory.AbstractDoubleLinkedListMemoryCache 
 INFO: initialized MemoryCache for POM
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.engine.control.CompositeCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.engine.control.CompositeCache 
 INFO: Constructed cache with name [POM] and cache attributes [ useLateral = true, useRemote = true, useDisk = true, maxObjs = 0, maxSpoolPerRun = -1, diskUsagePattern = UPDATE, spoolChunkSize = 2 ]
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.AuxiliaryCacheConfigurator 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.AuxiliaryCacheConfigurator 
 INFO: No cache event logger defined for auxiliary [jcs.auxiliary.ODC]
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.AuxiliaryCacheConfigurator 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.AuxiliaryCacheConfigurator 
 INFO: Using standard serializer [org.apache.commons.jcs3.utils.serialization.StandardSerializer@41b64020] for auxiliary [jcs.auxiliary.ODC]
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
 INFO: Region [POM] : Set maxKeySize to: "1,000,000"
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
 INFO: Region [POM] : Cache file root directory: /home/runner/.m2/repository/org/owasp/dependency-check-utils/8.4.3/data/7.0/cache
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
 INFO: Region [POM] : Indexed Disk Cache is alive.
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.engine.memory.AbstractDoubleLinkedListMemoryCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.engine.memory.AbstractDoubleLinkedListMemoryCache 
 INFO: initialized MemoryCache for NODEAUDIT
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.engine.control.CompositeCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.engine.control.CompositeCache 
 INFO: Constructed cache with name [NODEAUDIT] and cache attributes [ useLateral = true, useRemote = true, useDisk = true, maxObjs = 0, maxSpoolPerRun = -1, diskUsagePattern = UPDATE, spoolChunkSize = 2 ]
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.AuxiliaryCacheConfigurator 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.AuxiliaryCacheConfigurator 
 INFO: No cache event logger defined for auxiliary [jcs.auxiliary.ODC]
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.AuxiliaryCacheConfigurator 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.AuxiliaryCacheConfigurator 
 INFO: Using standard serializer [org.apache.commons.jcs3.utils.serialization.StandardSerializer@1a538ed8] for auxiliary [jcs.auxiliary.ODC]
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
 INFO: Region [NODEAUDIT] : Set maxKeySize to: "1,000,000"
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
 INFO: Region [NODEAUDIT] : Cache file root directory: /home/runner/.m2/repository/org/owasp/dependency-check-utils/8.4.3/data/7.0/cache
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache 
 INFO: Region [NODEAUDIT] : Indexed Disk Cache is alive.
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.engine.control.CompositeCacheConfigurator 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.engine.control.CompositeCacheConfigurator 
 INFO: Parsed regions [CENTRAL, POM, NODEAUDIT]
-Dec 19, 2023 2:21:08 AM org.apache.commons.jcs3.engine.control.CompositeCacheManager 
-INFO: Finished configuration in 266 ms.
-[2023-12-19 02:21:08.215] WARN NexusAnalyzer - Disabling Nexus analyzer - please specify the URL to a Nexus Server
-[2023-12-19 02:21:08.727] INFO Engine - Checking for updates
-[2023-12-19 02:21:09.332] INFO NvdCveUpdater - NVD CVE requires several updates; this could take a couple of minutes.
-[2023-12-19 02:21:13.334] INFO DownloadTask - Download Started for NVD CVE - 2002
-[2023-12-19 02:21:13.873] INFO DownloadTask - Download Complete for NVD CVE - 2002  (539 ms)
-[2023-12-19 02:21:13.876] INFO ProcessTask - Processing Started for NVD CVE - 2002
-[2023-12-19 02:21:17.876] INFO DownloadTask - Download Started for NVD CVE - 2003
-[2023-12-19 02:21:18.326] INFO ProcessTask - Processing Complete for NVD CVE - 2002  (4450 ms)
-[2023-12-19 02:21:18.342] INFO DownloadTask - Download Complete for NVD CVE - 2003  (466 ms)
-[2023-12-19 02:21:18.344] INFO ProcessTask - Processing Started for NVD CVE - 2003
-[2023-12-19 02:21:19.323] INFO ProcessTask - Processing Complete for NVD CVE - 2003  (979 ms)
-[2023-12-19 02:21:22.344] INFO DownloadTask - Download Started for NVD CVE - 2004
-[2023-12-19 02:21:22.816] INFO DownloadTask - Download Complete for NVD CVE - 2004  (472 ms)
-[2023-12-19 02:21:22.817] INFO ProcessTask - Processing Started for NVD CVE - 2004
-[2023-12-19 02:21:24.341] INFO ProcessTask - Processing Complete for NVD CVE - 2004  (1523 ms)
-[2023-12-19 02:21:26.818] INFO DownloadTask - Download Started for NVD CVE - 2005
-[2023-12-19 02:21:27.363] INFO DownloadTask - Download Complete for NVD CVE - 2005  (545 ms)
-[2023-12-19 02:21:27.365] INFO ProcessTask - Processing Started for NVD CVE - 2005
-[2023-12-19 02:21:29.066] INFO ProcessTask - Processing Complete for NVD CVE - 2005  (1701 ms)
-[2023-12-19 02:21:31.365] INFO DownloadTask - Download Started for NVD CVE - 2006
-[2023-12-19 02:21:31.950] INFO DownloadTask - Download Complete for NVD CVE - 2006  (584 ms)
-[2023-12-19 02:21:31.953] INFO ProcessTask - Processing Started for NVD CVE - 2006
-[2023-12-19 02:21:34.141] INFO ProcessTask - Processing Complete for NVD CVE - 2006  (2188 ms)
-[2023-12-19 02:21:35.953] INFO DownloadTask - Download Started for NVD CVE - 2007
-[2023-12-19 02:21:36.533] INFO DownloadTask - Download Complete for NVD CVE - 2007  (580 ms)
-[2023-12-19 02:21:36.535] INFO ProcessTask - Processing Started for NVD CVE - 2007
-[2023-12-19 02:21:38.524] INFO ProcessTask - Processing Complete for NVD CVE - 2007  (1989 ms)
-[2023-12-19 02:21:40.536] INFO DownloadTask - Download Started for NVD CVE - 2008
-[2023-12-19 02:21:41.329] INFO DownloadTask - Download Complete for NVD CVE - 2008  (793 ms)
-[2023-12-19 02:21:41.331] INFO ProcessTask - Processing Started for NVD CVE - 2008
-[2023-12-19 02:21:43.820] INFO ProcessTask - Processing Complete for NVD CVE - 2008  (2489 ms)
-[2023-12-19 02:21:45.331] INFO DownloadTask - Download Started for NVD CVE - 2009
-[2023-12-19 02:21:45.872] INFO DownloadTask - Download Complete for NVD CVE - 2009  (540 ms)
-[2023-12-19 02:21:45.875] INFO ProcessTask - Processing Started for NVD CVE - 2009
-[2023-12-19 02:21:48.229] INFO ProcessTask - Processing Complete for NVD CVE - 2009  (2354 ms)
-[2023-12-19 02:21:49.875] INFO DownloadTask - Download Started for NVD CVE - 2010
-[2023-12-19 02:21:50.456] INFO DownloadTask - Download Complete for NVD CVE - 2010  (581 ms)
-[2023-12-19 02:21:50.458] INFO ProcessTask - Processing Started for NVD CVE - 2010
-[2023-12-19 02:21:53.129] INFO ProcessTask - Processing Complete for NVD CVE - 2010  (2671 ms)
-[2023-12-19 02:21:54.459] INFO DownloadTask - Download Started for NVD CVE - 2011
-[2023-12-19 02:21:55.001] INFO DownloadTask - Download Complete for NVD CVE - 2011  (542 ms)
-[2023-12-19 02:21:55.003] INFO ProcessTask - Processing Started for NVD CVE - 2011
-[2023-12-19 02:21:57.884] INFO ProcessTask - Processing Complete for NVD CVE - 2011  (2881 ms)
-[2023-12-19 02:21:59.003] INFO DownloadTask - Download Started for NVD CVE - 2012
-[2023-12-19 02:21:59.586] INFO DownloadTask - Download Complete for NVD CVE - 2012  (583 ms)
-[2023-12-19 02:21:59.589] INFO ProcessTask - Processing Started for NVD CVE - 2012
-[2023-12-19 02:22:03.306] INFO ProcessTask - Processing Complete for NVD CVE - 2012  (3717 ms)
-[2023-12-19 02:22:03.589] INFO DownloadTask - Download Started for NVD CVE - 2013
-[2023-12-19 02:22:04.132] INFO DownloadTask - Download Complete for NVD CVE - 2013  (543 ms)
-[2023-12-19 02:22:04.135] INFO ProcessTask - Processing Started for NVD CVE - 2013
-[2023-12-19 02:22:07.459] INFO ProcessTask - Processing Complete for NVD CVE - 2013  (3324 ms)
-[2023-12-19 02:22:08.135] INFO DownloadTask - Download Started for NVD CVE - 2014
-[2023-12-19 02:22:08.722] INFO DownloadTask - Download Complete for NVD CVE - 2014  (587 ms)
-[2023-12-19 02:22:08.725] INFO ProcessTask - Processing Started for NVD CVE - 2014
-[2023-12-19 02:22:11.542] INFO ProcessTask - Processing Complete for NVD CVE - 2014  (2816 ms)
-[2023-12-19 02:22:12.726] INFO DownloadTask - Download Started for NVD CVE - 2015
-[2023-12-19 02:22:13.334] INFO DownloadTask - Download Complete for NVD CVE - 2015  (608 ms)
-[2023-12-19 02:22:13.336] INFO ProcessTask - Processing Started for NVD CVE - 2015
-[2023-12-19 02:22:15.655] INFO ProcessTask - Processing Complete for NVD CVE - 2015  (2319 ms)
-[2023-12-19 02:22:17.336] INFO DownloadTask - Download Started for NVD CVE - 2016
-[2023-12-19 02:22:17.922] INFO DownloadTask - Download Complete for NVD CVE - 2016  (584 ms)
-[2023-12-19 02:22:17.925] INFO ProcessTask - Processing Started for NVD CVE - 2016
-[2023-12-19 02:22:20.516] INFO ProcessTask - Processing Complete for NVD CVE - 2016  (2591 ms)
-[2023-12-19 02:22:21.925] INFO DownloadTask - Download Started for NVD CVE - 2017
-[2023-12-19 02:22:22.515] INFO DownloadTask - Download Complete for NVD CVE - 2017  (590 ms)
-[2023-12-19 02:22:22.519] INFO ProcessTask - Processing Started for NVD CVE - 2017
-[2023-12-19 02:22:25.617] INFO ProcessTask - Processing Complete for NVD CVE - 2017  (3098 ms)
-[2023-12-19 02:22:26.519] INFO DownloadTask - Download Started for NVD CVE - 2018
-[2023-12-19 02:22:27.191] INFO DownloadTask - Download Complete for NVD CVE - 2018  (672 ms)
-[2023-12-19 02:22:27.196] INFO ProcessTask - Processing Started for NVD CVE - 2018
-[2023-12-19 02:22:30.225] INFO ProcessTask - Processing Complete for NVD CVE - 2018  (3029 ms)
-[2023-12-19 02:22:31.196] INFO DownloadTask - Download Started for NVD CVE - 2019
-[2023-12-19 02:22:31.795] INFO DownloadTask - Download Complete for NVD CVE - 2019  (599 ms)
-[2023-12-19 02:22:31.800] INFO ProcessTask - Processing Started for NVD CVE - 2019
-[2023-12-19 02:22:34.793] INFO ProcessTask - Processing Complete for NVD CVE - 2019  (2993 ms)
-[2023-12-19 02:22:35.800] INFO DownloadTask - Download Started for NVD CVE - 2020
-[2023-12-19 02:22:36.444] INFO DownloadTask - Download Complete for NVD CVE - 2020  (644 ms)
-[2023-12-19 02:22:36.451] INFO ProcessTask - Processing Started for NVD CVE - 2020
-[2023-12-19 02:22:40.062] INFO ProcessTask - Processing Complete for NVD CVE - 2020  (3611 ms)
-[2023-12-19 02:22:40.451] INFO DownloadTask - Download Started for NVD CVE - 2021
-[2023-12-19 02:22:41.091] INFO DownloadTask - Download Complete for NVD CVE - 2021  (640 ms)
-[2023-12-19 02:22:41.098] INFO ProcessTask - Processing Started for NVD CVE - 2021
-[2023-12-19 02:22:45.058] INFO ProcessTask - Processing Complete for NVD CVE - 2021  (3960 ms)
-[2023-12-19 02:22:45.098] INFO DownloadTask - Download Started for NVD CVE - 2022
-[2023-12-19 02:22:45.812] INFO DownloadTask - Download Complete for NVD CVE - 2022  (714 ms)
-[2023-12-19 02:22:45.820] INFO ProcessTask - Processing Started for NVD CVE - 2022
-[2023-12-19 02:22:49.820] INFO DownloadTask - Download Started for NVD CVE - 2023
-[2023-12-19 02:22:50.316] INFO ProcessTask - Processing Complete for NVD CVE - 2022  (4496 ms)
-[2023-12-19 02:22:50.424] INFO DownloadTask - Download Complete for NVD CVE - 2023  (604 ms)
-[2023-12-19 02:22:50.431] INFO ProcessTask - Processing Started for NVD CVE - 2023
-[2023-12-19 02:22:54.368] INFO ProcessTask - Processing Complete for NVD CVE - 2023  (3937 ms)
-[2023-12-19 02:22:58.369] INFO DownloadTask - Download Started for NVD CVE - Modified
-[2023-12-19 02:22:58.834] INFO DownloadTask - Download Complete for NVD CVE - Modified  (465 ms)
-[2023-12-19 02:22:58.835] INFO ProcessTask - Processing Started for NVD CVE - Modified
-[2023-12-19 02:22:59.330] INFO ProcessTask - Processing Complete for NVD CVE - Modified  (495 ms)
-[2023-12-19 02:22:59.539] INFO CveDB - Begin database maintenance
-[2023-12-19 02:23:07.348] INFO CveDB - Updated the CPE ecosystem on 138012 NVD records
-[2023-12-19 02:23:07.917] INFO CveDB - Removed the CPE ecosystem on 3893 NVD records
-[2023-12-19 02:23:08.412] INFO CveDB - Cleaned up 4 orphaned NVD records
-[2023-12-19 02:23:08.412] INFO CveDB - End database maintenance (8873 ms)
-[2023-12-19 02:23:08.598] WARN EngineVersionCheck - A new version of dependency-check is available. Consider updating to version 9.0.7.
-[2023-12-19 02:23:08.663] INFO KnownExploitedDataSource - Updating CISA Known Exploited Vulnerability list: https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
-[2023-12-19 02:23:09.208] INFO CveDB - Begin database defrag
-[2023-12-19 02:23:13.577] INFO CveDB - End database defrag (4374 ms)
-[2023-12-19 02:23:13.578] INFO Engine - Check for updates complete (124851 ms)
-[2023-12-19 02:23:13.748] INFO Engine - 
+Jan 02, 2024 2:21:25 AM org.apache.commons.jcs3.engine.control.CompositeCacheManager 
+INFO: Finished configuration in 165 ms.
+[2024-01-02 02:21:25.839] WARN NexusAnalyzer - Disabling Nexus analyzer - please specify the URL to a Nexus Server
+[2024-01-02 02:21:26.318] INFO Engine - Checking for updates
+[2024-01-02 02:21:27.050] INFO NvdCveUpdater - NVD CVE requires several updates; this could take a couple of minutes.
+[2024-01-02 02:21:31.052] INFO DownloadTask - Download Started for NVD CVE - 2002
+[2024-01-02 02:21:31.651] INFO DownloadTask - Download Complete for NVD CVE - 2002  (599 ms)
+[2024-01-02 02:21:31.654] INFO ProcessTask - Processing Started for NVD CVE - 2002
+[2024-01-02 02:21:35.654] INFO DownloadTask - Download Started for NVD CVE - 2003
+[2024-01-02 02:21:35.961] INFO ProcessTask - Processing Complete for NVD CVE - 2002  (4307 ms)
+[2024-01-02 02:21:36.061] INFO DownloadTask - Download Complete for NVD CVE - 2003  (407 ms)
+[2024-01-02 02:21:36.063] INFO ProcessTask - Processing Started for NVD CVE - 2003
+[2024-01-02 02:21:36.997] INFO ProcessTask - Processing Complete for NVD CVE - 2003  (934 ms)
+[2024-01-02 02:21:40.063] INFO DownloadTask - Download Started for NVD CVE - 2004
+[2024-01-02 02:21:40.376] INFO DownloadTask - Download Complete for NVD CVE - 2004  (313 ms)
+[2024-01-02 02:21:40.377] INFO ProcessTask - Processing Started for NVD CVE - 2004
+[2024-01-02 02:21:41.929] INFO ProcessTask - Processing Complete for NVD CVE - 2004  (1552 ms)
+[2024-01-02 02:21:44.377] INFO DownloadTask - Download Started for NVD CVE - 2005
+[2024-01-02 02:21:44.625] INFO DownloadTask - Download Complete for NVD CVE - 2005  (248 ms)
+[2024-01-02 02:21:44.627] INFO ProcessTask - Processing Started for NVD CVE - 2005
+[2024-01-02 02:21:46.400] INFO ProcessTask - Processing Complete for NVD CVE - 2005  (1772 ms)
+[2024-01-02 02:21:48.628] INFO DownloadTask - Download Started for NVD CVE - 2006
+[2024-01-02 02:21:49.161] INFO DownloadTask - Download Complete for NVD CVE - 2006  (533 ms)
+[2024-01-02 02:21:49.163] INFO ProcessTask - Processing Started for NVD CVE - 2006
+[2024-01-02 02:21:51.441] INFO ProcessTask - Processing Complete for NVD CVE - 2006  (2278 ms)
+[2024-01-02 02:21:53.163] INFO DownloadTask - Download Started for NVD CVE - 2007
+[2024-01-02 02:21:53.449] INFO DownloadTask - Download Complete for NVD CVE - 2007  (285 ms)
+[2024-01-02 02:21:53.451] INFO ProcessTask - Processing Started for NVD CVE - 2007
+[2024-01-02 02:21:55.445] INFO ProcessTask - Processing Complete for NVD CVE - 2007  (1994 ms)
+[2024-01-02 02:21:57.451] INFO DownloadTask - Download Started for NVD CVE - 2008
+[2024-01-02 02:21:57.802] INFO DownloadTask - Download Complete for NVD CVE - 2008  (350 ms)
+[2024-01-02 02:21:57.805] INFO ProcessTask - Processing Started for NVD CVE - 2008
+[2024-01-02 02:22:00.383] INFO ProcessTask - Processing Complete for NVD CVE - 2008  (2578 ms)
+[2024-01-02 02:22:01.805] INFO DownloadTask - Download Started for NVD CVE - 2009
+[2024-01-02 02:22:02.287] INFO DownloadTask - Download Complete for NVD CVE - 2009  (482 ms)
+[2024-01-02 02:22:02.290] INFO ProcessTask - Processing Started for NVD CVE - 2009
+[2024-01-02 02:22:04.783] INFO ProcessTask - Processing Complete for NVD CVE - 2009  (2493 ms)
+[2024-01-02 02:22:06.290] INFO DownloadTask - Download Started for NVD CVE - 2010
+[2024-01-02 02:22:06.837] INFO DownloadTask - Download Complete for NVD CVE - 2010  (547 ms)
+[2024-01-02 02:22:06.840] INFO ProcessTask - Processing Started for NVD CVE - 2010
+[2024-01-02 02:22:09.733] INFO ProcessTask - Processing Complete for NVD CVE - 2010  (2893 ms)
+[2024-01-02 02:22:10.840] INFO DownloadTask - Download Started for NVD CVE - 2011
+[2024-01-02 02:22:11.215] INFO DownloadTask - Download Complete for NVD CVE - 2011  (375 ms)
+[2024-01-02 02:22:11.217] INFO ProcessTask - Processing Started for NVD CVE - 2011
+[2024-01-02 02:22:14.037] INFO ProcessTask - Processing Complete for NVD CVE - 2011  (2819 ms)
+[2024-01-02 02:22:15.217] INFO DownloadTask - Download Started for NVD CVE - 2012
+[2024-01-02 02:22:15.857] INFO DownloadTask - Download Complete for NVD CVE - 2012  (640 ms)
+[2024-01-02 02:22:15.860] INFO ProcessTask - Processing Started for NVD CVE - 2012
+[2024-01-02 02:22:19.242] INFO ProcessTask - Processing Complete for NVD CVE - 2012  (3382 ms)
+[2024-01-02 02:22:19.860] INFO DownloadTask - Download Started for NVD CVE - 2013
+[2024-01-02 02:22:20.899] INFO DownloadTask - Download Complete for NVD CVE - 2013  (1039 ms)
+[2024-01-02 02:22:20.903] INFO ProcessTask - Processing Started for NVD CVE - 2013
+[2024-01-02 02:22:24.248] INFO ProcessTask - Processing Complete for NVD CVE - 2013  (3345 ms)
+[2024-01-02 02:22:24.903] INFO DownloadTask - Download Started for NVD CVE - 2014
+[2024-01-02 02:22:25.147] INFO DownloadTask - Download Complete for NVD CVE - 2014  (244 ms)
+[2024-01-02 02:22:25.149] INFO ProcessTask - Processing Started for NVD CVE - 2014
+[2024-01-02 02:22:28.137] INFO ProcessTask - Processing Complete for NVD CVE - 2014  (2987 ms)
+[2024-01-02 02:22:29.150] INFO DownloadTask - Download Started for NVD CVE - 2015
+[2024-01-02 02:22:30.356] INFO DownloadTask - Download Complete for NVD CVE - 2015  (1206 ms)
+[2024-01-02 02:22:30.359] INFO ProcessTask - Processing Started for NVD CVE - 2015
+[2024-01-02 02:22:32.756] INFO ProcessTask - Processing Complete for NVD CVE - 2015  (2397 ms)
+[2024-01-02 02:22:34.359] INFO DownloadTask - Download Started for NVD CVE - 2016
+[2024-01-02 02:22:35.073] INFO DownloadTask - Download Complete for NVD CVE - 2016  (714 ms)
+[2024-01-02 02:22:35.076] INFO ProcessTask - Processing Started for NVD CVE - 2016
+[2024-01-02 02:22:37.702] INFO ProcessTask - Processing Complete for NVD CVE - 2016  (2626 ms)
+[2024-01-02 02:22:39.076] INFO DownloadTask - Download Started for NVD CVE - 2017
+[2024-01-02 02:22:39.458] INFO DownloadTask - Download Complete for NVD CVE - 2017  (381 ms)
+[2024-01-02 02:22:39.463] INFO ProcessTask - Processing Started for NVD CVE - 2017
+[2024-01-02 02:22:42.572] INFO ProcessTask - Processing Complete for NVD CVE - 2017  (3109 ms)
+[2024-01-02 02:22:43.463] INFO DownloadTask - Download Started for NVD CVE - 2018
+[2024-01-02 02:22:43.806] INFO DownloadTask - Download Complete for NVD CVE - 2018  (343 ms)
+[2024-01-02 02:22:43.812] INFO ProcessTask - Processing Started for NVD CVE - 2018
+[2024-01-02 02:22:47.105] INFO ProcessTask - Processing Complete for NVD CVE - 2018  (3293 ms)
+[2024-01-02 02:22:47.812] INFO DownloadTask - Download Started for NVD CVE - 2019
+[2024-01-02 02:22:48.153] INFO DownloadTask - Download Complete for NVD CVE - 2019  (341 ms)
+[2024-01-02 02:22:48.158] INFO ProcessTask - Processing Started for NVD CVE - 2019
+[2024-01-02 02:22:51.124] INFO ProcessTask - Processing Complete for NVD CVE - 2019  (2966 ms)
+[2024-01-02 02:22:52.158] INFO DownloadTask - Download Started for NVD CVE - 2020
+[2024-01-02 02:22:52.532] INFO DownloadTask - Download Complete for NVD CVE - 2020  (374 ms)
+[2024-01-02 02:22:52.538] INFO ProcessTask - Processing Started for NVD CVE - 2020
+[2024-01-02 02:22:56.174] INFO ProcessTask - Processing Complete for NVD CVE - 2020  (3636 ms)
+[2024-01-02 02:22:56.538] INFO DownloadTask - Download Started for NVD CVE - 2021
+[2024-01-02 02:22:56.998] INFO DownloadTask - Download Complete for NVD CVE - 2021  (460 ms)
+[2024-01-02 02:22:57.007] INFO ProcessTask - Processing Started for NVD CVE - 2021
+[2024-01-02 02:23:00.973] INFO ProcessTask - Processing Complete for NVD CVE - 2021  (3966 ms)
+[2024-01-02 02:23:01.007] INFO DownloadTask - Download Started for NVD CVE - 2022
+[2024-01-02 02:23:01.652] INFO DownloadTask - Download Complete for NVD CVE - 2022  (645 ms)
+[2024-01-02 02:23:01.661] INFO ProcessTask - Processing Started for NVD CVE - 2022
+[2024-01-02 02:23:05.661] INFO DownloadTask - Download Started for NVD CVE - 2023
+[2024-01-02 02:23:05.979] INFO ProcessTask - Processing Complete for NVD CVE - 2022  (4318 ms)
+[2024-01-02 02:23:06.428] INFO DownloadTask - Download Complete for NVD CVE - 2023  (766 ms)
+[2024-01-02 02:23:06.435] INFO ProcessTask - Processing Started for NVD CVE - 2023
+[2024-01-02 02:23:10.608] INFO ProcessTask - Processing Complete for NVD CVE - 2023  (4173 ms)
+[2024-01-02 02:23:14.608] INFO DownloadTask - Download Started for NVD CVE - Modified
+[2024-01-02 02:23:15.093] INFO DownloadTask - Download Complete for NVD CVE - Modified  (485 ms)
+[2024-01-02 02:23:15.094] INFO ProcessTask - Processing Started for NVD CVE - Modified
+[2024-01-02 02:23:15.722] INFO ProcessTask - Processing Complete for NVD CVE - Modified  (628 ms)
+[2024-01-02 02:23:15.924] INFO CveDB - Begin database maintenance
+[2024-01-02 02:23:23.391] INFO CveDB - Updated the CPE ecosystem on 138331 NVD records
+[2024-01-02 02:23:24.006] INFO CveDB - Removed the CPE ecosystem on 3895 NVD records
+[2024-01-02 02:23:24.447] INFO CveDB - End database maintenance (8522 ms)
+[2024-01-02 02:23:24.517] WARN EngineVersionCheck - A new version of dependency-check is available. Consider updating to version 9.0.7.
+[2024-01-02 02:23:24.557] INFO KnownExploitedDataSource - Updating CISA Known Exploited Vulnerability list: https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
+[2024-01-02 02:23:24.995] INFO CveDB - Begin database defrag
+[2024-01-02 02:23:29.064] INFO CveDB - End database defrag (4075 ms)
+[2024-01-02 02:23:29.065] INFO Engine - Check for updates complete (122747 ms)
+[2024-01-02 02:23:29.239] INFO Engine - 
 
 Dependency-Check is an open source tool performing a best effort analysis of 3rd party dependencies; false positives and false negatives may exist in the analysis performed by the tool. Use of the tool and the reporting provided constitutes acceptance for use in an AS IS condition, and there are NO warranties, implied or otherwise, with regard to the analysis or its use. Any use of the tool and the reporting provided is at the user’s risk. In no event shall the copyright holder or OWASP be held liable for any damages whatsoever arising out of or in connection with the use of this tool, the analysis performed, or the resulting report.
 
@@ -389,34 +392,34 @@ Dependency-Check is an open source tool performing a best effort analysis of 3rd
 💖 Sponsor: https://github.com/sponsors/jeremylong
 
 
-[2023-12-19 02:23:13.750] INFO Engine - Analysis Started
-[2023-12-19 02:23:14.058] INFO Engine - Finished Archive Analyzer (0 seconds)
-[2023-12-19 02:23:14.070] INFO Engine - Finished File Name Analyzer (0 seconds)
-[2023-12-19 02:23:15.049] INFO Engine - Finished Jar Analyzer (0 seconds)
-[2023-12-19 02:23:15.944] INFO Engine - Finished Central Analyzer (0 seconds)
-[2023-12-19 02:23:15.950] INFO Engine - Finished Dependency Merging Analyzer (0 seconds)
-[2023-12-19 02:23:16.164] INFO Engine - Finished Hint Analyzer (0 seconds)
-[2023-12-19 02:23:16.167] INFO Engine - Finished Version Filter Analyzer (0 seconds)
-[2023-12-19 02:23:17.974] INFO CPEAnalyzer - Created CPE Index (1 seconds)
-[2023-12-19 02:23:19.409] INFO Engine - Finished CPE Analyzer (3 seconds)
-[2023-12-19 02:23:19.414] INFO Engine - Finished False Positive Analyzer (0 seconds)
-[2023-12-19 02:23:19.472] INFO Engine - Finished NVD CVE Analyzer (0 seconds)
-[2023-12-19 02:23:20.570] INFO Engine - Finished Sonatype OSS Index Analyzer (1 seconds)
-[2023-12-19 02:23:20.581] INFO Engine - Finished Vulnerability Suppression Analyzer (0 seconds)
-[2023-12-19 02:23:20.586] INFO Engine - Finished Known Exploited Vulnerability Analyzer (0 seconds)
-[2023-12-19 02:23:20.603] INFO Engine - Finished Dependency Bundling Analyzer (0 seconds)
-[2023-12-19 02:23:20.606] INFO Engine - Finished Unused Suppression Rule Analyzer (0 seconds)
-[2023-12-19 02:23:20.728] INFO Engine - Analysis Complete (6 seconds)
-[2023-12-19 02:23:20.780] INFO ReportGenerator - Writing report to: /home/runner/work/tools-licenses/tools-licenses/.nvd/../target/nvd/dependency-check-report.xml
-[2023-12-19 02:23:21.060] INFO ReportGenerator - Writing report to: /home/runner/work/tools-licenses/tools-licenses/.nvd/../target/nvd/dependency-check-report.html
-[2023-12-19 02:23:21.235] INFO ReportGenerator - Writing report to: /home/runner/work/tools-licenses/tools-licenses/.nvd/../target/nvd/dependency-check-report.json
-[2023-12-19 02:23:21.340] INFO ReportGenerator - Writing report to: /home/runner/work/tools-licenses/tools-licenses/.nvd/../target/nvd/dependency-check-report.csv
-[2023-12-19 02:23:21.352] INFO ReportGenerator - Writing report to: /home/runner/work/tools-licenses/tools-licenses/.nvd/../target/nvd/dependency-check-report.sarif
-[2023-12-19 02:23:21.386] INFO ReportGenerator - Writing report to: /home/runner/work/tools-licenses/tools-licenses/.nvd/../target/nvd/dependency-check-jenkins.html
-[2023-12-19 02:23:21.424] INFO ReportGenerator - Writing report to: /home/runner/work/tools-licenses/tools-licenses/.nvd/../target/nvd/dependency-check-junit.xml
-Dec 19, 2023 2:23:21 AM org.apache.commons.jcs3.engine.control.CompositeCacheManager 
+[2024-01-02 02:23:29.241] INFO Engine - Analysis Started
+[2024-01-02 02:23:29.578] INFO Engine - Finished Archive Analyzer (0 seconds)
+[2024-01-02 02:23:29.589] INFO Engine - Finished File Name Analyzer (0 seconds)
+[2024-01-02 02:23:30.458] INFO Engine - Finished Jar Analyzer (0 seconds)
+[2024-01-02 02:23:31.004] INFO Engine - Finished Central Analyzer (0 seconds)
+[2024-01-02 02:23:31.010] INFO Engine - Finished Dependency Merging Analyzer (0 seconds)
+[2024-01-02 02:23:31.239] INFO Engine - Finished Hint Analyzer (0 seconds)
+[2024-01-02 02:23:31.242] INFO Engine - Finished Version Filter Analyzer (0 seconds)
+[2024-01-02 02:23:32.737] INFO CPEAnalyzer - Created CPE Index (1 seconds)
+[2024-01-02 02:23:34.148] INFO Engine - Finished CPE Analyzer (2 seconds)
+[2024-01-02 02:23:34.153] INFO Engine - Finished False Positive Analyzer (0 seconds)
+[2024-01-02 02:23:34.236] INFO Engine - Finished NVD CVE Analyzer (0 seconds)
+[2024-01-02 02:23:34.835] INFO Engine - Finished Sonatype OSS Index Analyzer (0 seconds)
+[2024-01-02 02:23:34.843] INFO Engine - Finished Vulnerability Suppression Analyzer (0 seconds)
+[2024-01-02 02:23:34.850] INFO Engine - Finished Known Exploited Vulnerability Analyzer (0 seconds)
+[2024-01-02 02:23:34.866] INFO Engine - Finished Dependency Bundling Analyzer (0 seconds)
+[2024-01-02 02:23:34.867] INFO Engine - Finished Unused Suppression Rule Analyzer (0 seconds)
+[2024-01-02 02:23:34.984] INFO Engine - Analysis Complete (5 seconds)
+[2024-01-02 02:23:35.023] INFO ReportGenerator - Writing report to: /home/runner/work/tools-licenses/tools-licenses/.nvd/../target/nvd/dependency-check-report.xml
+[2024-01-02 02:23:35.268] INFO ReportGenerator - Writing report to: /home/runner/work/tools-licenses/tools-licenses/.nvd/../target/nvd/dependency-check-report.html
+[2024-01-02 02:23:35.427] INFO ReportGenerator - Writing report to: /home/runner/work/tools-licenses/tools-licenses/.nvd/../target/nvd/dependency-check-report.json
+[2024-01-02 02:23:35.510] INFO ReportGenerator - Writing report to: /home/runner/work/tools-licenses/tools-licenses/.nvd/../target/nvd/dependency-check-report.csv
+[2024-01-02 02:23:35.523] INFO ReportGenerator - Writing report to: /home/runner/work/tools-licenses/tools-licenses/.nvd/../target/nvd/dependency-check-report.sarif
+[2024-01-02 02:23:35.551] INFO ReportGenerator - Writing report to: /home/runner/work/tools-licenses/tools-licenses/.nvd/../target/nvd/dependency-check-jenkins.html
+[2024-01-02 02:23:35.582] INFO ReportGenerator - Writing report to: /home/runner/work/tools-licenses/tools-licenses/.nvd/../target/nvd/dependency-check-junit.xml
+Jan 02, 2024 2:23:35 AM org.apache.commons.jcs3.engine.control.CompositeCacheManager 
 INFO: Shutdown hook activated. Shutdown was not called. Shutting down JCS.
-Dec 19, 2023 2:23:21 AM org.apache.commons.jcs3.engine.control.event.ElementEventQueue 
-INFO: Element event queue destroyed: org.apache.commons.jcs3.engine.control.event.ElementEventQueue@5641441f
-Dec 19, 2023 2:23:21 AM org.apache.commons.jcs3.engine.control.CompositeCache 
+Jan 02, 2024 2:23:35 AM org.apache.commons.jcs3.engine.control.event.ElementEventQueue 
+INFO: Element event queue destroyed: org.apache.commons.jcs3.engine.control.event.ElementEventQueue@5b8466b7
+Jan 02, 2024 2:23:35 AM org.apache.commons.jcs3.engine.control.CompositeCache 
 INFO: In DISPOSE, [NODEAUDIT] fromRemote [false]
