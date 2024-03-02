@@ -44,6 +44,10 @@ This tool uses the [`lice-comb` library](https://github.com/pmonks/lice-comb), w
 
 In contrast, `tools-licenses` leverages the [`lice-comb` library](https://github.com/pmonks/lice-comb), a build-tool-agnostic library that takes a more comprehensive approach to license detection.
 
+## Why not [`scarletcomply/license-finder`](https://github.com/scarletcomply/license-finder)?
+
+* It doesnt canonicalise license information to SPDX License Expressons (it leaves canonicalisation, a fairly difficult problem, to the caller).
+
 ## I use Leiningen - is something like `tools-licenses` available?
 
 While Leiningen's original [`lein-licenses` plugin](https://github.com/technomancy/lein-licenses) was discontinued some years ago and finally archived in 2020, [JohnnyJayJay has developed an alternative `lein-licenses` plugin](https://github.com/JohnnyJayJay/lein-licenses/) that leverages the same underlying license detection library ([`lice-comb`](https://github.com/pmonks/lice-comb)) as `tools-licenses`, thereby offering similar capabilities.
