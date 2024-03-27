@@ -22,6 +22,7 @@
   (assoc opts
          :lib          'com.github.pmonks/tools-licenses
          :version      (pbr/calculate-version 2 0)
+         :prod-branch  "release"
          :write-pom    true
          :validate-pom true
          :pom          {:description      "A Clojure tools.build task library related to dependency licenses."
