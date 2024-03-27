@@ -46,7 +46,7 @@ In contrast, `tools-licenses` leverages the [`lice-comb` library](https://github
 
 ## Why not [`scarletcomply/license-finder`](https://github.com/scarletcomply/license-finder)?
 
-* It doesnt canonicalise license information to SPDX License Expressons (it leaves canonicalisation, a fairly difficult problem, to the caller).
+* It doesnt canonicalise license information to SPDX License Expressions (it leaves canonicalisation, a fairly difficult problem, to the caller).
 
 ## I use Leiningen - is something like `tools-licenses` available?
 
