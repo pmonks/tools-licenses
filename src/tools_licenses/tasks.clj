@@ -146,7 +146,7 @@
                                                                                 :medium (ansi/fg-bright :yellow "medium")
                                                                                 :high   (ansi/fg-bright :green  "high"))))
                                 (when-let [strategy   (:strategy %)]     (str (ansi/bold "\n  Strategy: ") (get lcu/strategy->string strategy (name strategy))))
-                                (when-let [source     (seq (map remove-file-prefix (:source %)))] (str (ansi/bold "\n  Source:") "\n    " (s/join "\n    " source))))
+                                (when-let [source     (seq (map remove-file-prefix (:source %)))] (str (ansi/bold "\n  Source:") "\n    " (s/join "\n    ⮑  " source))))
                           info-list))))))
 
 (defn- explain-with-licenses!

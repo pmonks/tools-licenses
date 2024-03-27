@@ -1,9 +1,9 @@
-| | | | |
-|---:|:---:|:---:|:---:|
-| [**main**](https://github.com/pmonks/tools-licenses/tree/main) | [![CI](https://github.com/pmonks/tools-licenses/workflows/CI/badge.svg?branch=main)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3ACI+branch%3Amain) | [![Dependencies](https://github.com/pmonks/tools-licenses/workflows/dependencies/badge.svg?branch=main)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies+branch%3Amain) | [![Vulnerabilities](https://github.com/pmonks/lice-comb/workflows/vulnerabilities/badge.svg?branch=main)](https://pmonks.github.io/tools-licenses/nvd/dependency-check-report.html) |
-| [**dev**](https://github.com/pmonks/tools-licenses/tree/dev) | [![CI](https://github.com/pmonks/tools-licenses/workflows/CI/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3ACI+branch%3Adev) | [![Dependencies](https://github.com/pmonks/tools-licenses/workflows/dependencies/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies+branch%3Adev) | [![Vulnerabilities](https://github.com/pmonks/lice-comb/workflows/vulnerabilities/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Avulnerabilities+branch%3Adev) |
+| | | |
+|---:|:---:|:---:|
+| [**release**](https://github.com/pmonks/tools-licenses/tree/release) | [![CI](https://github.com/pmonks/tools-licenses/actions/workflows/ci.yml/badge.svg?branch=release)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3ACI+branch%3Arelease) | [![Dependencies](https://github.com/pmonks/tools-licenses/actions/workflows/dependencies.yml/badge.svg?branch=release)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies+branch%3Arelease) |
+| [**dev**](https://github.com/pmonks/tools-licenses/tree/dev) | [![CI](https://github.com/pmonks/tools-licenses/actions/workflows/ci.yml/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3ACI+branch%3Adev) | [![Dependencies](https://github.com/pmonks/tools-licenses/actions/workflows/dependencies.yml/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies+branch%3Adev) |
 
-[![Latest Version](https://img.shields.io/clojars/v/com.github.pmonks/tools-licenses)](https://clojars.org/com.github.pmonks/tools-licenses/) [![Open Issues](https://img.shields.io/github/issues/pmonks/tools-licenses.svg)](https://github.com/pmonks/tools-licenses/issues) [![License](https://img.shields.io/github/license/pmonks/tools-licenses.svg)](https://github.com/pmonks/tools-licenses/blob/main/LICENSE)
+[![Latest Version](https://img.shields.io/clojars/v/com.github.pmonks/tools-licenses)](https://clojars.org/com.github.pmonks/tools-licenses/) [![License](https://img.shields.io/github/license/pmonks/tools-licenses.svg)](https://github.com/pmonks/tools-licenses/blob/release/LICENSE) [![Open Issues](https://img.shields.io/github/issues/pmonks/tools-licenses.svg)](https://github.com/pmonks/tools-licenses/issues)
 
 
 # tools-licenses
@@ -37,11 +37,16 @@ This tool uses the [`lice-comb` library](https://github.com/pmonks/lice-comb), w
 
 * It only scans Maven POM files for license information, and silently ignores projects that don't have license tags in their POM file, or don't have a POM file at all. This is a problem because:
   * git dependencies (whose use is encouraged by tools.deps/tools.build) don't need a POM file (and in practice most don't provide one)
+  * silently ignoring projects that lack a `pom.xml` file (or have one that doesn't contain licensing information) may lull users into a false sense of security vis-a-vis license compliance
   * [Clojars only recently started mandating license information in the POM files it hosts](https://github.com/clojars/clojars-web/issues/873), and as of mid-2023 around 1/3 of all projects deployed hosted there do not include any licensing information in their POM files
 * It's coupled to tools.deps and cannot easily be consumed as an independent library. It's also dependent on tools.deps state management (e.g. requires POM files to be downloaded locally).
 * It doesn't canonicalise license information to SPDX License Expressions (it leaves canonicalisation, a fairly difficult problem, to the caller).
 
 In contrast, `tools-licenses` leverages the [`lice-comb` library](https://github.com/pmonks/lice-comb), a build-tool-agnostic library that takes a more comprehensive approach to license detection.
+
+## Why not [`scarletcomply/license-finder`](https://github.com/scarletcomply/license-finder)?
+
+* It doesnt canonicalise license information to SPDX License Expressons (it leaves canonicalisation, a fairly difficult problem, to the caller).
 
 ## I use Leiningen - is something like `tools-licenses` available?
 
@@ -160,17 +165,17 @@ Other invocation possibilities:
 
 ## Contributor Information
 
-[Contributing Guidelines](https://github.com/pmonks/tools-licenses/blob/main/.github/CONTRIBUTING.md)
+[Contributing Guidelines](https://github.com/pmonks/tools-licenses/blob/release/.github/CONTRIBUTING.md)
 
 [Bug Tracker](https://github.com/pmonks/tools-licenses/issues)
 
-[Code of Conduct](https://github.com/pmonks/tools-licenses/blob/main/.github/CODE_OF_CONDUCT.md)
+[Code of Conduct](https://github.com/pmonks/tools-licenses/blob/release/.github/CODE_OF_CONDUCT.md)
 
 ### Developer Workflow
 
-This project uses the [git-flow branching strategy](https://nvie.com/posts/a-successful-git-branching-model/), with the caveat that the permanent branches are called `main` and `dev`, and any changes to the `main` branch are considered a release and auto-deployed (JARs to Clojars, API docs to GitHub Pages, etc.).
+This project uses the [git-flow branching strategy](https://nvie.com/posts/a-successful-git-branching-model/), and the permanent branches are called `release` and `dev`.  Any changes to the `release` branch are considered a release and auto-deployed (JARs to Clojars, API docs to GitHub Pages, etc.).
 
-For this reason, **all development must occur either in branch `dev`, or (preferably) in temporary branches off of `dev`.**  All PRs from forked repos must also be submitted against `dev`; the `main` branch is **only** updated from `dev` via PRs created by the core development team.  All other changes submitted to `main` will be rejected.
+For this reason, **all development must occur either in branch `dev`, or (preferably) in temporary branches off of `dev`.**  All PRs from forked repos must also be submitted against `dev`; the `release` branch is **only** updated from `dev` via PRs created by the core development team.  All other changes submitted to `release` will be rejected.
 
 ### Build Tasks
 
