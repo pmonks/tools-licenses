@@ -12,6 +12,8 @@ A Clojure [tools.build](https://github.com/clojure/tools.build) task library for
 
 It also provides the ability to check your (Apache-2.0 licensed) project against the [Apache Software Foundation's 3rd Party License Policy](https://www.apache.org/legal/resolved.html).
 
+`tools-licenses` is little more than a pretty output wrapper around the build-tool-agnostic [`lice-comb` library](https://github.com/pmonks/lice-comb).
+
 ## Disclaimer
 
 **The author and contributors to `tools-licenses` are not lawyers, and neither they nor `tools-licenses` itself provide legal advice. This is simply a tool that might help you and your legal counsel perform licensing due diligence on your projects.**
@@ -42,8 +44,6 @@ This tool uses the [`lice-comb` library](https://github.com/pmonks/lice-comb), w
 * It's coupled to tools.deps and cannot easily be consumed as an independent library. It's also dependent on tools.deps state management (e.g. requires POM files to be downloaded locally).
 * It doesn't canonicalise license information to SPDX License Expressions, or even (in some cases) SPDX License Identifiers.
 * It only reports the first license for multi-licensed artifacts.
-
-In contrast, `tools-licenses` leverages the [`lice-comb` library](https://github.com/pmonks/lice-comb), a build-tool-agnostic library that takes a more comprehensive approach to license detection.
 
 ## Why not [`scarletcomply/license-finder`](https://github.com/scarletcomply/license-finder)?
 
