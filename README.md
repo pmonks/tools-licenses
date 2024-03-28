@@ -47,8 +47,7 @@ This tool uses the [`lice-comb` library](https://github.com/pmonks/lice-comb), w
 
 ## Why not [`scarletcomply/license-finder`](https://github.com/scarletcomply/license-finder)?
 
-* It doesn't canonicalise license information to SPDX License Expressions, or even (in some cases) SPDX License Identifiers.
-* It only reports the first license for multi-licensed artifacts.
+It uses `tools.deps`' license discovery logic under the covers, so has all of the same issues.  It does provide a better user experience however (it's packaged as a tool, has more output options, etc.).
 
 ## I use Leiningen - is something like `tools-licenses` available?
 
