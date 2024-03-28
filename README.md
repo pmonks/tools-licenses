@@ -40,13 +40,15 @@ This tool uses the [`lice-comb` library](https://github.com/pmonks/lice-comb), w
   * silently ignoring projects that lack a `pom.xml` file (or have one that doesn't contain licensing information) may lull users into a false sense of security vis-a-vis license compliance
   * [Clojars only recently started mandating license information in the POM files it hosts](https://github.com/clojars/clojars-web/issues/873), and as of mid-2023 around 1/3 of all projects deployed hosted there do not include any licensing information in their POM files
 * It's coupled to tools.deps and cannot easily be consumed as an independent library. It's also dependent on tools.deps state management (e.g. requires POM files to be downloaded locally).
-* It doesn't canonicalise license information to SPDX License Expressions (it leaves canonicalisation, a fairly difficult problem, to the caller).
+* It doesn't canonicalise license information to SPDX License Expressions, or even (in some cases) SPDX License Identifiers.
+* It only reports the first license for multi-licensed artifacts.
 
 In contrast, `tools-licenses` leverages the [`lice-comb` library](https://github.com/pmonks/lice-comb), a build-tool-agnostic library that takes a more comprehensive approach to license detection.
 
 ## Why not [`scarletcomply/license-finder`](https://github.com/scarletcomply/license-finder)?
 
-* It doesnt canonicalise license information to SPDX License Expressons (it leaves canonicalisation, a fairly difficult problem, to the caller).
+* It doesn't canonicalise license information to SPDX License Expressions, or even (in some cases) SPDX License Identifiers.
+* It only reports the first license for multi-licensed artifacts.
 
 ## I use Leiningen - is something like `tools-licenses` available?
 
