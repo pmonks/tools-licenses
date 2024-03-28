@@ -88,10 +88,12 @@
 (defn- summary-output!
   "Emit summary output to stdout."
   [proj-expressions-info deps-lib-map-with-info]
-  (let [proj-expressions (sort (keys proj-expressions-info))
-        freqs            (frequencies (filter identity (mapcat #(keys (get % :lice-comb/license-info)) (vals deps-lib-map-with-info))))
-        deps-expressions (seq (sort (keys freqs)))
-        no-license-count (count (filter empty? (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)))]
+  (let [proj-expressions     (sort (keys proj-expressions-info))
+        freqs                (frequencies (filter identity (mapcat #(keys (get % :lice-comb/license-info)) (vals deps-lib-map-with-info))))
+        deps-expressions     (seq (sort (keys freqs)))
+        no-license-count     (count (filter empty? (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)))
+        single-license-count (count (filter #(= (count %) 1) (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)))
+        multi-license-count  (count (filter #(> (count %) 1) (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)))]
     (print (str "\n" (ansi/bold "This project: ")))
     (if (seq proj-expressions)
       (println (s/join ", " proj-expressions))
@@ -103,7 +105,13 @@
         (run! #(println (str (fit-width 60 (expression-minus-license-refs %)) " " (fit-width 9 (str (get freqs %)) false))) deps-expressions)
         (when (pos? no-license-count) (println (str (fit-width 60 (ansi/fg-bright :red "No licenses found")) " " (fit-width 9 no-license-count false)))))
       (println "  - no dependencies found -"))
-    (println)))
+    (println (str (ansi/bold "------------------------------------------------------------ ---------")
+                  "\n"
+                  "\n                                     " (ansi/bold "Deps with no licensing: ") (fit-width 9 (str no-license-count) false)
+                  "\n                             " (ansi/bold "Deps with 1 license expression: ") (fit-width 9 (str single-license-count) false)
+                  "\n                     " (ansi/bold "Deps with multiple license expressions: ") (fit-width 9 (str multi-license-count) false)
+                  "\n                                                 " (ansi/bold "TOTAL DEPS: "  (fit-width 9 (str (+ no-license-count single-license-count multi-license-count)) false))
+                  "\n"))))
 
 (defn- detailed-output!
   "Emit detailed output to stdout."
