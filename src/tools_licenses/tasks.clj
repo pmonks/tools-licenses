@@ -45,18 +45,42 @@
         _       (d/prep-libs! lib-map {:action :prep :log :info} {})]  ; Make sure everything is "prepped" (downloaded locally) before we start looking for licenses
     lib-map))
 
-(defn- expression-minus-license-refs
-  "Converts lice-comb specific LicenseRefs to a human readable name (and colours
-  them yellow), but leaves other expressions unchanged."
+(defn- human-readable-expression-internal
+  "Recursive portion of the implementation of human-readable-expression."
+  [level parse-result]
+  (when parse-result
+    (cond
+      (sequential? parse-result)
+        (when (pos? (count parse-result))
+          (let [op-str (str " " (s/upper-case (name (first parse-result))) " ")]
+            (str (when (pos? level) "(")
+                 (s/join op-str (map (partial human-readable-expression-internal (inc level)) (rest parse-result)))  ; Note: naive (stack consuming) recursion
+                 (when (pos? level) ")"))))
+      (map? parse-result)
+        (str
+          (:license-id parse-result)
+          (when (:or-later? parse-result) "+")
+          (when (:license-exception-id parse-result) (str " WITH " (:license-exception-id parse-result)))
+          (when (:license-ref parse-result)
+            (let [reconstituted-license-ref (str (when (:document-ref parse-result) (str "DocumentRef-" (:document-ref parse-result) ":"))
+                                                 "LicenseRef-" (:license-ref parse-result))]
+              (if (lcm/lice-comb-license-ref? reconstituted-license-ref)
+                (ansi/fg-bright :yellow (lcm/id->name reconstituted-license-ref))
+                reconstituted-license-ref)))))))
+
+(defn- human-readable-expression
+  "Converts an SPDX license expression into a human readable version, which
+  means decoding lice-comb specific LicenseRefs within the expression to their
+  human readable name, and colouring them yellow."
   [exp]
-  (if (lcm/lice-comb-license-ref? exp)
-    (ansi/fg-bright :yellow (lcm/id->name exp))
-    exp))
+  (when exp
+    (when-let [parse-tree (sexp/parse exp)]
+      (s/trim (human-readable-expression-internal 0 parse-tree)))))
 
 (defn- dep-and-license-expressions
   [dep-name license-expressions]
   (let [sorted-license-expressions (seq (sort (if (map? license-expressions) (keys license-expressions) license-expressions)))]
-    (str dep-name " [" (if sorted-license-expressions (s/join ", " (map expression-minus-license-refs sorted-license-expressions)) (ansi/fg-bright :red "No licenses found")) "]")))
+    (str dep-name " [" (if sorted-license-expressions (s/join ", " (map human-readable-expression sorted-license-expressions)) (ansi/fg-bright :red "No licenses found")) "]")))
 
 (defn- dep-and-licenses->string
   [[dep-ga dep-info :as dep]]
@@ -102,7 +126,7 @@
                         "\n------------------------------------------------------------ ---------"))
     (if (or deps-expressions (pos? no-license-count))
       (do
-        (run! #(println (str (fit-width 60 (expression-minus-license-refs %)) " " (fit-width 9 (str (get freqs %)) false))) deps-expressions)
+        (run! #(println (str (fit-width 60 (human-readable-expression %)) " " (fit-width 9 (ansi/default (str (get freqs %))) false))) deps-expressions)
         (when (pos? no-license-count) (println (str (fit-width 60 (ansi/fg-bright :red "No licenses found")) " " (fit-width 9 no-license-count false)))))
       (println "  - no dependencies found -"))
     (println (str (ansi/bold "------------------------------------------------------------ ---------")
@@ -142,9 +166,9 @@
 (defn- expression-info->string
   [m expr]
   (when (and m expr)
-    (str (ansi/bold (expression-minus-license-refs expr)) " "
+    (str (ansi/bold (human-readable-expression expr)) " "
       (when-let [info-list (sort-by lcu/expression-info-sort-by-keyfn (seq (get m expr)))]
-        (s/join "\n" (map #(str (when-let [md-id (:id %)] (when (not= expr md-id) (ansi/bold (str "  " (expression-minus-license-refs md-id) " "))))
+        (s/join "\n" (map #(str (when-let [md-id (:id %)] (when (not= expr md-id) (ansi/bold (str "  " (human-readable-expression md-id) " "))))
                                 (case (:type %)
                                   :declared  (ansi/fg-bright :green  "Declared")
                                   :concluded (ansi/fg-bright :yellow "Concluded"))
@@ -160,7 +184,7 @@
 (defn- explain-with-licenses!
   [dep-expr-info]
   (let [exprs (sort (keys dep-expr-info))]
-    (println (ansi/bold "Licenses:") (s/join ", " (map expression-minus-license-refs exprs)) "\n")
+    (println (ansi/bold "Licenses:") (s/join ", " (map human-readable-expression exprs)) "\n")
     (println (s/join "\n\n" (map (partial expression-info->string dep-expr-info) exprs)) "\n")))
 
 (defn- explain-without-licenses!
