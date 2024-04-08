@@ -151,7 +151,7 @@ Other invocation possibilities:
 
 <img alt="Example output from licenses task, explain sub-task" src="demo-licenses-explain.png" width="75%"/>
 
-If you see `Unidentified (<some text>)` licenses in the output, **[please raise an issue here](https://github.com/pmonks/lice-comb/issues/new?assignees=pmonks&labels=unknown+licenses&template=Unknown_licenses.md)**.
+If you see `Unidentified (<some text>)` licenses in the output, but the license is listed in the [SPDX license list](https://spdx.org/licenses/), **[please raise an issue here](https://github.com/pmonks/lice-comb/issues/new?assignees=pmonks&labels=unknown+licenses&template=Unknown_licenses.md)**.
 
 #### `check-asf-policy` task
 

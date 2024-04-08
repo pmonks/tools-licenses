@@ -33,6 +33,8 @@
             [lice-comb.deps          :as lcd]
             [lice-comb.files         :as lcf]
             [lice-comb.utils         :as lcu]
+            [lice-comb.maven         :as lcmvn]
+            [lice-comb.impl.utils    :as lcim]  ;####TODO: reconsider this
             [asf-cat.api             :as asf]))
 
 (ansi/install!)
@@ -227,8 +229,12 @@
   Note: has the side effect of 'prepping' your project with its transitive
   dependencies (i.e. downloading them if they haven't already been downloaded)."
   [opts]
-  (let [lib-map     (prep-project)
-        output-type (get opts :output :summary)]
+  (let [lib-map      (prep-project)
+        output-type  (get opts :output :summary)
+        local-repo   (:mvn/local-repo lib-map)
+        _            (when-not (s/blank? local-repo) (lcmvn/set-local-maven-repo! local-repo))
+        remote-repos (:mvn/repos lib-map)
+        _            (when-not (empty? remote-repos) (lcmvn/set-remote-maven-repos! (merge lcmvn/default-remote-maven-repos (lcim/mapfonv :url remote-repos))))]
     (if (= :explain output-type)
       ; Handle :output :explain separately, as it only needs license info for a single dependency, not all of them
       (let [dep-ga        (get opts :dep)
