@@ -40,12 +40,12 @@
 (ansi/install!)
 
 (defn- prep-project
-  "Prepares the project and returns the lib-map for it."
+  "Prepares the project and returns a tuple of [basis lib-map] for it."
   []
   (let [basis   (b/create-basis {})
         lib-map (d/resolve-deps basis {})
         _       (d/prep-libs! lib-map {:action :prep :log :info} {})]  ; Make sure everything is "prepped" (downloaded locally) before we start looking for licenses
-    lib-map))
+    [basis lib-map]))
 
 (defn- human-readable-expression-internal
   "Recursive portion of the implementation of human-readable-expression."
@@ -229,12 +229,12 @@
   Note: has the side effect of 'prepping' your project with its transitive
   dependencies (i.e. downloading them if they haven't already been downloaded)."
   [opts]
-  (let [lib-map      (prep-project)
-        output-type  (get opts :output :summary)
-        local-repo   (:mvn/local-repo lib-map)
-        _            (when-not (s/blank? local-repo) (lcmvn/set-local-maven-repo! local-repo))
-        remote-repos (:mvn/repos lib-map)
-        _            (when-not (empty? remote-repos) (lcmvn/set-remote-maven-repos! (merge lcmvn/default-remote-maven-repos (lcim/mapfonv :url remote-repos))))]
+  (let [[basis lib-map] (prep-project)
+        output-type     (get opts :output :summary)
+        local-repo      (:mvn/local-repo basis)
+        _               (when-not (s/blank? local-repo) (lcmvn/set-local-maven-repo! local-repo))
+        remote-repos    (:mvn/repos basis)
+        _               (when-not (empty? remote-repos) (lcmvn/set-remote-maven-repos! (merge lcmvn/default-remote-maven-repos (lcim/mapfonv :url remote-repos))))]
     (if (= :explain output-type)
       ; Handle :output :explain separately, as it only needs license info for a single dependency, not all of them
       (let [dep-ga        (get opts :dep)
@@ -275,7 +275,7 @@
   Note: has the side effect of 'prepping' your project with its transitive
   dependencies (i.e. downloading them if they haven't already been downloaded)."
   [opts]
-  (let [lib-map                   (prep-project)
+  (let [[_ lib-map]               (prep-project)
         proj-licenses             (distinct (mapcat #(sexp/extract-ids (sexp/parse %)) (lcf/dir->expressions ".")))
         lib-map-with-license-info (lcd/deps-expressions lib-map)
         dep-licenses-by-category  (group-by #(let [expressions (seq (keys (:lice-comb/license-info (val %))))]
