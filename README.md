@@ -12,7 +12,7 @@ A Clojure [tools.build](https://github.com/clojure/tools.build) task library for
 
 It also provides the ability to check your (Apache-2.0 licensed) project against the [Apache Software Foundation's 3rd Party License Policy](https://www.apache.org/legal/resolved.html).
 
-Note: `tools-licenses` assumes a "flat" project organisational structure, where each project is defined by a directory containing a `deps.edn` file, and all of it's sub-directories.  This may or may not work well with monolithic development models (such as [Polylith](https://polylith.gitbook.io/polylith)), where all source code is managed out of a single, large, deeply-nested directory structure.  That said, `tools-licenses` will do _something_, but whether that thing is what you're expecting and/or useful is quite another matter.
+Note: `tools-licenses` assumes a "flat" project organisational structure, where each project is defined by a directory containing a `deps.edn` file, and all of its sub-directories.  This may or may not work well with monolithic development models (such as [Polylith](https://polylith.gitbook.io/polylith)), where all source code is managed out of a single, large, deeply-nested directory structure.  That said, `tools-licenses` will do _something_, but whether that thing is what you're expecting and/or useful is quite another matter.
 
 ## Disclaimer
 
@@ -84,6 +84,7 @@ Require the namespace in your tools.build script (typically called `build.clj`),
   [opts]
   (lic/licenses opts))
 
+; And, optionally:
 (defn check-asf-policy
   "Checks this project's dependencies' licenses against the ASF's 3rd party
   license policy (https://www.apache.org/legal/resolved.html).
@@ -93,7 +94,7 @@ Require the namespace in your tools.build script (typically called `build.clj`),
   (lic/check-asf-policy opts))
 ```
 
-Optionally, you may also wish to configure logging for your `build` alias, since this tool can emit logging output.  For example (using log4j2):
+You may also wish to configure a logging implementation for your `build` alias, since this tool can emit logging output (mostly from the Java libraries it uses).  For example (using log4j2, though you may choose any logging implementation you like that supports [SLF4J](https://www.slf4j.org/)):
 
 ```edn
     :build
