@@ -16,7 +16,7 @@ It also provides the ability to check your (Apache-2.0 licensed) project against
 
 ## Disclaimer
 
-**The author and contributors to `tools-licenses` are not lawyers, and neither they nor `tools-licenses` itself provide legal advice. This is simply a tool that might help you and your legal counsel perform licensing due diligence on your projects.**
+**The author and contributors to `tools-licenses` are not lawyers, and neither they nor `tools-licenses` itself provide legal advice. This is simply a tool that might help you and your legal counsel perform licensing due diligence on your projects.**  If you need a primer on the legal aspects of open source software, the author has found the [Blue Oak Council](https://blueoakcouncil.org/) to be a useful resource.
 
 ## System Requirements
 
