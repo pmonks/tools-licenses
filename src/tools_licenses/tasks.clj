@@ -123,7 +123,7 @@
     (print (str "\n" (ansi/bold "This project: ")))
     (if (seq proj-expressions)
       (println (s/join ", " proj-expressions))
-      (println "- no license information found -"))
+      (println (ansi/fg-bright :red "No licenses found")))
     (println (ansi/bold "\nLicense Expression                                           # of Deps"
                         "\n------------------------------------------------------------ ---------"))
     (if (or deps-expressions (pos? no-license-count))
