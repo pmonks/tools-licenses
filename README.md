@@ -12,7 +12,7 @@ A Clojure [tools.build](https://github.com/clojure/tools.build) task library for
 
 It also provides the ability to check your (Apache-2.0 licensed) project against the [Apache Software Foundation's 3rd Party License Policy](https://www.apache.org/legal/resolved.html).
 
-`tools-licenses` is little more than a pretty output wrapper around the build-tool-agnostic [`lice-comb` library](https://github.com/pmonks/lice-comb).
+Note: `tools-licenses` assumes a "flat" project organisational structure, where each project is defined by a directory containing a `deps.edn` file, and all of it's sub-directories.  This may or may not work well with monolithic development models (such as [Polylith](https://polylith.gitbook.io/polylith)), where all source code is managed out of a single, large, deeply-nested directory structure.  That said, `tools-licenses` will do _something_, but whether that thing is what you're expecting and/or useful is quite another matter.
 
 ## Disclaimer
 
