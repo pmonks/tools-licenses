@@ -49,14 +49,14 @@
 
 (defn- human-readable-expression-internal
   "Recursive portion of the implementation of human-readable-expression."
-  [level parse-result]
+  [license-ref-formatting-fn level parse-result] 
   (when parse-result
     (cond
       (sequential? parse-result)
         (when (pos? (count parse-result))
           (let [op-str (str " " (s/upper-case (name (first parse-result))) " ")]
             (str (when (pos? level) "(")
-                 (s/join op-str (map (partial human-readable-expression-internal (inc level)) (rest parse-result)))  ; Note: naive (stack consuming) recursion
+                 (s/join op-str (map (partial human-readable-expression-internal license-ref-formatting-fn (inc level)) (rest parse-result)))  ; Note: naive (stack consuming) recursion
                  (when (pos? level) ")"))))
       (map? parse-result)
         (str
@@ -67,22 +67,34 @@
             (let [reconstituted-license-ref (str (when (:document-ref parse-result) (str "DocumentRef-" (:document-ref parse-result) ":"))
                                                  "LicenseRef-" (:license-ref parse-result))]
               (if (lcm/lice-comb-license-ref? reconstituted-license-ref)
-                (ansi/fg-bright :yellow (lcm/id->name reconstituted-license-ref))
+                (license-ref-formatting-fn (lcm/id->name reconstituted-license-ref))
                 reconstituted-license-ref)))))))
 
 (defn- human-readable-expression
   "Converts an SPDX license expression into a human readable version, which
   means decoding lice-comb specific LicenseRefs within the expression to their
   human readable name, and colouring them yellow."
-  [exp]
-  (when exp
-    (when-let [parse-tree (sexp/parse exp)]
-      (s/trim (human-readable-expression-internal 0 parse-tree)))))
+  ([exp] (human-readable-expression (partial ansi/fg-bright :yellow) exp))
+  ([license-ref-formatting-fn exp]
+   (when exp
+     (when-let [parse-tree (sexp/parse exp)]
+       (s/trim (human-readable-expression-internal license-ref-formatting-fn 0 parse-tree))))))
+
+(defn- sort-license-expressions
+  "Sorts the given license expressions, which involves sorting valid SPDX
+  expressions normally, and putting LicenseRefs last."
+  [exps]
+  (when (seq exps)
+    (seq (sort-by (partial human-readable-expression identity) exps))))
 
 (defn- dep-and-license-expressions
   [dep-name license-expressions]
-  (let [sorted-license-expressions (seq (sort (if (map? license-expressions) (keys license-expressions) license-expressions)))]
-    (str dep-name " [" (if sorted-license-expressions (s/join ", " (map human-readable-expression sorted-license-expressions)) (ansi/fg-bright :red "No licenses found")) "]")))
+  (let [sorted-license-expressions (sort-license-expressions (if (map? license-expressions) (keys license-expressions) license-expressions))]
+    (str dep-name
+         " [" (if sorted-license-expressions
+                (s/join ", " (map human-readable-expression sorted-license-expressions))
+                (ansi/fg-bright :red "No licenses found"))
+         "]")))
 
 (defn- dep-and-licenses->string
   [[dep-ga dep-info :as dep]]
@@ -114,21 +126,21 @@
 (defn- summary-output!
   "Emit summary output to stdout."
   [proj-expressions-info deps-lib-map-with-info]
-  (let [proj-expressions     (sort (keys proj-expressions-info))
+  (let [proj-expressions     (sort-license-expressions (keys proj-expressions-info))
         freqs                (frequencies (filter identity (mapcat #(keys (get % :lice-comb/license-info)) (vals deps-lib-map-with-info))))
-        deps-expressions     (seq (sort (keys freqs)))
+        deps-expressions     (sort-license-expressions (keys freqs))
         no-license-count     (count (filter empty? (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)))
         single-license-count (count (filter #(= (count %) 1) (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)))
         multi-license-count  (count (filter #(> (count %) 1) (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)))]
     (print (str "\n" (ansi/bold "This project: ")))
     (if (seq proj-expressions)
-      (println (s/join ", " proj-expressions))
+      (println (s/join ", " (map human-readable-expression proj-expressions)))
       (println (ansi/fg-bright :red "No licenses found")))
     (println (ansi/bold "\nLicense Expression                                           # of Deps"
                         "\n------------------------------------------------------------ ---------"))
     (if (or deps-expressions (pos? no-license-count))
       (do
-        (run! #(println (str (fit-width 60 (human-readable-expression %)) " " (fit-width 9 (ansi/default (str (get freqs %))) false))) deps-expressions)
+        (run! #(println (str (fit-width 60 (human-readable-expression  %)) " " (fit-width 9 (ansi/default (str (get freqs %))) false))) deps-expressions)
         (when (pos? no-license-count) (println (str (fit-width 60 (ansi/fg-bright :red "No licenses found")) " " (fit-width 9 no-license-count false)))))
       (println "  - no dependencies found -"))
     (println (str (ansi/bold "------------------------------------------------------------ ---------")
@@ -142,7 +154,7 @@
 (defn- detailed-output!
   "Emit detailed output to stdout."
   [opts proj-expressions-info deps-lib-map-with-info]
-  (let [expressions     (sort (keys proj-expressions-info))
+  (let [expressions     (sort-license-expressions (keys proj-expressions-info))
         direct-deps     (into {} (remove (fn [[_ v]] (seq (:dependents v))) deps-lib-map-with-info))
         transitive-deps (into {} (filter (fn [[_ v]] (seq (:dependents v))) deps-lib-map-with-info))]
     (println (str "\n" (ansi/bold "This project:")))
@@ -185,7 +197,7 @@
 
 (defn- explain-with-licenses!
   [dep-expr-info]
-  (let [exprs (sort (keys dep-expr-info))]
+  (let [exprs (sort-license-expressions (keys dep-expr-info))]
     (println (ansi/bold "Licenses:") (s/join ", " (map human-readable-expression exprs)) "\n")
     (println (s/join "\n\n" (map (partial expression-info->string dep-expr-info) exprs)) "\n")))
 
