@@ -85,7 +85,7 @@
   expressions normally, and putting LicenseRefs last."
   [exps]
   (when (seq exps)
-    (seq (sort-by (partial human-readable-expression identity) exps))))
+    (seq (sort-by #(s/lower-case (human-readable-expression identity %)) exps))))
 
 (defn- dep-and-license-expressions
   [dep-name license-expressions]
