@@ -129,9 +129,10 @@
   (let [proj-expressions     (sort-license-expressions (keys proj-expressions-info))
         freqs                (frequencies (filter identity (mapcat #(keys (get % :lice-comb/license-info)) (vals deps-lib-map-with-info))))
         deps-expressions     (sort-license-expressions (keys freqs))
-        no-license-count     (count (filter empty? (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)))
-        single-license-count (count (filter #(= (count %) 1) (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)))
-        multi-license-count  (count (filter #(> (count %) 1) (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)))]
+        license-infos        (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)
+        no-license-count     (count (filter empty? license-infos))
+        single-license-count (count (filter #(and (= 1 (count (keys %))) (sexp/simple? (first (keys %)))) license-infos))
+        multi-license-count  (count (filter #(or (> (count (keys %)) 1) (some sexp/compound? (keys %))) license-infos))]
     (print (str "\n" (ansi/bold "This project: ")))
     (if (seq proj-expressions)
       (println (s/join ", " (map human-readable-expression proj-expressions)))
@@ -145,10 +146,10 @@
       (println "  - no dependencies found -"))
     (println (str (ansi/bold "------------------------------------------------------------ ---------")
                   "\n"
-                  "\n                                     " (ansi/bold "Deps with no licensing: ") (fit-width 9 (str no-license-count) false)
-                  "\n                             " (ansi/bold "Deps with 1 license expression: ") (fit-width 9 (str single-license-count) false)
-                  "\n                     " (ansi/bold "Deps with multiple license expressions: ") (fit-width 9 (str multi-license-count) false)
-                  "\n                                                 " (ansi/bold "TOTAL DEPS: "  (fit-width 9 (str (+ no-license-count single-license-count multi-license-count)) false))
+                  "\n                             " (ansi/bold "Deps with no detected licenses: ") (fit-width 9 (str no-license-count) false)
+                  "\n                                        " (ansi/bold "Deps with 1 license: ") (fit-width 9 (str single-license-count) false)
+                  "\n                                " (ansi/bold "Deps with multiple licenses: ") (fit-width 9 (str multi-license-count) false)
+                  "\n                                                 " (ansi/bold "TOTAL DEPS: "  (fit-width 9 (str (count deps-lib-map-with-info)) false))
                   "\n"))))
 
 (defn- detailed-output!
