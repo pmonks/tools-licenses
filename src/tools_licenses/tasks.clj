@@ -195,13 +195,18 @@
                                 (case (:type %)
                                   :declared  (ansi/fg-bright :green  "Declared")
                                   :concluded (ansi/fg-bright :yellow "Concluded"))
-                                (when-let [confidence (:confidence %)]   (str (ansi/bold "\n  Confidence: ")
-                                                                              (case confidence
-                                                                                :low    (ansi/fg-bright :red    "low")
-                                                                                :medium (ansi/fg-bright :yellow "medium")
-                                                                                :high   (ansi/fg-bright :green  "high"))))
-                                (when-let [strategy   (:strategy %)]     (str (ansi/bold "\n  Strategy: ") (get lcu/strategy->string strategy (name strategy))))
-                                (when-let [source     (seq (map remove-file-prefix (:source %)))] (str (ansi/bold "\n  Source:") "\n    " (s/join "\n    ⮑  " source))))
+                                (when-let [confidence (:confidence %)]
+                                  (str (ansi/bold "\n  Confidence: ")
+                                       (case confidence
+                                         :low    (ansi/fg-bright :red    "low")
+                                         :medium (ansi/fg-bright :yellow "medium")
+                                         :high   (ansi/fg-bright :green  "high"))))
+                                (when-let [confidence-explanations (seq (:confidence-explanations %))]
+                                  (str " (" (s/join ", " (map (fn [exp] (s/replace (name exp) "-" " ")) (sort confidence-explanations))) ")"))
+                                (when-let [strategy (:strategy %)]
+                                  (str (ansi/bold "\n  Strategy: ") (get lcu/strategy->string strategy (name strategy))))
+                                (when-let [source (seq (map remove-file-prefix (:source %)))]
+                                  (str (ansi/bold "\n  Source:") "\n    " (s/join "\n    ⮑  " source))))
                           info-list))))))
 
 (defn- explain-with-licenses!
