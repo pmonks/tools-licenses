@@ -87,22 +87,6 @@
   (when (seq exps)
     (seq (sort-by #(s/lower-case (human-readable-expression identity %)) exps))))
 
-(defn- dep-and-license-expressions
-  [dep-name license-expressions]
-  (let [sorted-license-expressions (sort-license-expressions (if (map? license-expressions) (keys license-expressions) license-expressions))]
-    (str dep-name
-         " [" (if sorted-license-expressions
-                (s/join ", " (map human-readable-expression sorted-license-expressions))
-                (ansi/fg-bright :red "No licenses found"))
-         "]")))
-
-(defn- dep-and-licenses->string
-  [[dep-ga dep-info :as dep]]
-  (let [dep-ga              (str dep-ga)
-        dep-v               (lcd/dep->version dep)
-        license-expressions (:lice-comb/license-info dep-info)]
-    (dep-and-license-expressions (str dep-ga "@" dep-v) license-expressions)))
-
 (defn- fit-width
   "Pads or trims string s to display width w, with control over whether padding
   happens before or after"
@@ -126,16 +110,20 @@
 (defn- summary-output!
   "Emit summary output to stdout."
   [proj-expressions-info deps-lib-map-with-info]
-  (let [proj-expressions     (sort-license-expressions (keys proj-expressions-info))
-        freqs                (frequencies (filter identity (mapcat #(keys (get % :lice-comb/license-info)) (vals deps-lib-map-with-info))))
-        deps-expressions     (sort-license-expressions (keys freqs))
-        no-license-count     (count (filter empty? (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)))
-        single-license-count (count (filter #(= (count %) 1) (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)))
-        multi-license-count  (count (filter #(> (count %) 1) (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)))]
+  (let [proj-expressions             (sort-license-expressions (keys proj-expressions-info))
+        freqs                        (frequencies (filter identity (mapcat #(keys (get % :lice-comb/license-info)) (vals deps-lib-map-with-info))))
+        deps-expressions             (sort-license-expressions (keys freqs))
+        license-infos                (map #(:lice-comb/license-info (val %)) deps-lib-map-with-info)
+        no-license-count             (count (filter empty? license-infos))
+        single-license-count         (count (filter #(and (= 1 (count (keys %))) (sexp/simple? (first (keys %)))) license-infos))
+        multi-license-count          (count (filter #(or (> (count (keys %)) 1) (some sexp/compound? (keys %))) license-infos))
+        multiple-exprs-license-count (count (filter #(> (count (keys %)) 1) license-infos))]
+
     (print (str "\n" (ansi/bold "This project: ")))
     (if (seq proj-expressions)
       (println (s/join ", " (map human-readable-expression proj-expressions)))
       (println (ansi/fg-bright :red "No licenses found")))
+
     (println (ansi/bold "\nLicense Expression                                           # of Deps"
                         "\n------------------------------------------------------------ ---------"))
     (if (or deps-expressions (pos? no-license-count))
@@ -143,13 +131,34 @@
         (run! #(println (str (fit-width 60 (human-readable-expression  %)) " " (fit-width 9 (ansi/default (str (get freqs %))) false))) deps-expressions)
         (when (pos? no-license-count) (println (str (fit-width 60 (ansi/fg-bright :red "No licenses found")) " " (fit-width 9 no-license-count false)))))
       (println "  - no dependencies found -"))
+
     (println (str (ansi/bold "------------------------------------------------------------ ---------")
                   "\n"
-                  "\n                                     " (ansi/bold "Deps with no licensing: ") (fit-width 9 (str no-license-count) false)
-                  "\n                             " (ansi/bold "Deps with 1 license expression: ") (fit-width 9 (str single-license-count) false)
-                  "\n                     " (ansi/bold "Deps with multiple license expressions: ") (fit-width 9 (str multi-license-count) false)
-                  "\n                                                 " (ansi/bold "TOTAL DEPS: "  (fit-width 9 (str (+ no-license-count single-license-count multi-license-count)) false))
+                  "\n                             " (ansi/bold "Deps with no detected licenses: ") (fit-width 9 (str no-license-count) false)
+                  "\n                                        " (ansi/bold "Deps with 1 license: ") (fit-width 9 (str single-license-count) false)
+                  "\n                                " (ansi/bold "Deps with multiple licenses: ") (fit-width 9 (str multi-license-count) false)
+                  "\n                     " (ansi/bold "Deps with multiple license expressions: ") (fit-width 9 (str multiple-exprs-license-count) false)
+                  "\n"
+                  "\n                                            " (ansi/bold "    Direct deps: ") (fit-width 9 (str (count (into {} (remove (fn [[_ v]] (seq (:dependents v))) deps-lib-map-with-info)))) false)
+                  "\n                                            " (ansi/bold "Transitive deps: ") (fit-width 9 (count (into {} (filter (fn [[_ v]] (seq (:dependents v))) deps-lib-map-with-info))) false)
+                  "\n                                            " (ansi/bold "     TOTAL DEPS: ") (fit-width 9 (count deps-lib-map-with-info) false)
                   "\n"))))
+
+(defn- dep-and-license-expressions
+  [dep-name license-expressions]
+  (let [sorted-license-expressions (sort-license-expressions (if (map? license-expressions) (keys license-expressions) license-expressions))]
+    (str (ansi/fg-bright :black dep-name)
+         " "
+         (if sorted-license-expressions
+           (s/join ", " (map human-readable-expression sorted-license-expressions))
+           (ansi/fg-bright :red "No licenses found")))))
+
+(defn- dep-and-licenses->string
+  [[dep-ga dep-info :as dep]]
+  (let [dep-ga              (str dep-ga)
+        dep-v               (lcd/dep->version dep)
+        license-expressions (:lice-comb/license-info dep-info)]
+    (dep-and-license-expressions (str dep-ga "@" dep-v) license-expressions)))
 
 (defn- detailed-output!
   "Emit detailed output to stdout."
@@ -198,12 +207,12 @@
 (defn- explain-with-licenses!
   [dep-expr-info]
   (let [exprs (sort-license-expressions (keys dep-expr-info))]
-    (println (ansi/bold "Licenses:") (s/join ", " (map human-readable-expression exprs)) "\n")
+    (println (ansi/bold "License(s):") (s/join ", " (map human-readable-expression exprs)) "\n")
     (println (s/join "\n\n" (map (partial expression-info->string dep-expr-info) exprs)) "\n")))
 
 (defn- explain-without-licenses!
   [dep]
-  (println (ansi/bold "Licenses:") (ansi/fg-bright :red "No licenses found"))
+  (println (ansi/bold "License(s):") (ansi/fg-bright :red "No licenses found"))
   (println (ansi/bold "\nLocations checked:"))
   (println (s/join "\n" (map remove-file-prefix (lcd/dep->locations dep))))
   (println))
@@ -214,7 +223,7 @@
   (if ga
     (if-let [version (lcd/dep->version dep)]
       (do
-        (println (str "\n" (ansi/bold "Artifact: ") (str ga "@" version)))
+        (println (str "\n" (ansi/bold "  Artifact: ") (str ga "@" version)))
         (if (empty? dep-expr-info)
           (explain-without-licenses! dep)
           (explain-with-licenses! dep-expr-info)))
