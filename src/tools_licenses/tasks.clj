@@ -107,6 +107,30 @@
                (str s padding)
                (str padding s))))))))
 
+(defn- split-long-lines-and-indent
+  "Splits any lines longer than w on the last whitespace, inserts a line break
+  and indents the remainder. The final line is also padded out to w."
+  [w s]
+  (when (and w s)
+    (if (<= (wcw/display-width s) w)
+      (fit-width w s)
+      (let [words (s/split s #"\s+")
+            lines (loop [result    []
+                         line      ""
+                         next-word (first words)
+                         rem-words (rest words)]
+                    (if-not next-word
+                      (conj result line)
+                      (let [new-line (s/trim (str line " " next-word))]
+                        (if (> (wcw/display-width new-line) (- w 2))
+                          (recur (conj result line) next-word (first rem-words) (rest rem-words))
+                          (recur result             new-line  (first rem-words) (rest rem-words))))))
+            first-line (first lines)
+            rest-lines (map (partial str "  ") (rest lines))
+            last-line  (fit-width w (last rest-lines))
+            lines      (concat [first-line] (take (dec (count rest-lines)) rest-lines) [last-line])]
+        (s/join "\n" lines)))))
+
 (defn- summary-output!
   "Emit summary output to stdout."
   [proj-expressions-info deps-lib-map-with-info]
@@ -128,7 +152,7 @@
                         "\n------------------------------------------------------------ ---------"))
     (if (or deps-expressions (pos? no-license-count))
       (do
-        (run! #(println (str (fit-width 60 (human-readable-expression  %)) " " (fit-width 9 (ansi/default (str (get freqs %))) false))) deps-expressions)
+        (run! #(println (str (split-long-lines-and-indent 60 (human-readable-expression %)) " " (fit-width 9 (ansi/default (str (get freqs %))) false))) deps-expressions)
         (when (pos? no-license-count) (println (str (fit-width 60 (ansi/fg-bright :red "No licenses found")) " " (fit-width 9 no-license-count false)))))
       (println "  - no dependencies found -"))
 
