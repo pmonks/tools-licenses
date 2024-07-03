@@ -21,7 +21,7 @@
     com.github.pmonks/clj-wcwidth       {:mvn/version "1.0.85"}
     com.github.pmonks/lice-comb         {:mvn/version "2.0.332"}
     com.github.pmonks/asf-cat           {:mvn/version "2.0.149"}
-    com.github.pmonks/tools-convenience {:mvn/version "1.0.154"}}
+    com.github.pmonks/tools-convenience {:mvn/version "1.0.157"}}
  :aliases
    {:build {:deps       {com.github.pmonks/pbr            {:mvn/version "RELEASE"}
                          com.github.pmonks/tools-licenses {:local/root "."}}
