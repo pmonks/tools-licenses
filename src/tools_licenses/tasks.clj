@@ -326,7 +326,7 @@
                                                  :uncategorised))  ; Don't forget about deps without any license info
                                             lib-map-with-license-info)]
     (when-not (seq (filter (partial = "Apache-2.0") proj-licenses))
-      (println (ansi/bold (ansi/fg-bright :red "\nYour project is not Apache-2.0 licensed; this report is likely meaningless."))))
+      (println (ansi/bold (ansi/fg-bright :red "\nThis project is not Apache-2.0 licensed; this report is likely meaningless."))))
     (case (get opts :output :summary)
       :summary  (do
                   (println (ansi/bold "\nASF Category                  # of Deps"
