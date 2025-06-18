@@ -1,12 +1,12 @@
-| | | |
-|---:|:---:|:---:|
-| [**release**](https://github.com/pmonks/tools-licenses/tree/release) | [![CI](https://github.com/pmonks/tools-licenses/actions/workflows/ci.yml/badge.svg?branch=release)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3ACI+branch%3Arelease) | [![Dependencies](https://github.com/pmonks/tools-licenses/actions/workflows/dependencies.yml/badge.svg?branch=release)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies+branch%3Arelease) |
-| [**dev**](https://github.com/pmonks/tools-licenses/tree/dev) | [![CI](https://github.com/pmonks/tools-licenses/actions/workflows/ci.yml/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3ACI+branch%3Adev) | [![Dependencies](https://github.com/pmonks/tools-licenses/actions/workflows/dependencies.yml/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies+branch%3Adev) |
-
-[![Latest Version](https://img.shields.io/clojars/v/com.github.pmonks/tools-licenses)](https://clojars.org/com.github.pmonks/tools-licenses/) [![License](https://img.shields.io/github/license/pmonks/tools-licenses.svg)](https://github.com/pmonks/tools-licenses/blob/release/LICENSE) [![Open Issues](https://img.shields.io/github/issues/pmonks/tools-licenses.svg)](https://github.com/pmonks/tools-licenses/issues)
-
-
 # tools-licenses
+
+[![CI](https://github.com/pmonks/tools-licenses/actions/workflows/ci.yml/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3ACI+branch%3Adev)
+[![Dependencies](https://github.com/pmonks/tools-licenses/actions/workflows/dependencies.yml/badge.svg?branch=dev)](https://github.com/pmonks/tools-licenses/actions?query=workflow%3Adependencies+branch%3Adev)
+<br/>
+[![Latest Version](https://img.shields.io/clojars/v/com.github.pmonks/tools-licenses)](https://clojars.org/com.github.pmonks/tools-licenses/)
+[![License](https://img.shields.io/github/license/pmonks/tools-licenses.svg)](https://github.com/pmonks/tools-licenses/blob/release/LICENSE)
+[![Open Issues](https://img.shields.io/github/issues/pmonks/tools-licenses.svg)](https://github.com/pmonks/tools-licenses/issues)
+![Maintained](https://badges.ws/badge/?label=maintained&value=yes,+at+author's+discretion)
 
 A Clojure [tools.build](https://github.com/clojure/tools.build) task library for interrogating your project's dependencies' licenses.  Somewhat inspired by the (discontinued) [`lein-licenses`](https://github.com/technomancy/lein-licenses/) Leiningen plugin, but with the added benefit of canonicalisation to [SPDX](https://spdx.dev/) [License Expressions](https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/).
 
