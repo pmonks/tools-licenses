@@ -9,9 +9,8 @@
 ;
 
 {:deps
-   {jansi-clj/jansi-clj                 {:mvn/version "1.0.3"}
-    org.fusesource.jansi/jansi          {:mvn/version "2.4.1"}
-    com.github.pmonks/clj-wcwidth       {:mvn/version "1.0.103"}
+   {jansi-clj/jansi-clj                 {:mvn/version "2.0.0"}
+    com.github.pmonks/clj-wcwidth       {:mvn/version "1.0.145"}
     com.github.pmonks/lice-comb         {:mvn/version "2.0.332"}
     com.github.pmonks/asf-cat           {:mvn/version "2.0.149"}
     com.github.pmonks/tools-convenience {:mvn/version "1.0.157"}}
